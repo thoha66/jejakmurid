@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\News;
 use App\Admin;
 use DB;
+use Auth;
 
 class NewsController extends Controller
 {
@@ -36,7 +37,11 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('pentadbir.pengumuman.buat_pengumuman');
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+//        dd($admin_id);
+         return view('pentadbir.pengumuman.buat_pengumuman',compact('admin_id'));
     }
 
     /**
@@ -77,7 +82,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::findOrFail($id);
-        return view('pentadbir.pengumuman.papar_pengumuman',['news' => $news]);
+        return view('pentadbir.pengumuman.papar_pengumuman',compact('news'));
     }
 
     /**
@@ -89,7 +94,12 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::find($id);
-        return view('pentadbir.pengumuman.sunting_pengumuman',['news' => $news]);
+
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
+        return view('pentadbir.pengumuman.sunting_pengumuman',compact('news','admin_id'));
     }
 
     /**

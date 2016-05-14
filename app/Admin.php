@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Model
 {
   protected $fillable = [
+    'user_id',
     'no_kp_admin',
     'nama_admin',
     'no_tel_admin',

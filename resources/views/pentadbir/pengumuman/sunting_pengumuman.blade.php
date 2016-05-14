@@ -99,7 +99,7 @@
                     </div>
 
                     {{--hiddent input--}}
-                    <input type="hidden" name="admin_id" value="1">
+                    <input type="hidden" name="admin_id" value="{{ $admin_id }}">
 
                   </div>
                   <div class="form-actions pal">

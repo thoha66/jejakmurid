@@ -10,6 +10,10 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
+                        {{--hiddent input--}}
+                        <input type="hidden" name="user_group" value="1">
+                        <input type="hidden" name="user_group_description" value="admin">
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Name</label>
 

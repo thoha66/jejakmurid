@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Admin;
 
 class AdminController extends Controller
 {
@@ -25,7 +26,11 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('pentadbir.buat_pengumuman');
+//        $user_id = Auth::user()->id;
+//        $admin = Admin::with('admin')->where('user_id',$user_id);
+//        $admin_id = $admin->id;
+//        dd($admin_id);
+//       // return view('pentadbir.buat_pengumuman',compact('admin_id'));
     }
 
     /**
