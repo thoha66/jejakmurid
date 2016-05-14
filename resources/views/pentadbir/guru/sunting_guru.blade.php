@@ -72,9 +72,9 @@
                       <div class="col-md-9">
 
                         <select class="form-control" id="inputJG" name="jenis_guru">
-                          <option value="guru biasa">Guru Biasa</option>
-                          <option value="guru kelas">Guru Kelas</option>
-                          <option value="guru disiplin">Guru Disiplin</option>
+                          <option value="2">Guru Biasa</option>
+                          <option value="3">Guru Kelas</option>
+                          <option value="4">Guru Disiplin</option>
                         </select>
 
                       </div>
@@ -141,7 +141,7 @@
                       <div class="col-md-9">
                         <div class="input-icon right">
                           <i class="fa fa-location-arrow"></i>
-                          <input id="email" type="text" placeholder="" class="form-control" name="email_guru" value="{{ $teacher->email_guru }}" disabled>
+                          <input id="email" type="text" placeholder="" class="form-control" name="email_guru" value="{{ $teacher->email_guru }}" >
                         </div>
                       </div>
                     </div>

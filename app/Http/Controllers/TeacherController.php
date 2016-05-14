@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Teacher;
 use App\Classroom;
 use DB;
+use Auth;
+use App\Admin;
+
 
 class TeacherController extends Controller
 {
@@ -30,8 +34,12 @@ class TeacherController extends Controller
      */
     public function create()
     {
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
         $classrooms = Classroom::all();
-        return view('pentadbir.guru.daftar_guru',compact('classrooms'));
+        return view('pentadbir.guru.daftar_guru',compact('classrooms','admin_id'));
     }
 
     /**
@@ -44,10 +52,22 @@ class TeacherController extends Controller
     {
         if($request->isMethod('post'))
         {
+            $user = new User;
+
+            $user->name = $request->input('email_guru');
+            $user->email = $request->input('email_guru');
+            $user->user_group = $request->input('jenis_guru');
+            $user->user_group_description = $request->input('jenis_guru');
+            $user->password = bcrypt($request->input('no_kp_guru'));
+
+            $user->save();
+
             $teacher = new Teacher;
 
             $teacher->admin_id = $request->input('admin_id');
+            $teacher->user_id = $user->id;
             $teacher->no_kp_guru = $request->input('no_kp_guru');
+            $teacher->email_guru = $request->input('email_guru');
             $teacher->jenis_guru = $request->input('jenis_guru');
 
             $teacher->guru_kelas_id = $request->input('guru_kelas_id');
@@ -61,7 +81,6 @@ class TeacherController extends Controller
 //            $teacher->email = $request->input('email');
 //            $teacher->umur = $request->input('umur');
 //            $teacher->jantina = $request->input('jantina');
-
             $teacher->save();
 
         }
@@ -108,6 +127,9 @@ class TeacherController extends Controller
     {
 
         $teacher = Teacher::find($id);
+        $teacher_user_id = $teacher->user_id;
+//        dd($teacher_user_id);
+
 
 
         $teacher->no_kp_guru = $request->input('no_kp_guru');
@@ -126,6 +148,17 @@ class TeacherController extends Controller
         $teacher->jantina_guru = $request->input('jantina_guru');
 
         $teacher->save();
+
+        $user = User::find($teacher_user_id);
+//        dd($user->id);
+        
+        $user->name = $request->input('email_guru');
+        $user->email = $request->input('email_guru');
+        $user->user_group = $request->input('jenis_guru');
+        $user->user_group_description = $request->input('jenis_guru');
+        $user->password = bcrypt($request->input('no_kp_guru'));
+        $user->save();
+
 
         return redirect('teacher');
     }

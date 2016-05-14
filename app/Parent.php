@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Parent extends Model
 {
   protected $fillable = [
+      'user_id',
       'no_kp_penjaga',
       'nama_penjaga',
       'alamat_penjaga',
