@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Student;
+use App\Classroom;
+use Auth;
+use App\Admin;
+use App\User;
+use App\Caretaker;
 
 class StudentController extends Controller
 {
@@ -28,7 +33,12 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('pentadbir.pelajar.daftar_pelajar');
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
+        $classrooms = Classroom::all();
+        return view('pentadbir.pelajar.daftar_pelajar',compact('classrooms','admin_id'));
     }
 
     /**
@@ -39,19 +49,70 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $student = new Student;
+        if($request->isMethod('post')) {
+            $user = new User;
+            $emailstudent = $request->input('no_kp_pelajar');
 
-        $student->admin_id = $request->input('admin_id');
-        $student->parent_id = $request->input('parent_id');
-        $student->classroom_id = $request->input('classroom_id');
+            $user->name = $emailstudent;
+            $user->email = $emailstudent.'@pelajar.com';
+            $user->user_group = 5;
+            $user->user_group_description = 'PELAJAR';
+            $user->password = bcrypt($emailstudent);
 
-        $student->no_surat_beranak_pelajar = $request->input('no_surat_beranak_pelajar');
-        $student->no_kp_pelajar = $request->input('no_kp_pelajar');
+            $user->save();
+//            dd($user);
+            $no_kp_penjaga = $request->input('no_kp_penjaga_pelajar');
+            $caretaker = Caretaker::with('user')->where('no_kp_penjaga',$no_kp_penjaga)->first();
+            if($caretaker != null){
 
-        $student->tingkatan_pelajar = $request->input('tingkatan_pelajar');
-        $student->no_kp_penjaga_pelajar = $request->input('no_kp_penjaga_pelajar');
+                $student = new Student;
 
-        $student->save();
+                $student->user_id = $user->id;
+                $student->admin_id = $request->input('admin_id');
+                $student->caretaker_id = $caretaker->id;
+                $student->classroom_id = $request->input('classroom_id');
+                $student->no_surat_beranak_pelajar = $request->input('no_surat_beranak_pelajar');
+                $student->no_kp_pelajar = $request->input('no_kp_pelajar');
+                $student->tingkatan_pelajar = $request->input('tingkatan_pelajar');
+                $student->no_kp_penjaga_pelajar = $request->input('no_kp_penjaga_pelajar');
+
+                $student->save();
+
+            }
+            else{
+                $userperent = new User;
+                $emailperent = $request->input('no_kp_penjaga_pelajar');
+
+                $userperent->name = $emailperent;
+                $userperent->email = $emailperent.'@penjaga.com';
+                $userperent->user_group = 6;
+                $userperent->user_group_description = 'PENJAGA';
+                $userperent->password = bcrypt($emailperent);
+
+                $userperent->save();
+
+                $caretaker = new Caretaker;
+                $caretaker->user_id = $userperent->id;
+                $caretaker->no_kp_penjaga = $request->input('no_kp_penjaga_pelajar');
+
+                $caretaker->save();
+
+                $student = new Student;
+
+                $student->user_id = $user->id;
+                $student->admin_id = $request->input('admin_id');
+                $student->caretaker_id = $caretaker->id;
+                $student->classroom_id = $request->input('classroom_id');
+                $student->no_surat_beranak_pelajar = $request->input('no_surat_beranak_pelajar');
+                $student->no_kp_pelajar = $request->input('no_kp_pelajar');
+                $student->tingkatan_pelajar = $request->input('tingkatan_pelajar');
+                $student->no_kp_penjaga_pelajar = $request->input('no_kp_penjaga_pelajar');
+
+                $student->save();
+            }
+
+
+        }
 
         return redirect('student');
     }

@@ -39,7 +39,7 @@ class Admin extends Model
   }
 
   public function parents(){
-    return $this->hasMany('App\Parent');
+    return $this->hasMany('App\Caretaker');
   }
 
   public function subjects(){

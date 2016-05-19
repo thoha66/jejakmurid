@@ -33,7 +33,7 @@ class User extends Authenticatable
     }
 
     public function parents(){
-        return $this->hasMany('App\Parent');
+        return $this->hasMany('App\Caretaker');
     }
 
     /**

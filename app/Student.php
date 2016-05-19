@@ -9,7 +9,7 @@ class Student extends Model
     protected $fillable = [
         'admin_id',
         'user_id',
-        'parent_id',
+        'caretaker_id',
         'classroom_id',
         'no_surat_beranak_pelajar',
         'no_kp_pelajar',
@@ -34,7 +34,7 @@ class Student extends Model
     }
 
     public function parent(){
-        return $this->belongsTo('App\Parent');
+        return $this->belongsTo('App\Caretaker');
     }
     
     public function classroom(){

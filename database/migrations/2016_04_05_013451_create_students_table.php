@@ -16,7 +16,7 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned(); //FK
             $table->integer('admin_id')->unsigned(); //Fk
-            $table->integer('parent_id')->unsigned(); //Fk
+            $table->integer('caretaker_id')->unsigned(); //Fk
             $table->integer('classroom_id')->unsigned(); //Fk
             $table->string('no_surat_beranak_pelajar')->nullable()->unique();
             $table->string('no_kp_pelajar')->nullable()->unique();
@@ -38,9 +38,9 @@ class CreateStudentsTable extends Migration
                   ->references('id')
                   ->on('admins');
 
-            $table->foreign('parent_id')
+            $table->foreign('caretaker_id')
                   ->references('id')
-                  ->on('parents');
+                  ->on('caretakers');
 
             $table->foreign('classroom_id')
                   ->references('id')

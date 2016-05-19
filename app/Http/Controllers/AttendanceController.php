@@ -21,7 +21,8 @@ class AttendanceController extends Controller
     public function index()
     {
 //        $teacher = Teacher::where('id',1)->where('guru_kelas_id',1)->with('classroom4')->first();
-        $teacher = Teacher::with('classroom4')->where('guru_kelas_id',1)->find(1)->first();
+        $teacher = Teacher::with('classroom4')->where('guru_kelas_id',3)->first();
+//  (asal)      $teacher = Teacher::with('classroom4')->where('guru_kelas_id',3)->find(1)->first();
         return view('guru.kedatangan.senarai_kedatangan',compact('teacher'));
     }
 
