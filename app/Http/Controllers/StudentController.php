@@ -127,7 +127,7 @@ class StudentController extends Controller
     {
         //$student = Student::findOrFail($id);
         $student = Student::with('classroom')->find($id);
-        return view('pentadbir.pelajar.papar_pelajar',['student' => $student]);
+        return view('pentadbir.pelajar.papar_pelajar',compact('student'));
     }
 
     /**
@@ -138,8 +138,10 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::find($id);
-        return view('pentadbir.pelajar.sunting_pelajar',['student' => $student]);
+        $user_id = Auth::user()->id;
+        $classrooms = Classroom::all();
+        $student = Student::with('parent')->find($id);
+        return view('pentadbir.pelajar.sunting_pelajar',compact('classrooms','student','user_id'));
     }
 
     /**
@@ -152,9 +154,10 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::find($id);
+        $student_user_id = $student->user_id;
         
         $student->admin_id = $request->input('admin_id');
-        $student->parent_id = $request->input('parent_id');
+        $student->caretaker_id = $request->input('caretaker_id');
         $student->classroom_id = $request->input('classroom_id');
 
         $student->no_surat_beranak_pelajar = $request->input('no_surat_beranak_pelajar');
@@ -172,6 +175,32 @@ class StudentController extends Controller
 
         $student->save();
 
+        $caretaker = Caretaker::find($request->input('caretaker_id'));
+        $caretaker->no_kp_penjaga = $request->input('no_kp_penjaga_pelajar');
+        $user_id_with_care_taker = $caretaker->user_id;
+        $caretaker->save();
+
+        //Update Parent in table user
+        $user_caretaker = User::find($user_id_with_care_taker);
+        $emailperent = $request->input('no_kp_penjaga_pelajar');
+
+        $user_caretaker->name = $emailperent;
+        $user_caretaker->email = $emailperent.'@penjaga.com';
+        $user_caretaker->user_group = 6;
+        $user_caretaker->user_group_description = 'PENJAGA';
+        $user_caretaker->password = bcrypt($emailperent);
+
+        $user_caretaker->save();
+
+        $kp_pelajar = $request->input('no_kp_pelajar');
+        $user = User::find($student_user_id);
+        $user->name = $request->input('no_kp_pelajar');
+        $user->email = $kp_pelajar.'@pelajar.com';
+        $user->user_group = 5;
+        $user->user_group_description = 'PELAJAR';
+        $user->password = bcrypt($request->input('no_kp_pelajar'));
+        $user->save();
+
         return redirect('student');
     }
 
@@ -183,7 +212,10 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
+        $student = Student::find($id);
+
         Student::destroy($id);
+        User::destroy($student->user_id);
         return redirect('student');
     }
 }
