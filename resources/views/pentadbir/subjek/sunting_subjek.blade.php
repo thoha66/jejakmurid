@@ -25,7 +25,7 @@
             <form class="form-horizontal" action="{!! url('subject/'.$subject->id) !!}" method="POST" >
               <div class="form-body pal">
                 <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="admin_id" value="1">
+
                 {!! csrf_field() !!}
                 <div class="form-group">
                   <label for="admin_id" class="col-md-3 control-label">
@@ -33,7 +33,8 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="admin_id" type="text" placeholder="" class="form-control" value="{{ $subject->admin->nama }} " ></div>
+                      <input id="admin_id" type="text" placeholder="" class="form-control" value="{{ $subject->admin->nama_admin }} " disabled></div>
+                      <input type="hidden" name="admin_id" value="{{ $admin_id }} " >
                   </div>
                 </div>
 

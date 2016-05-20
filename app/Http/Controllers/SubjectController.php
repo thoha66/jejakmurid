@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Subject;
+use Auth;
+use App\Admin;
 
 class SubjectController extends Controller
 {
@@ -28,7 +30,11 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('pentadbir.subjek.daftar_subjek');
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
+        return view('pentadbir.subjek.daftar_subjek',compact('admin_id','admin'));
     }
 
     /**
@@ -73,8 +79,12 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
         $subject = Subject::findOrFail($id);
-        return view('pentadbir.subjek.sunting_subjek',['subject' => $subject]);
+        return view('pentadbir.subjek.sunting_subjek',compact('subject','admin_id'));
     }
 
     /**
