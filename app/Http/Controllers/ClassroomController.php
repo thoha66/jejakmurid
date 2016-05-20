@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Classroom;
+use Auth;
+use App\Admin;
 
 class ClassroomController extends Controller
 {
@@ -28,7 +30,11 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        return view('pentadbir.kelas.daftar_kelas');
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
+        return view('pentadbir.kelas.daftar_kelas',compact('admin_id','admin'));
     }
 
     /**
@@ -72,8 +78,12 @@ class ClassroomController extends Controller
      */
     public function edit($id)
     {
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
         $classroom = Classroom::findOrFail($id);
-        return view('pentadbir.kelas.sunting_kelas',['classroom' => $classroom]);
+        return view('pentadbir.kelas.sunting_kelas', compact('admin_id','classroom'));
     }
 
     /**

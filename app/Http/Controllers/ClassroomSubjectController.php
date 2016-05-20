@@ -11,6 +11,8 @@ use App\Subject;
 use App\Classroom;
 use App\Teacher;
 use DB;
+use Auth;
+use App\Admin;
 
 class ClassroomSubjectController extends Controller
 {
@@ -37,11 +39,15 @@ class ClassroomSubjectController extends Controller
      */
     public function create()
     {
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
         $subjects = Subject::all();
         $classrooms = Classroom::all();
         $teachers = Teacher::all();
-        return view('pentadbir.kelassubjek.daftar_kelas_subjek',compact('subjects', 'classrooms','teachers'));
-//        ['subjects' => $subjects],['classrooms' => $classrooms],['teachers' => $teachers]
+
+        return view('pentadbir.kelassubjek.daftar_kelas_subjek',compact('subjects', 'classrooms','teachers','admin_id','admin'));
     }
 
     /**
@@ -78,8 +84,13 @@ class ClassroomSubjectController extends Controller
      */
     public function show($id)
     {
+//        $user_id = Auth::user()->id;
+//        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+//        $admin_id = $admin->id;
+
         $ClassroomSubject = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->find($id);
-        return view('pentadbir.kelassubjek.papar_kelas_subjek',['ClassroomSubject' => $ClassroomSubject]);
+        $admin = Admin::with('user')->where('user_id',$ClassroomSubject->admin_id)->first();
+        return view('pentadbir.kelassubjek.papar_kelas_subjek',compact('ClassroomSubject','admin'));
     }
 
     /**
@@ -90,8 +101,16 @@ class ClassroomSubjectController extends Controller
      */
     public function edit($id)
     {
+        $user_id = Auth::user()->id;
+        $admin = Admin::with('user')->where('user_id',$user_id)->first();
+        $admin_id = $admin->id;
+
+        $subjects = Subject::all();
+        $classrooms = Classroom::all();
+        $teachers = Teacher::all();
+
         $ClassroomSubject = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->find($id);
-        return view('pentadbir.kelassubjek.sunting_kelas_subjek',['ClassroomSubject' => $ClassroomSubject]);
+        return view('pentadbir.kelassubjek.sunting_kelas_subjek',compact('ClassroomSubject','admin_id','admin','subjects','classrooms','teachers'));
     }
 
     /**

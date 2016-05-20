@@ -31,7 +31,8 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="admin_id" type="text" placeholder="" class="form-control" name="admin_id" value="1" ></div>
+                      <input id="admin_id" type="text" placeholder="" class="form-control"  value="{{ $admin->nama_admin }}" disabled></div>
+
                   </div>
                 </div>
 
@@ -41,7 +42,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="subject_id" type="text" placeholder="" class="form-control" name="subject_id"  value="{{ $ClassroomSubject->subject->nama_subjek }}" >
+                      <input id="subject_id" type="text" placeholder="" class="form-control" name="subject_id"  value="{{ $ClassroomSubject->subject->nama_subjek }}" disabled>
                     </div>
                   </div>
                 </div>
@@ -52,7 +53,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="classroom_id" type="text" placeholder="" class="form-control" name="classroom_id" value="{{ $ClassroomSubject->classroom->nama_kelas }}" >
+                      <input id="classroom_id" type="text" placeholder="" class="form-control" name="classroom_id" value="{{ $ClassroomSubject->classroom->nama_kelas }}" disabled>
                     </div>
                   </div>
                 </div>
@@ -63,7 +64,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="teacher_id" type="text" placeholder="" class="form-control" name="teacher_id" value="{{ $ClassroomSubject->teacher->nama }}" >
+                      <input id="teacher_id" type="text" placeholder="" class="form-control" name="teacher_id" value="{{ $ClassroomSubject->teacher->nama_guru }}" disabled>
                     </div>
                   </div>
                 </div>
@@ -75,7 +76,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="sesi" type="text" placeholder="" class="form-control" name="sesi" value="{{ $ClassroomSubject->sesi }}" >
+                      <input id="sesi" type="text" placeholder="" class="form-control" name="sesi" value="{{ $ClassroomSubject->sesi }}" disabled>
                     </div>
                   </div>
                 </div>

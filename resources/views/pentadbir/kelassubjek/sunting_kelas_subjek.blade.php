@@ -33,7 +33,9 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="admin_id" type="text" placeholder="" class="form-control" name="admin_id" value="1" ></div>
+                      <input id="admin_id" type="text" placeholder="" class="form-control"  value="{{ $admin->nama_admin }}" disabled></div>
+                      <input type="hidden" name="admin_id" value="{{ $admin_id }}" >
+
                   </div>
                 </div>
 
@@ -41,10 +43,13 @@
                   <label for="subject_id" class="col-md-3 control-label">
                     Nama Subjek</label>
                   <div class="col-md-9">
-                    <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="subject_id" type="text" placeholder="" class="form-control" name="subject_id"  value="{{ $ClassroomSubject->subject->nama_subjek }}" >
-                    </div>
+
+                    <select class="form-control" id="subject_id" name="subject_id">
+                      @foreach($subjects as $subject)
+                        <option value="{{ $subject->id }}">{{ $subject->nama_subjek }}</option>
+                      @endforeach
+                    </select>
+
                   </div>
                 </div>
 
@@ -52,10 +57,13 @@
                   <label for="classroom_id" class="col-md-3 control-label">
                     Nama Kelas</label>
                   <div class="col-md-9">
-                    <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="classroom_id" type="text" placeholder="" class="form-control" name="classroom_id" value="{{ $ClassroomSubject->classroom->nama_kelas }}" >
-                    </div>
+
+                    <select class="form-control" id="classroom_id" name="classroom_id" >
+                      @foreach($classrooms as $classroom)
+                        <option value="{{ $classroom->id }}">{{ $classroom->nama_kelas }}</option>
+                      @endforeach
+                    </select>
+
                   </div>
                 </div>
 
@@ -63,10 +71,13 @@
                   <label for="teacher_id" class="col-md-3 control-label">
                     Nama Guru</label>
                   <div class="col-md-9">
-                    <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="teacher_id" type="text" placeholder="" class="form-control" name="teacher_id" value="{{ $ClassroomSubject->teacher->nama }}" >
-                    </div>
+
+                    <select class="form-control" id="teacher_id" name="teacher_id" >
+                      @foreach($teachers as $teacher)
+                        <option value="{{ $teacher->id }}">{{ $teacher->nama_guru }}</option>
+                      @endforeach
+                    </select>
+
                   </div>
                 </div>
 
@@ -75,10 +86,12 @@
                   <label for="sesi" class="col-md-3 control-label">
                     Sesi</label>
                   <div class="col-md-9">
-                    <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="sesi" type="text" placeholder="" class="form-control" name="sesi" value="{{ $ClassroomSubject->sesi }}" >
-                    </div>
+
+                    <select class="form-control" id="sesi" name="sesi">
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                    </select>
+
                   </div>
                 </div>
 
@@ -94,4 +107,33 @@
       <div class="col-lg-1"></div>
     </div>
   </div>
+@stop
+@section('script')
+  {{--select2 start--}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+  <script type="text/javascript">
+    $("#subject_id").select2({
+      placeholder: "Pilih subjek",
+      allowClear: true
+    });
+  </script>
+
+  <script type="text/javascript">
+    //        $("#classroom_id").select2({
+    //            tags: true,
+    //            maximumSelectionLength: 3
+    //        })
+    $("#classroom_id").select2({
+      placeholder: "Pilih kelas",
+      allowClear: true
+    });
+  </script>
+
+  <script type="text/javascript">
+    $("#teacher_id").select2({
+      placeholder: "Pilih guru",
+      allowClear: true
+    });
+  </script>
+  {{--select2 end--}}
 @stop
