@@ -55,7 +55,7 @@
                                 $no1 += 1;
                                 ?>
 
-                                <input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="1">
+                                <input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="{{ $teacher_id }}">
                                 <input id="mark" type="hidden" placeholder="" class="form-control" name="tarikh" value="{{ $tarikh }}">
                                 <input id="mark" type="hidden" placeholder="" class="form-control" name="student_id[<?php echo $no1; ?>]" value="{{ $student->id }}">
 

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Student;
 use App\Attendance;
+use Auth;
+
 
 
 class AttendanceController extends Controller
@@ -20,20 +22,27 @@ class AttendanceController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
+
 //        $teacher = Teacher::where('id',1)->where('guru_kelas_id',1)->with('classroom4')->first();
-        $teacher = Teacher::with('classroom4')->where('guru_kelas_id',3)->first();
+        $teacher = Teacher::with('classroom4')->where('guru_kelas_id',$teacher_id)->first();
 //  (asal)      $teacher = Teacher::with('classroom4')->where('guru_kelas_id',3)->find(1)->first();
         return view('guru.kedatangan.senarai_kedatangan',compact('teacher'));
     }
 
     public function addattendance(Request $request){
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
 
         if($request->isMethod('post')) {
             $kelas_id = $request->input('guru_kelas_id');
             $tarikh = $request->input('tarikh');
             $students = Student::where('classroom_id', $kelas_id)->orderBy('created_at', 'desc')->get();
         }
-        return view('guru.kedatangan.beri_kedatangan',compact('students','tarikh'));
+        return view('guru.kedatangan.beri_kedatangan',compact('students','tarikh','teacher_id'));
     }
 
     /**
