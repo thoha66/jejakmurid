@@ -2,7 +2,22 @@
     <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
     <div class="navbar-header">
         <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-        <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">Pentadbir</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
+        <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">
+                @if (Auth::user()->user_group == 1)
+                    Pentadbir
+                @elseif (Auth::user()->user_group == 2)
+                    Cikgu Subjek
+                @elseif (Auth::user()->user_group == 3)
+                    Cikgu Kelas
+                @elseif (Auth::user()->user_group == 4)
+                    Cikgu Disiplin
+                @elseif (Auth::user()->user_group == 5)
+                    Pelajar
+                @else
+                    Penjaga
+                @endif
+
+            </span><span style="display: none" class="logo-text-icon">µ</span></a></div>
     <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
 
         <ul class="nav navbar navbar-top-links navbar-right mbn">
@@ -21,7 +36,7 @@
                     <li><a href="#"><i class="fa fa-envelope"></i>My Inbox<span class="badge badge-danger">3</span></a></li>
                     <li><a href="#"><i class="fa fa-tasks"></i>My Tasks<span class="badge badge-success">7</span></a></li>
                     <li class="divider"></li>
-                    <li><a href="Login.html"><i class="fa fa-key"></i>Log Out</a></li>
+                    <li><a href="{!! url('logout') !!}"><i class="fa fa-key"></i>Log Out</a></li>
                 </ul>
             </li>
         </ul>

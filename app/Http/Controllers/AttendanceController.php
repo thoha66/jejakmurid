@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Student;
 use App\Attendance;
 use Auth;
+use DB;
 
 
 
@@ -26,8 +27,14 @@ class AttendanceController extends Controller
         $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
         $teacher_id = $teacher->id;
 
+//        $taskmarks = DB::table('teachers')
+//            ->join('classrooms', 'classrooms.id', '=', 'teachers.classroom_id')
+//            ->where('teachers.id','=', 1)
+//            ->select('task_marks.*', 'tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*')
+//            ->get();
+
 //        $teacher = Teacher::where('id',1)->where('guru_kelas_id',1)->with('classroom4')->first();
-        $teacher = Teacher::with('classroom4')->where('guru_kelas_id',$teacher_id)->first();
+        $teacher = Teacher::with('classroom4')->where('id',$teacher_id)->first();
 //  (asal)      $teacher = Teacher::with('classroom4')->where('guru_kelas_id',3)->find(1)->first();
         return view('guru.kedatangan.senarai_kedatangan',compact('teacher'));
     }

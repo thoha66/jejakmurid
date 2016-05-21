@@ -1,21 +1,21 @@
 @extends('layouts.master')
 
 @section('title')
-    Markah Tugasan
+    Beri Kedatangan
 @stop
 
 @section('begin_title_left')
-    Markah Tugasan
+    Beri Kedatangan
 @stop
 
 @section('begin_title_right')
-    <li><i class="fa fa-book"></i>&nbsp;Markah Tugasan</li>
+    <li><i class="fa fa-book"></i>&nbsp;Beri Kedatangan</li>
 @stop
 
 @section('content')
 
     <div class="panel panel-blue" style="background:#FFF;">
-        <div class="panel-heading">Markah Tugasan</div>
+        <div class="panel-heading">Beri Kedatangan</div>
         <div class="panel-body">
             <form class="form-horizontal" method="POST" action="{!! url('attendance') !!}">
                 <table class="table table-hover table-bordered">

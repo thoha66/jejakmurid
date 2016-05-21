@@ -53,8 +53,9 @@ class TaskController extends Controller
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
 
-        $classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->get();
+        $classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->where('teacher_id',$teacher_id)->get();
 
         return view('guru.tugasan.beri_tugasan',compact('teacher','classroomsubjects'));
     }

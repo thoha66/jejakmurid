@@ -31,7 +31,8 @@
                                     <div class="col-md-9">
                                         <div class="input-icon right">
                                             <i class="fa fa-user "></i>
-                                            <input id="admin_id" type="text" placeholder="" class="form-control" name="admin_id" value="1" ></div>
+                                            <input id="admin_id" type="text" placeholder="" class="form-control"  value="{{ $admin->nama_admin }}" disabled></div>
+                                            <input type="hidden" name="admin_id" value="{{ $admin->id }}">
                                     </div>
                                 </div>
 
