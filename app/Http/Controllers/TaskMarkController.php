@@ -11,12 +11,18 @@ use App\ClassroomSubject;
 use App\Classroom;
 use App\Student;
 use DB;
+use Auth;
+use App\Teacher;
 
 
 class TaskMarkController extends Controller
 {
     public function addmark($id)
     {
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
+
         $task= Task::find($id);
         $classroom_subject_id = $task->classroom_subject_id;
         $task_title = $task->tajuk_tugasan;
@@ -30,7 +36,7 @@ class TaskMarkController extends Controller
         $students = Student::where('classroom_id',$classroom_id)->orderBy('created_at','desc')->get();
 //        $students = DB::table('students')->where('classroom_id', $classroom_id)->get();
 
-        return view('guru.tugasan.markah_tugasan.beri_markah_tugasan',compact('class_name', 'students','task_title','id'));
+        return view('guru.tugasan.markah_tugasan.beri_markah_tugasan',compact('class_name', 'students','task_title','id','teacher_id'));
     }
 
     /**
@@ -40,7 +46,11 @@ class TaskMarkController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('teacher_id',1)->where('status','sudah')->with('teacher')->orderBy('created_at','desc')->paginate(2);
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
+
+        $tasks = Task::where('teacher_id',$teacher_id)->where('status','sudah')->with('teacher')->orderBy('created_at','desc')->paginate(2);
 
         return view('guru.tugasan.markah_tugasan.senarai_markah_tugasan',['tasks' => $tasks]);
     }

@@ -32,7 +32,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="teacher_id" type="text" placeholder="" class="form-control" name="teacher_id"  value="{{ $task->teacher_id }}" >
+                      <input id="teacher_id" type="text" placeholder="" class="form-control" name="teacher_id"  value="{{ $task->nama_guru }}" disabled>
                     </div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="classroom_subject_id" type="text" placeholder="" class="form-control" name="classroom_subject_id" value="{{ $task->classroom_subject_id }}" >
+                      <input id="classroom_subject_id" type="text" placeholder="" class="form-control" name="classroom_subject_id" value="{{ $task->nama_kelas }} : {{ $task->nama_subjek }}" disabled>
                     </div>
                   </div>
                 </div>
@@ -54,7 +54,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="tajuk_tugasan" type="text" placeholder="" class="form-control" name="tajuk_tugasan" value="{{ $task->tajuk_tugasan }}"></div>
+                      <input id="tajuk_tugasan" type="text" placeholder="" class="form-control" name="tajuk_tugasan" value="{{ $task->tajuk_tugasan }}" disabled></div>
                   </div>
                 </div>
 
@@ -64,7 +64,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <textarea id="penerangan_tugasan" type="text" placeholder="" class="form-control" name="penerangan_tugasan" > {{ $task->penerangan_tugasan }} </textarea>
+                      <textarea id="penerangan_tugasan" type="text" placeholder="" class="form-control" name="penerangan_tugasan" disabled> {{ $task->penerangan_tugasan }} </textarea>
                     </div>
                   </div>
                 </div>
@@ -75,7 +75,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="tarikh_beri" type="date" placeholder="" class="form-control" name="tarikh_beri" value="{{ $task->tarikh_beri }}" >
+                      <input id="tarikh_beri" type="date" placeholder="" class="form-control" name="tarikh_beri" value="{{ $task->tarikh_beri }}" disabled>
                     </div>
                   </div>
                 </div>
@@ -86,7 +86,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="tarikh_hantar" type="date" placeholder="" class="form-control" name="tarikh_hantar" value="{{ $task->tarikh_hantar }}" >
+                      <input id="tarikh_hantar" type="date" placeholder="" class="form-control" name="tarikh_hantar" value="{{ $task->tarikh_hantar }}" disabled>
                     </div>
                   </div>
                 </div>

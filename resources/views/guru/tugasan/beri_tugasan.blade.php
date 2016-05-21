@@ -32,17 +32,22 @@
                                     <div class="col-md-9">
                                         <div class="input-icon right">
                                             <i class="fa fa-user "></i>
-                                            <input id="teacher_id" type="text" placeholder="" class="form-control" name="teacher_id" value="1" ></div>
+                                            <input id="teacher_id" type="text" placeholder="" class="form-control"  value="{{ $teacher->nama_guru }}" disabled></div>
+                                            <input type="hidden" name="teacher_id" value="{{ $teacher->id }}" >
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="classroom_subject_id" class="col-md-3 control-label">
-                                       Kelas Subjek</label>
+                                        Nama Kelas Subjek</label>
                                     <div class="col-md-9">
-                                        <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
-                                            <input id="classroom_subject_id" type="text" placeholder="" class="form-control" name="classroom_subject_id" ></div>
+
+                                        <select class="form-control" id="classroom_subject_id" name="classroom_subject_id" >
+                                            @foreach($classroomsubjects as $classroomsubject)
+                                                <option value="{{ $classroomsubject->id }}">{{ $classroomsubject->classroom->nama_kelas }} : {{ $classroomsubject->subject->nama_subjek }}</option>
+                                            @endforeach
+                                        </select>
+
                                     </div>
                                 </div>
 
@@ -105,24 +110,11 @@
     {{--select2 start--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
     <script type="text/javascript">
-        $("#subject_id").select2({
+        $("#classroom_subject_id").select2({
             tags: true,
             maximumSelectionLength: 3
         })
     </script>
 
-    <script type="text/javascript">
-        $("#classroom_id").select2({
-            tags: true,
-            maximumSelectionLength: 3
-        })
-    </script>
-
-    <script type="text/javascript">
-        $("#teacher_id").select2({
-            tags: true,
-            maximumSelectionLength: 3
-        })
-    </script>
     {{--select2 end--}}
 @stop

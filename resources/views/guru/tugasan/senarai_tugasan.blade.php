@@ -40,11 +40,11 @@
               <?php echo $no; ?>
             </td>
             <td class="text-center">
-              {{ $task->teacher->nama }}
+              {{ $task->nama_guru }}
 
             </td>
             <td class="text-center">
-              {{ $task->classroom_subject_id }}
+              {{ $task->nama_kelas }} : {{ $task->nama_subjek }}
             </td>
             <td class="text-center">
               {{ $task->tajuk_tugasan }}

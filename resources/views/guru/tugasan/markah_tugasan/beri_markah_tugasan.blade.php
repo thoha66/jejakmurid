@@ -58,7 +58,7 @@
                             {{--hiddent input--}}
 
                                 {!! csrf_field() !!}
-                                <input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="1">
+                                <input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="{{ $teacher_id }}">
                                 <input id="mark" type="hidden" placeholder="" class="form-control" name="task_id" value="{{ $id }}">
                                 <input id="mark" type="hidden" placeholder="" class="form-control" name="student_id[]" value="{{ $student->id }}">
 

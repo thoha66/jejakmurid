@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Teacher;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,6 +10,7 @@ use App\Task;
 use App\ClassroomSubject;
 use App\Classroom;
 use DB;
+use Auth;
 
 class TaskController extends Controller
 {
@@ -19,11 +21,27 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('teacher_id',1)->where('status','belum')->with('teacher')->orderBy('created_at','desc')->paginate(2);
-//        $tasks = Task::with('classroomsubject2')->with('classroom')->with('students')->orderBy('created_at','desc')->paginate(2);
-//        $tasks = Task::with('classroomsubject2')->with('classroom')->with('students')->orderBy('created_at','desc')->paginate(2);
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
 
-        return view('guru.tugasan.senarai_tugasan',['tasks' => $tasks]);
+//        $tasks = Task::where('teacher_id',$teacher_id)->where('status','belum')->with('teacher')->orderBy('created_at','desc')->paginate(2);
+//        $classroom_subject_id = $tasks->classroom_subject_id;
+//        $classroomsubjects = ClassroomSubject::where('id',$classroom_subject_id)->with('classroom')->with('subject')->with('teacher')->get();
+
+        $tasks = DB::table('tasks')
+            ->join('teachers', 'teachers.id', '=', 'tasks.teacher_id')
+            ->join('classroom_subjects', 'classroom_subjects.id', '=', 'tasks.classroom_subject_id')
+            ->join('classrooms', 'classrooms.id', '=', 'classroom_subjects.classroom_id')
+            ->join('subjects', 'subjects.id', '=', 'classroom_subjects.subject_id')
+            ->where('tasks.teacher_id','=', $teacher_id)
+            ->where('tasks.status','=', 'belum')
+            ->select('tasks.*','teachers.nama_guru','classrooms.nama_kelas','subjects.nama_subjek')
+            ->orderBy('tasks.updated_at','desc')
+            ->paginate(2);
+//        dd($tasks);
+
+        return view('guru.tugasan.senarai_tugasan',compact('tasks','teacher'));
     }
 
     /**
@@ -33,7 +51,12 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('guru.tugasan.beri_tugasan');
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+
+        $classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->get();
+
+        return view('guru.tugasan.beri_tugasan',compact('teacher','classroomsubjects'));
     }
 
     /**
@@ -71,7 +94,15 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::findOrFail($id);
+        $task = DB::table('tasks')
+            ->join('teachers', 'teachers.id', '=', 'tasks.teacher_id')
+            ->join('classroom_subjects', 'classroom_subjects.id', '=', 'tasks.classroom_subject_id')
+            ->join('classrooms', 'classrooms.id', '=', 'classroom_subjects.classroom_id')
+            ->join('subjects', 'subjects.id', '=', 'classroom_subjects.subject_id')
+            ->where('tasks.id','=', $id)
+            ->select('tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*')
+            ->first();
+
         return view('guru.tugasan.papar_tugasan',['task' => $task]);
     }
 
@@ -83,8 +114,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
+        $classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->get();
         $task = Task::find($id);
-        return view('guru.tugasan.sunting_tugasan',['task' => $task]);
+        return view('guru.tugasan.sunting_tugasan',compact('classroomsubjects','task'));
     }
 
     /**
