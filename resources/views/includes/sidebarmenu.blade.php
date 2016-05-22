@@ -172,6 +172,14 @@
                 </a>
             </li>
 
+            <li><a href="{!! url('taskmark') !!}">
+
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Masukkan Kesalahan Pelajar</span>
+                </a>
+            </li>
+
         @elseif (Auth::user()->user_group == 5)
         @else
         @endif

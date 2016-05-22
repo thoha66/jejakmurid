@@ -8,8 +8,7 @@ class Attendance extends Model
 {
     protected $fillable = [
         'teacher_id',
-        'student_id',
-        'kedatangan',
+        'classroom_id',
         'tarikh'
     ];
 
@@ -18,7 +17,11 @@ class Attendance extends Model
         return $this->belongsTo('App\Teacher');
     }
 
-    public function student(){
-        return $this->belongsTo('App\Student');
+    public function classroom(){
+        return $this->belongsTo('App\Classroom');
+    }
+
+    public function StudentAttendances(){
+        return $this->hasMany('App\StudentAttendance');
     }
 }

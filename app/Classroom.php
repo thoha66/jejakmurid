@@ -34,4 +34,8 @@ class Classroom extends Model
     return $this->hasMany('App\Teacher','guru_kelas_id','id');
   }
 
+  public function attendances(){
+    return $this->hasMany('App\Attendance');
+  }
+
 }

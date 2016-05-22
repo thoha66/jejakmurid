@@ -63,22 +63,6 @@ class AttendanceController extends Controller
             ->orderBy('attendances.tarikh', 'desc')
             ->get();
 
-//        $attendances_datangs = DB::table('attendances')
-//            ->join('students', 'students.id', '=', 'attendances.student_id')
-//            ->join('classrooms', 'classrooms.id', '=', 'students.classroom_id')
-//            ->groupBy('attendances.tarikh','students.classroom_id')
-//            ->where('attendances.teacher_id','=', $teacher_id)
-//            ->where('attendances.kedatangan','=', 'hadir')
-//            ->select('attendances.*','students.classroom_id','classrooms.nama_kelas')
-//            ->orderBy('attendances.tarikh', 'desc')
-//            ->count();
-
-//        $users = DB::table('attendances')
-//            ->select('count(*) as bil_datang, kedatangan')
-//            ->where('kedatangan', '=', 'hadir')
-//            ->groupBy('kedatangan')
-//            ->get();
-
         return view('guru.kedatangan.senarai_kedatangan',compact('attendances'));
     }
 
@@ -134,7 +118,8 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        //
+        //$attendance = Attendance::with('StudentAttendances')->find($id);
+
     }
 
     /**
@@ -145,7 +130,8 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $StudentAttendances = StudentAttendance::with('student')->with('attendance')->where('attendance_id','=',$id)->get();
+        return view('guru.kedatangan.sunting_kedatangan',compact('StudentAttendances','id'));
     }
 
     /**
@@ -157,7 +143,33 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        dd($request);
+        if($request->isMethod('post')) {
+
+//            $attendance = Attendance::find($id);
+//            $attendance->teacher_id = $request->input('teacher_id');
+//            $attendance->classroom_id = $request->input('classroom_id');
+//            $attendance->tarikh = $request->input('tarikh');
+//            $attendance->save();
+
+            foreach( $request->student_id as $index => $val ) {
+
+//                dd($val);
+                //$StudentAttendance = StudentAttendance::where('student_id',$index)->first();
+                //$StudentAttendance = StudentAttendance::find('student_id',$val);
+                $st_id = $request->id[$index];
+
+                $StudentAttendance = StudentAttendance::find($st_id);
+                //$StudentAttendance = StudentAttendance::find('student_id','=',$val)->first();
+
+                //$StudentAttendance->attendance_id = $attendance->id;
+                $StudentAttendance->student_id = $val;
+                $StudentAttendance->kedatangan = $request->kedatangan[$index];
+                $StudentAttendance->save();
+            }
+        }
+
+        return redirect('senarai-kedatangan');
     }
 
     /**
