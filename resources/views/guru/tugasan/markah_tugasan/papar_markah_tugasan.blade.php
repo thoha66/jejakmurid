@@ -62,7 +62,7 @@
                                 <input id="mark" type="hidden" placeholder="" class="form-control" name="task_id" value="{{$id}}">
                                 <input id="mark" type="hidden" placeholder="" class="form-control" name="student_id[]" value="{{ $student->student_id }}">
 
-                                <input id="mark" type="text" placeholder="" class="form-control" name="mark[]" value="{{ $student->mark }}">
+                                <input id="mark" type="text" placeholder="" class="form-control" name="mark[]" value="{{ $student->mark }}" disabled>
 
                         </td>
                     </tr>
@@ -77,10 +77,10 @@
                 </tbody>
 
             </table>
-                <div class="btn pull-right">
-                    <button type="submit" class="btn btn-primary">
-                        Hantar</button>
-                </div>
+                {{--<div class="btn pull-right">--}}
+                    {{--<button type="submit" class="btn btn-primary">--}}
+                        {{--Hantar</button>--}}
+                {{--</div>--}}
 
         </div>
     </div>

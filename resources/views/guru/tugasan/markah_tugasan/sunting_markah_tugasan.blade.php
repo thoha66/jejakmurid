@@ -17,7 +17,9 @@
     <div class="panel panel-blue" style="background:#FFF;">
         <div class="panel-heading">Markah Tugasan</div>
         <div class="panel-body">
-            <form class="form-horizontal" method="POST" action="{!! url('taskmark') !!}">
+            <form class="form-horizontal" method="POST" action="{!! url('taskmark/'.$id) !!}" >
+                <input type="hidden" name="_method" value="PUT">
+                {!! csrf_field() !!}
             <table class="table table-hover table-bordered">
                 <thead>
                 <tr >
@@ -42,27 +44,28 @@
                             <?php echo $no; ?>
                         </td>
                         <td class="text-center">
-                            {{ $student->no_kp }}
+                            {{ $student->no_kp_pelajar }}
 
                         </td>
                         <td class="text-center">
-                            {{ $student->nama }}
+                            {{ $student->nama_pelajar }}
                         </td>
                         <td class="text-center">
-                            {{ $class_name }}
+                            {{ $student->nama_kelas }}
                         </td>
                         <td class="text-center">
-                            {{ $task_title }}
+                            {{ $student->tajuk_tugasan }}
                         </td>
                         <td class="text-center">
                             {{--hiddent input--}}
 
                                 {!! csrf_field() !!}
-                                <input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="1">
+                                <input id="mark" type="hidden" placeholder="" class="form-control" name="id[]" value="{{ $student->id }}">
+                                <input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="{{ $teacher_id }}">
                                 <input id="mark" type="hidden" placeholder="" class="form-control" name="task_id" value="{{ $id }}">
-                                <input id="mark" type="hidden" placeholder="" class="form-control" name="student_id[]" value="{{ $student->id }}">
+                                <input id="mark" type="hidden" placeholder="" class="form-control" name="student_id[]" value="{{ $student->student_id }}">
 
-                                <input id="mark" type="text" placeholder="" class="form-control" name="mark[]">
+                                <input id="mark" type="text" placeholder="" class="form-control" name="mark[]" value="{{ $student->mark }}">
 
                         </td>
                     </tr>

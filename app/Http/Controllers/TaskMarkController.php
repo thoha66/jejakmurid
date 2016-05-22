@@ -153,7 +153,23 @@ class TaskMarkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
+
+        $students = DB::table('task_marks')
+            ->join('students', 'students.id', '=', 'task_marks.student_id')
+            ->join('tasks', 'tasks.id', '=', 'task_marks.task_id')
+            ->join('teachers', 'teachers.id', '=', 'tasks.teacher_id')
+            ->join('classroom_subjects', 'classroom_subjects.id', '=', 'tasks.classroom_subject_id')
+            ->join('classrooms', 'classrooms.id', '=', 'classroom_subjects.classroom_id')
+            ->join('subjects', 'subjects.id', '=', 'classroom_subjects.subject_id')
+            ->where('task_marks.task_id','=', $id)
+            ->select('task_marks.*', 'tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*','students.*')
+            ->get();
+
+        return view('guru.tugasan.markah_tugasan.sunting_markah_tugasan',compact('students','id','teacher_id'));
+
     }
 
     /**
@@ -165,7 +181,17 @@ class TaskMarkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        dd($request);
+        foreach( $request->id as $index => $val ) {
+
+            $input = TaskMark::find($val);
+            $input->teacher_id = $request->input('teacher_id');
+            $input->task_id = $request->input('task_id');
+            $input->student_id = $request->student_id[$index];
+            $input->mark = $request->mark[$index];
+
+            $input->save();
+        }
     }
 
     /**
