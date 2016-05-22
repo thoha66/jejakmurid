@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-  Daftar Subjek
+  Daftar Kesalahan Pelajar
 @endsection
 
 @section('begin_title_left')
-  Daftar Subjek
+  Daftar Kesalahan Pelajar
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Daftar Subjek</li>
+  <li><i class="fa fa-book"></i>&nbsp;Daftar Kesalahan Pelajar</li>
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
 
             <div class="panel panel-blue" style="background:#fff;">
               <div class="panel-heading">
-                Daftar Subjek</div>
+                Daftar Kesalahan Pelajar</div>
               <div class="panel-body pan">
                 <form class="form-horizontal" method="POST" action="{!! url('subject') !!}">
                   <div class="form-body pal">
