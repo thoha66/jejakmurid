@@ -14,12 +14,17 @@ class CreateStudentOffensesTable extends Migration
     {
         Schema::create('student_offenses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('teacher_id')->unsigned(); //Fk
             $table->integer('student_id')->unsigned(); //Fk
             $table->integer('offense_id')->unsigned(); //Fk
-            $table->date('tarikh')->nullable();
-            $table->time('masa')->nullable();
-            $table->string('tempat')->nullable();
+            $table->date('tarikh_kesalahan')->nullable();
+            $table->time('masa_kesalahan')->nullable();
+            $table->string('tempat_kesalahan')->nullable();
             $table->timestamps();
+
+            $table->foreign('teacher_id')
+                ->references('id')
+                ->on('teachers');
 
             $table->foreign('student_id')
                 ->references('id')

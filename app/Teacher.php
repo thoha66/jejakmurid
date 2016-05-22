@@ -52,4 +52,8 @@ class Teacher extends Model
   public function classroom4(){
     return $this->belongsTo('App\Classroom','guru_kelas_id');
   }
+
+  public function StudentOffenses(){
+    return $this->hasMany('App\StudentOffense');
+  }
 }

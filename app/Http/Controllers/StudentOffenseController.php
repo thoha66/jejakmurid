@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Offense;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Auth;
+use App\Teacher;
+use App\Student;
+use App\StudentOffense;
 
 class StudentOffenseController extends Controller
 {
@@ -15,7 +20,9 @@ class StudentOffenseController extends Controller
      */
     public function index()
     {
-        //
+        $StudentOffenses = StudentOffense::with('offense')->with('student')->with('teacher')->orderBy('created_at','desc')->paginate(2);
+
+        return view('guru.disiplin.senarai_kesalahan_pelajar',compact('StudentOffenses'));
     }
 
     /**
@@ -27,11 +34,9 @@ class StudentOffenseController extends Controller
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
-        $teacher_id = $teacher->id;
-
-        $classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->where('teacher_id',$teacher_id)->get();
-
-        return view('guru.tugasan.beri_tugasan',compact('teacher','classroomsubjects'));
+        $students = Student::all();
+        $offenses = Offense::all();
+        return view('guru.disiplin.daftar_kesalahan_pelajar',compact('teacher','students','offenses'));
     }
 
     /**
@@ -42,7 +47,22 @@ class StudentOffenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->isMethod('post'))
+        {
+
+            $StudentOffense = new StudentOffense;
+
+            $StudentOffense->teacher_id = $request->input('teacher_id');
+            $StudentOffense->student_id = $request->input('student_id');
+            $StudentOffense->offense_id = $request->input('offense_id');
+            $StudentOffense->tarikh_kesalahan = $request->input('tarikh_kesalahan');
+            $StudentOffense->masa_kesalahan = $request->input('masa_kesalahan');
+            $StudentOffense->tempat_kesalahan = $request->input('tempat_kesalahan');
+
+            $StudentOffense->save();
+
+        }
+        return redirect('studentoffense');
     }
 
     /**
@@ -64,7 +84,12 @@ class StudentOffenseController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$StudentOffenses = StudentOffense::with('offense')->with('student')->with('teacher')->get();
+        $students = Student::all();
+        $offenses = Offense::all();
+        $StudentOffense_one = StudentOffense::with('offense')->with('student')->with('teacher')->find($id);
+
+        return view('guru.disiplin.sunting_kesalahan_pelajar',compact('students','offenses','StudentOffense_one'));
     }
 
     /**
@@ -76,7 +101,18 @@ class StudentOffenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $StudentOffense = StudentOffense::find($id);
+
+        $StudentOffense->teacher_id = $request->input('teacher_id');
+        $StudentOffense->student_id = $request->input('student_id');
+        $StudentOffense->offense_id = $request->input('offense_id');
+        $StudentOffense->tarikh_kesalahan = $request->input('tarikh_kesalahan');
+        $StudentOffense->masa_kesalahan = $request->input('masa_kesalahan');
+        $StudentOffense->tempat_kesalahan = $request->input('tempat_kesalahan');
+
+        $StudentOffense->save();
+
+        return redirect('studentoffense');
     }
 
     /**
@@ -87,6 +123,7 @@ class StudentOffenseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        StudentOffense::destroy($id);
+        return redirect('studentoffense');
     }
 }

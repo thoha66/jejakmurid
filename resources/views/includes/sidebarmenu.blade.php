@@ -172,11 +172,19 @@
                 </a>
             </li>
 
-            <li><a href="{!! url('taskmark') !!}">
+            <li><a href="{!! url('studentoffense/create') !!}">
 
                     <i class="fa fa-info-circle fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title">Masukkan Kesalahan Pelajar</span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('studentoffense') !!}">
+
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Senarai Kesalahan Pelajar</span>
                 </a>
             </li>
 
