@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Student;
 use App\Attendance;
+use App\StudentAttendance;
 use Auth;
 use DB;
 
@@ -27,16 +28,9 @@ class AttendanceController extends Controller
         $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
         $teacher_id = $teacher->id;
 
-//        $taskmarks = DB::table('teachers')
-//            ->join('classrooms', 'classrooms.id', '=', 'teachers.classroom_id')
-//            ->where('teachers.id','=', 1)
-//            ->select('task_marks.*', 'tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*')
-//            ->get();
-
-//        $teacher = Teacher::where('id',1)->where('guru_kelas_id',1)->with('classroom4')->first();
         $teacher = Teacher::with('classroom4')->where('id',$teacher_id)->first();
-//  (asal)      $teacher = Teacher::with('classroom4')->where('guru_kelas_id',3)->find(1)->first();
-        return view('guru.kedatangan.senarai_kedatangan',compact('teacher'));
+
+        return view('guru.kedatangan.pilih_tarikh_kedatangan',compact('teacher'));
     }
 
     public function addattendance(Request $request){
@@ -49,8 +43,46 @@ class AttendanceController extends Controller
             $tarikh = $request->input('tarikh');
             $students = Student::where('classroom_id', $kelas_id)->orderBy('created_at', 'desc')->get();
         }
-        return view('guru.kedatangan.beri_kedatangan',compact('students','tarikh','teacher_id'));
+        $kelasid = $request->input('guru_kelas_id');
+
+        return view('guru.kedatangan.beri_kedatangan',compact('students','tarikh','teacher_id','kelasid'));
     }
+
+    public function index2(){
+
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
+
+        $attendances = DB::table('attendances')
+//            ->join('students', 'students.id', '=', 'attendances.student_id')
+            ->join('classrooms', 'classrooms.id', '=', 'attendances.classroom_id')
+            //->groupBy('attendances.tarikh','students.classroom_id')
+            ->where('attendances.teacher_id','=', $teacher_id)
+            ->select('attendances.*','classrooms.nama_kelas')
+            ->orderBy('attendances.tarikh', 'desc')
+            ->get();
+
+//        $attendances_datangs = DB::table('attendances')
+//            ->join('students', 'students.id', '=', 'attendances.student_id')
+//            ->join('classrooms', 'classrooms.id', '=', 'students.classroom_id')
+//            ->groupBy('attendances.tarikh','students.classroom_id')
+//            ->where('attendances.teacher_id','=', $teacher_id)
+//            ->where('attendances.kedatangan','=', 'hadir')
+//            ->select('attendances.*','students.classroom_id','classrooms.nama_kelas')
+//            ->orderBy('attendances.tarikh', 'desc')
+//            ->count();
+
+//        $users = DB::table('attendances')
+//            ->select('count(*) as bil_datang, kedatangan')
+//            ->where('kedatangan', '=', 'hadir')
+//            ->groupBy('kedatangan')
+//            ->get();
+
+        return view('guru.kedatangan.senarai_kedatangan',compact('attendances'));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -73,19 +105,25 @@ class AttendanceController extends Controller
         if($request->isMethod('post')) {
 
 //            dd($request->all());
+
+                $attendance = new Attendance;
+                $attendance->teacher_id = $request->input('teacher_id');
+                $attendance->classroom_id = $request->input('classroom_id');
+                $attendance->tarikh = $request->input('tarikh');
+                $attendance->save();
+
             foreach( $request->student_id as $index => $val ) {
-                $input = new Attendance;
-                $input->teacher_id = $request->input('teacher_id');
-                $input->tarikh = $request->input('tarikh');
-                $input->student_id = $val;
-                $input->kedatangan = $request->kedatangan[$index];
 
+                $StudentAttendance = new StudentAttendance;
 
-                $input->save();
+                $StudentAttendance->attendance_id = $attendance->id;
+                $StudentAttendance->student_id = $val;
+                $StudentAttendance->kedatangan = $request->kedatangan[$index];
+                $StudentAttendance->save();
             }
         }
 
-        return redirect('attendance');
+        return redirect('senarai-kedatangan');
     }
 
     /**
@@ -130,6 +168,7 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Attendance::destroy($id);
+        return redirect('senarai-kedatangan');
     }
 }

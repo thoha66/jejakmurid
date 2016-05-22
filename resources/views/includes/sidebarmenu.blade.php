@@ -43,10 +43,10 @@
                     </i><span class="menu-title">Senarai Pelajar</span></a>
 
             </li>
-            <li><a href="{!! url('subject/create') !!}"><i class="fa fa-male fa-fw">
-                <div class="icon-bg bg-violet"></div>
-            </i><span class="menu-title">Daftar Penjaga</span></a>
-            </li>
+            {{--<li><a href="{!! url('subject/create') !!}"><i class="fa fa-male fa-fw">--}}
+                {{--<div class="icon-bg bg-violet"></div>--}}
+            {{--</i><span class="menu-title">Daftar Penjaga</span></a>--}}
+            {{--</li>--}}
             <li><a href="{!! url('subject/create') !!}"><i class="fa fa-book fa-fw">
                 <div class="icon-bg bg-blue"></div>
             </i><span class="menu-title">Daftar Subjek</span></a>
@@ -139,7 +139,7 @@
                 </a>
             </li>
 
-            <li><a href="{!! url('attendance') !!}">
+            <li><a href="{!! url('senarai-kedatangan') !!}">
 
                     <i class="fa fa-info-circle fa-fw">
                         <div class="icon-bg bg-yellow"></div>

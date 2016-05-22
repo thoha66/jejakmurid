@@ -15,8 +15,7 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('teacher_id')->unsigned(); //Fk
-            $table->integer('student_id')->unsigned(); //Fk
-            $table->string('kedatangan')->nullable();
+            $table->integer('classroom_id')->unsigned(); //Fk
             $table->date('tarikh')->nullable();
             $table->timestamps();
 
@@ -24,9 +23,12 @@ class CreateAttendancesTable extends Migration
                 ->references('id')
                 ->on('teachers');
 
-            $table->foreign('student_id')
+            $table->foreign('classroom_id')
                 ->references('id')
-                ->on('students');
+                ->on('classrooms');
+
+
+
         });
     }
 

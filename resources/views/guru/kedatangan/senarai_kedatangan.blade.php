@@ -1,76 +1,89 @@
 @extends('layouts.master')
 
 @section('title')
-    Isi Kedatangan
+    Senarai Kelas Subjek
 @endsection
 
 @section('begin_title_left')
-    Isi Kedatangan
+    Senarai Kelas Subjek
 @endsection
 
 @section('begin_title_right')
-    <li><i class="fa fa-book"></i>&nbsp;Isi Kedatangan</li>
+    <li><i class="fa fa-book"></i>&nbsp;Senarai Kelas Subjek</li>
 @endsection
 
 @section('content')
-    <div class="col-lg-12">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-9">
+    <div class="panel panel-blue" style="background:#FFF;">
+        <div class="panel-heading">Senarai Kelas Subjek</div>
+        <div class="panel-body">
+            {{--@forelse ($attendances_datangs as $attendances_datang)--}}
+                {{--{{ $attendances_datang }}--}}
+            {{--@empty--}}
+                {{--xxx--}}
+            {{--@endforelse--}}
+            {{--@foreach ($users as $user)--}}
+                {{--{{ $user }}--}}
+            {{--@endforeach--}}
 
-                <div class="panel panel-blue" style="background:#fff;">
-                    <div class="panel-heading">
-                        Isi Kedatangan</div>
-                    <div class="panel-body pan">
-                        <form class="form-horizontal" method="POST" action="{!! url('addattendance') !!}">
-                            <div class="form-body pal">
-                                {!! csrf_field() !!}
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr >
+                    <th class="text-center">#</th>
+                    <th class="text-center">Tarikh</th>
+                    <th class="text-center">Kelas</th>
+                    {{--<th class="text-center">Hadir</th>--}}
+                    {{--<th class="text-center">Tidak Hadir</th>--}}
+                    <th class="text-center">Tindakkan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $no=0; ?>
+                @forelse ($attendances as $attendance)
 
-                                <div class="form-group">
-                                    <label for="classroom_id" class="col-md-3 control-label">
-                                        Nama Kelas</label>
-                                    <div class="col-md-9">
-                                        <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
-                                            <input id="classroom_id" type="text" placeholder="" class="form-control"  value="{{ $teacher->classroom4->nama_kelas }}" disabled></div>
-                                            <input type="hidden" name="guru_kelas_id" value="{{$teacher->guru_kelas_id}}" >
-                                    </div>
-                                </div>
+                    <?php
+                    $no += 1;
+                    ?>
 
-                                <div class="form-group">
-                                    <label for="tarikh" class="col-md-3 control-label">
-                                        Tarikh Lahir</label>
-                                    <div class="col-md-9">
-                                        <div class="input-icon right">
-                                            <i class="fa fa-calendar"></i>
-                                            <input id="tarikh" type="date" placeholder="" class="form-control" name="tarikh" >
-                                        </div>
-                                    </div>
-                                </div>
+                    <tr>
+                        <td class="text-center">
+                            <?php echo $no; ?>
+                        </td>
+                        <td class="text-center">
+                            {{ $attendance->tarikh }}
 
-                            </div>
+                        </td>
+                        <td class="text-center">
+                            {{ $attendance->nama_kelas }}
+                        </td>
+                        <td class="text-center">
 
-                            <div class="form-actions text-right pal">
-                                <button type="submit" class="btn btn-primary">
-                                    Isi Kedatangan</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                            <form action="{!! url('attendance/'.$attendance->id) !!}" method="POST" >
+                                <a href="{!! url('attendance/'.$attendance->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Laporan Kehadiran</a>
+                                <a href="{!! url('attendance/'.$attendance->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
+                                <button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </form>
+
+                        </td>
+                    </tr>
+
+                @empty
+                    <tr>
+                        <td colspan="6">
+                            <p class="alert alert-warning">Tiada data yang dijumpai ...</p>
+                        </td>
+                    </tr>
+                @endforelse
+                </tbody>
+
+            </table>
+            <div class="text-center">
+                {{--{!! $ClassroomSubjects->render() !!}--}}
             </div>
-            <div class="col-lg-1"></div>
+
+
+
         </div>
     </div>
-@stop
-
-@section('script')
-    {{--select2 start--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
-    <script type="text/javascript">
-        $("#subject_id").select2({
-            placeholder: "Pilih subjek",
-            allowClear: true
-        });
-    </script>
-    {{--select2 end--}}
 @stop

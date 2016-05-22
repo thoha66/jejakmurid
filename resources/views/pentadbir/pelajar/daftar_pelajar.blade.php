@@ -18,7 +18,7 @@
 
           <div class="col-lg-2"></div>
           <div class="col-lg-9">
-            <div class="panel panel-grey">
+            <div class="panel panel-blue" style="background:#FFF;">
               <div class="panel-heading">
                 Daftar Pelajar
               </div>
@@ -54,9 +54,11 @@
                       <div class="col-md-9">
 
                         <select class="form-control" id="tingkatan" name="tingkatan_pelajar">
-                          <option value="Pelajar biasa">Pelajar Biasa</option>
-                          <option value="Pelajar kelas">Pelajar Kelas</option>
-                          <option value="Pelajar disiplin">Pelajar Disiplin</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
                         </select>
 
                       </div>
@@ -75,7 +77,7 @@
 
                     <div class="form-group">
                       <label for="classroom_id" class="col-md-3 control-label">
-                        Guru Kelas</label>
+                        Kelas</label>
                       <div class="col-md-9">
 
                         <select class="form-control" id="classroom_id" name="classroom_id" >

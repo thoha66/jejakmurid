@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('attendance', 'AttendanceController');
     Route::post('addattendance', 'AttendanceController@addattendance'); //Controller addattendance
+    Route::get('senarai-kedatangan', 'AttendanceController@index2'); //Controller addattendance
 
 
 
