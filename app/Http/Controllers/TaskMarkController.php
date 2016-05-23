@@ -202,7 +202,15 @@ class TaskMarkController extends Controller
      */
     public function destroy($id)
     {
-        TaskMark::destroy($id);
+        $TaskMarks = TaskMark::where('task_id','=',$id)->get();
+
+        foreach ($TaskMarks as $TaskMark){
+            $TaskMark = $TaskMark->id;
+            TaskMark::destroy($TaskMark);
+        }
+
+        Task::destroy($id);
+
         return redirect('taskmark');
     }
 }
