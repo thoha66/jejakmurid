@@ -22,7 +22,8 @@ class CreateExamMarksTable extends Migration
 
             $table->foreign('class_subject_exam_id')
                 ->references('id')
-                ->on('class_subject_exams');
+                ->on('class_subject_exams')
+                ->onDelete('cascade');
 
             $table->foreign('student_id')
                 ->references('id')

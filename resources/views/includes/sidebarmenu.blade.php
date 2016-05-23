@@ -188,6 +188,22 @@
                 </a>
             </li>
 
+            <li><a href="{!! url('classsubjectexam/create') !!}">
+
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Beri Markah Peperiksaan</span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('classsubjectexam') !!}">
+
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Senarai Markah Peperiksaan</span>
+                </a>
+            </li>
+
         @elseif (Auth::user()->user_group == 5)
         @else
         @endif

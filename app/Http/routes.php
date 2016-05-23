@@ -33,6 +33,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('senarai-kedatangan', 'AttendanceController@index2');
 
     Route::resource('studentoffense', 'StudentOffenseController');
+    
+    Route::resource('classsubjectexam', 'ClassSubjectExamController');
+    Route::post('addexammarks',[ 'as' => 'addexammarks', 'uses' => 'ClassSubjectExamController@store2']);
 
 
 
