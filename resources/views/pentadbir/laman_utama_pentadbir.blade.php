@@ -14,7 +14,7 @@
 
 
 @section('begin_title_right')
-<li><i class="fa fa-home"></i>&nbsp;<a href="#">Laman Utama</a>&nbsp;&nbsp;
+<li><i class="fa fa-home"></i>&nbsp;Laman Utama&nbsp;&nbsp;
 @endsection
 
 @section('content')

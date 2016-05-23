@@ -56,17 +56,14 @@
                                 <?php
                                 $no1 += 1;
                                 ?>
+                                <?php $no2 = $no1-1; ?>
 
-                                <input id="mark" type="hidden" placeholder="" class="form-control" name="id[<?php echo $no1; ?>]" value="{{ $StudentAttendance->id }}">
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="{{ $StudentAttendance->attendance->teacher_id }}">--}}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="classroom_id" value="{{ $StudentAttendance->attendance->classroom_id }}">--}}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="tarikh" value="{{ $StudentAttendance->attendance->tarikh }}">--}}
-                                <input id="mark" type="hidden" placeholder="" class="form-control" name="student_id[<?php echo $no1; ?>]" value="{{ $StudentAttendance->student_id}}">
-
+                                <input id="mark" type="hidden" placeholder="" class="form-control" name="id[]" value="{{ $StudentAttendance->id }}">
                                 <div>
-                                    <input type="radio" name="kedatangan[<?php echo $no1; ?>]" value="hadir">  Hadir
+
+                                    <input type="radio" name="kedatangan[<?php echo $no2; ?>]" value="hadir">  Hadir
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="kedatangan[<?php echo $no1; ?>]" value="tidak hadir">  Tidak Hadir
+                                    <input type="radio" name="kedatangan[<?php echo $no2; ?>]" value="tidak hadir">  Tidak Hadir
                                 </div>
 
 

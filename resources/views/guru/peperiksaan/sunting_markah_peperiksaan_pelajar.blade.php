@@ -68,12 +68,7 @@
                             {{--hiddent input--}}
 
                                 {!! csrf_field() !!}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="subject_id" value="{{ $ClassroomSubject->subject->id }}">--}}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="exam_id" value="{{ $exam_id }}">--}}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="teacher_id" value="{{ $teacher_id }}">--}}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="classroom_subject_id" value="{{ $classroom_subject_id }}">--}}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="sesi_peperiksaan" value="{{ $sesi_peperiksaan }}">--}}
-                                {{--<input id="mark" type="hidden" placeholder="" class="form-control" name="student_id[]" value="{{ $student->id }}">--}}
+
                                 <input type="hidden" name="id[]" value="{{$ClassSubjectExam->id}}">
                                 <input id="mark" type="text" placeholder="" class="form-control" name="markah_peperiksaan[]" value="{{ $ClassSubjectExam->markah_peperiksaan }}">
 

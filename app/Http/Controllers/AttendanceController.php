@@ -144,30 +144,15 @@ class AttendanceController extends Controller
     public function update(Request $request, $id)
     {
 //        dd($request);
-        if($request->isMethod('post')) {
 
-//            $attendance = Attendance::find($id);
-//            $attendance->teacher_id = $request->input('teacher_id');
-//            $attendance->classroom_id = $request->input('classroom_id');
-//            $attendance->tarikh = $request->input('tarikh');
-//            $attendance->save();
+            foreach( $request->id as $index => $val ) {
 
-            foreach( $request->student_id as $index => $val ) {
+                $StudentAttendance = StudentAttendance::find($val);
 
-//                dd($val);
-                //$StudentAttendance = StudentAttendance::where('student_id',$index)->first();
-                //$StudentAttendance = StudentAttendance::find('student_id',$val);
-                $st_id = $request->id[$index];
-
-                $StudentAttendance = StudentAttendance::find($st_id);
-                //$StudentAttendance = StudentAttendance::find('student_id','=',$val)->first();
-
-                //$StudentAttendance->attendance_id = $attendance->id;
-                $StudentAttendance->student_id = $val;
                 $StudentAttendance->kedatangan = $request->kedatangan[$index];
                 $StudentAttendance->save();
             }
-        }
+
 
         return redirect('senarai-kedatangan');
     }
