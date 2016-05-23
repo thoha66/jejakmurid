@@ -56,6 +56,12 @@
                         <td class="text-center">
 
                             <form action="{!! url('classsubjectexam/'.$ClassSubjectExam->id) !!}" method="POST" >
+
+                                {{--<input type="hidden" name="nama_peperiksaan" value="{{ $ClassSubjectExam->nama_peperiksaan }}">--}}
+                                {{--<input type="hidden" name="nama_kelas" value="{{ $ClassSubjectExam->nama_kelas }}">--}}
+                                {{--<input type="hidden" name="nama_subjek" value="{{ $ClassSubjectExam->nama_subjek }}">--}}
+                                {{--<input type="hidden" name="sesi_peperiksaan" value="{{ $ClassSubjectExam->sesi_peperiksaan }}">--}}
+
                                 <a href="{!! url('classsubjectexam/'.$ClassSubjectExam->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>
                                 <a href="{!! url('classsubjectexam/'.$ClassSubjectExam->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
                                 <button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>

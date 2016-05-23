@@ -1,21 +1,21 @@
 @extends('layouts.master')
 
 @section('title')
-    Beri Markah Tugasan
+    Beri Markah Peperiksaan
 @stop
 
 @section('begin_title_left')
-    Beri Markah Tugasan
+    Beri Markah Peperiksaan
 @stop
 
 @section('begin_title_right')
-    <li><i class="fa fa-book"></i>&nbsp; Beri Markah Tugasan</li>
+    <li><i class="fa fa-book"></i>&nbsp; Beri Markah Peperiksaan</li>
 @stop
 
 @section('content')
 
     <div class="panel panel-blue" style="background:#FFF;">
-        <div class="panel-heading">Beri Markah Tugasan</div>
+        <div class="panel-heading">Beri Markah Peperiksaan</div>
         <div class="panel-body">
             <form class="form-horizontal" method="POST" action="{!! url('addexammarks') !!}">
             <table class="table table-hover table-bordered">
@@ -25,7 +25,8 @@
                     <th class="text-center">No IC</th>
                     <th class="text-center">Nama Pelajar</th>
                     <th class="text-center">Kelas</th>
-                    <th class="text-center">Tajuk Tugasan</th>
+                    <th class="text-center">Subjek</th>
+                    <th class="text-center">Peperiksaan</th>
                     <th class="text-center">Markah</th>
                 </tr>
                 </thead>
@@ -53,6 +54,9 @@
                         </td>
                         <td class="text-center">
                             {{ $ClassroomSubject->subject->nama_subjek }}
+                        </td>
+                        <td class="text-center">
+                            {{ $NamaExam }}
                         </td>
                         <td class="text-center">
                             {{--hiddent input--}}

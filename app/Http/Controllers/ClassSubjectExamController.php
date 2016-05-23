@@ -68,7 +68,7 @@ class ClassSubjectExamController extends Controller
     public function store(Request $request)
     {
         $ClassSubjectExam = ClassSubjectExam::where('classroom_subject_id',$request->input('classroom_subject_id'))
-            ->where('classroom_subject_id',$request->input('classroom_subject_id'))
+            ->where('exam_id',$request->input('exam_id'))
             ->where('sesi_peperiksaan',$request->input('sesi_peperiksaan'))
             ->first();
 
@@ -82,12 +82,15 @@ class ClassSubjectExamController extends Controller
             $classroom_subject_id   = $request->input('classroom_subject_id');
             $sesi_peperiksaan       = $request->input('sesi_peperiksaan');
 
+            $NamaExam = Exam::find($exam_id);
+            $NamaExam = $NamaExam->nama_peperiksaan;
+
             $ClassroomSubject = ClassroomSubject::where('id',$classroom_subject_id)->with('subject')->first();
 
             $students = Student::where('classroom_id',$ClassroomSubject->classroom_id)->with('classroom')->get();
 
 
-            return view('guru.peperiksaan.beri_markah_peperiksaan_pelajar',compact('exam_id','teacher_id','classroom_subject_id','sesi_peperiksaan','ClassroomSubject','students'));
+            return view('guru.peperiksaan.beri_markah_peperiksaan_pelajar',compact('exam_id','teacher_id','classroom_subject_id','sesi_peperiksaan','NamaExam','ClassroomSubject','students'));
 
         }
     }
@@ -136,7 +139,25 @@ class ClassSubjectExamController extends Controller
      */
     public function edit($id)
     {
-        //
+//        $nama_peperiksaan = $request->input('nama_peperiksaan');
+//        $nama_kelas = $request->input('nama_kelas');
+//        $nama_subjek = $request->input('nama_subjek');
+//        $sesi_peperiksaan = $request->input('sesi_peperiksaan');
+
+        $ClassSubjectExams = DB::table('exam_marks')
+            ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+            ->join('exams', 'exams.id', '=', 'class_subject_exams.exam_id')
+            ->join('students', 'students.id', '=', 'exam_marks.student_id')
+            ->join('subjects', 'subjects.id', '=', 'exam_marks.subject_id')
+            ->join('classroom_subjects', 'classroom_subjects.id', '=', 'class_subject_exams.classroom_subject_id')
+            ->join('classrooms', 'classrooms.id', '=', 'classroom_subjects.classroom_id')
+//            ->join('subjects', 'subjects.id', '=', 'classroom_subjects.subject_id')
+            ->where('exam_marks.class_subject_exam_id','=', $id)
+           // ->select('exam_marks','class_subject_exams','students.no_kp_pelajar','subjects')
+            ->select('exam_marks.id','exam_marks.markah_peperiksaan','classrooms.nama_kelas','subjects.nama_subjek','class_subject_exams.sesi_peperiksaan','students.no_kp_pelajar','students.nama_pelajar','exams.nama_peperiksaan')
+            ->get();
+
+        return view('guru.peperiksaan.sunting_markah_peperiksaan_pelajar',compact('nama_peperiksaan','nama_kelas','nama_subjek','sesi_peperiksaan','ClassSubjectExams','id'));
     }
 
     /**
@@ -148,7 +169,15 @@ class ClassSubjectExamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        dd($request);
+
+        foreach( $request->id as $index => $val ) {
+
+            $input = ExamMark::find($val);
+            $input->markah_peperiksaan = $request->markah_peperiksaan[$index];
+            $input->save();
+        }
+        return redirect('classsubjectexam');
     }
 
     /**

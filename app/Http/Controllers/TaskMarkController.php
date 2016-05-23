@@ -192,6 +192,7 @@ class TaskMarkController extends Controller
 
             $input->save();
         }
+        return redirect('taskmark');
     }
 
     /**
