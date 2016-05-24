@@ -22,6 +22,7 @@ class CreateNewsTable extends Migration
           $table->time('masa_akhir')->nullable();
           $table->string('tempat')->nullable();
           $table->longText('penerangan_aktiviti')->nullable();
+          //$table->string('status_baca_berita')->nullable();
           $table->timestamps();
 
           //Foreign Key Constraints

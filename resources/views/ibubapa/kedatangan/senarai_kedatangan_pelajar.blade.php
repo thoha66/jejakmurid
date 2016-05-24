@@ -46,14 +46,6 @@
             </td>
             <td class="text-center">
               {{ $StudentAttendance->kedatangan  }}
-              {{--<form action="{!! url('CaretakerStudentAttendance/'.$StudentAttendance->id) !!}" method="POST" >--}}
-                {{--<a href="{!! url('CaretakerStudentAttendance/'.$StudentAttendance->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>--}}
-                {{--<a href="{!! url('CaretakerStudentTask/'.$task->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>--}}
-                {{--<button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>--}}
-                {{--<input type="hidden" name="_method" value="DELETE">--}}
-                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-              {{--</form>--}}
-
             </td>
           </tr>
 

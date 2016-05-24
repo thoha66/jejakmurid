@@ -296,7 +296,7 @@
                 </a>
             </li>
 
-            <li><a href="{!! url('xxx') !!}">
+            <li><a href="{!! url('CaretakerStudentNews') !!}">
                     <i class="fa fa-info-circle fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title"> Pemberitahuan Sekolah </span>

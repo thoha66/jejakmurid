@@ -14,7 +14,8 @@ class News extends Model
       'masa_mula',
       'masa_akhir',
       'tempat',
-      'penerangan_aktiviti'
+      'penerangan_aktiviti',
+      //'status_baca_berita'
 ];
 
 

@@ -18,7 +18,7 @@
 
           <div class="col-lg-2"></div>
           <div class="col-lg-9">
-            <div class="panel panel-grey">
+            <div class="panel panel-blue" style="background:#fff;">
               <div class="panel-heading">
                 Daftar Guru</div>
               <div class="panel-body pan">

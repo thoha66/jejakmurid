@@ -66,6 +66,7 @@ class NewsController extends Controller
 
             $news->tempat = $request->input('tempat');
             $news->penerangan_aktiviti = $request->input('penerangan_aktiviti');
+            //$news->status_baca_berita = 'BELUM BACA';
 
             $news->save();
 
