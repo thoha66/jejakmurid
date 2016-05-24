@@ -37,6 +37,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('classsubjectexam', 'ClassSubjectExamController');
     Route::post('addexammarks',[ 'as' => 'addexammarks', 'uses' => 'ClassSubjectExamController@store2']);
 
+    Route::resource('CaretakerStudentTask', 'CaretakerStudentTaskController');
+    Route::post('StudentTaskAll',[ 'as' => 'StudentTaskAll', 'uses' => 'CaretakerStudentTaskController@index']);
+    Route::post('SubjectTaskAll',[ 'as' => 'SubjectTaskAll', 'uses' => 'CaretakerStudentTaskController@index2']);
+
+
 
 
 
