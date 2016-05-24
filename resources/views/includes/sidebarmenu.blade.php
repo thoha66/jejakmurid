@@ -275,6 +275,13 @@
                 </a>
             </li>
 
+            <li><a href="{!! url('StudentTaskMark') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Semakan Markah Tugasan </span>
+                </a>
+            </li>
+
             <li><a href="{!! url('xxx') !!}">
                     <i class="fa fa-info-circle fa-fw">
                         <div class="icon-bg bg-yellow"></div>

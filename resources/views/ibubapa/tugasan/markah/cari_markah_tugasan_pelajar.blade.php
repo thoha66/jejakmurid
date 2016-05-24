@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-  Cari Tugasan Pelajar
+  Tugasan : Pilih Pelajar
 @endsection
 
 @section('begin_title_left')
-  Cari Tugasan Pelajar
+  Tugasan : Pilih Pelajar
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Cari Tugasan Pelajar</li>
+  <li><i class="fa fa-book"></i>&nbsp;Tugasan : Pilih Pelajar</li>
 @endsection
 
 @section('content')
@@ -20,21 +20,20 @@
 
             <div class="panel panel-blue" style="background:#fff;">
               <div class="panel-heading">
-                Cari Tugasan Pelajar</div>
+                Tugasan : Pilih Pelajar</div>
               <div class="panel-body pan">
-                <form class="form-horizontal" method="POST" action="{!! url('SubjectTaskAll') !!}">
+                <form class="form-horizontal" method="POST" action="{!! url('StudentTaskMarkAll') !!}">
                   <div class="form-body pal">
                     {!! csrf_field() !!}
 
-                    <input type="hidden" name="student_id" value="{{ $student_id }}">
                     <div class="form-group">
                       <label for="student_id" class="col-md-3 control-label">
                         Pilih Pelajar </label>
                       <div class="col-md-9">
 
-                        <select class="form-control" id="student_id" name="classroom_subject_id">
-                          @foreach($ClassroomSubjects as $ClassroomSubject)
-                            <option value="{{ $ClassroomSubject->id }}">{{ $ClassroomSubject->subject->nama_subjek }}</option>
+                        <select class="form-control" id="student_id" name="student_id">
+                          @foreach($students as $student)
+                            <option value="{{ $student->id }}">{{ $student->no_kp_pelajar }} : {{ $student->nama_pelajar }}</option>
                           @endforeach
                         </select>
 
