@@ -54,7 +54,7 @@ class StudentController extends Controller
             $emailstudent = $request->input('no_kp_pelajar');
 
             $user->name = $emailstudent;
-            $user->email = $emailstudent.'@pelajar.com';
+            $user->email = $emailstudent.'@pelajar.jejakmurid.com';
             $user->user_group = 5;
             $user->user_group_description = 'PELAJAR';
             $user->password = bcrypt($emailstudent);
@@ -84,7 +84,7 @@ class StudentController extends Controller
                 $emailperent = $request->input('no_kp_penjaga_pelajar');
 
                 $userperent->name = $emailperent;
-                $userperent->email = $emailperent.'@penjaga.com';
+                $userperent->email = $emailperent.'@penjaga.jejakmurid.com';
                 $userperent->user_group = 6;
                 $userperent->user_group_description = 'PENJAGA';
                 $userperent->password = bcrypt($emailperent);

@@ -6,9 +6,10 @@
 
          <div class="clearfix"></div>
         @if (Auth::user()->user_group == 1)
-            <li class="active"><a href="{{ url('laman-utama') }}"><i class="fa fa-tachometer fa-fw">
-                <div class="icon-bg bg-orange"></div>
-            </i><span class="menu-title">Laman Utama</span></a></li>
+            <li><a href="{{ url('laman-utama') }}"><i class="fa fa-tachometer fa-fw">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Laman Utama</span></a>
+            </li>
 
             <li><a href="{!! url('news/create') !!}"><i class="fa fa-bullhorn fa-fw">
                 <div class="icon-bg bg-pink"></div>
@@ -43,10 +44,7 @@
                     </i><span class="menu-title">Senarai Pelajar</span></a>
 
             </li>
-            {{--<li><a href="{!! url('subject/create') !!}"><i class="fa fa-male fa-fw">--}}
-                {{--<div class="icon-bg bg-violet"></div>--}}
-            {{--</i><span class="menu-title">Daftar Penjaga</span></a>--}}
-            {{--</li>--}}
+
             <li><a href="{!! url('subject/create') !!}"><i class="fa fa-book fa-fw">
                 <div class="icon-bg bg-blue"></div>
             </i><span class="menu-title">Daftar Subjek</span></a>
@@ -81,8 +79,13 @@
             </li>
         @elseif (Auth::user()->user_group == 2)
             {{--Teacher Biasa--}}
-            <li><a href="{!! url('task/create') !!}">
+            <li><a href="{{ url('laman-utama') }}">
+                    <i class="fa fa-tachometer fa-fw">
+                        <div class="icon-bg bg-pink"></div>
+                    </i><span class="menu-title">Laman Utama</span></a>
+            </li>
 
+            <li><a href="{!! url('task/create') !!}">
                     <i class="fa fa-info-circle fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title">Beri Tugasan</span>
@@ -107,6 +110,12 @@
 
         @elseif (Auth::user()->user_group == 3)
             {{--Teacher Classroom--}}
+            <li><a href="{{ url('laman-utama') }}">
+                    <i class="fa fa-tachometer fa-fw">
+                        <div class="icon-bg bg-pink"></div>
+                    </i><span class="menu-title">Laman Utama</span></a>
+            </li>
+
             <li><a href="{!! url('task/create') !!}">
 
                     <i class="fa fa-info-circle fa-fw">
@@ -148,6 +157,12 @@
             </li>
         @elseif (Auth::user()->user_group == 4)
             {{--Teacher disiplin--}}
+            <li><a href="{{ url('laman-utama') }}">
+                    <i class="fa fa-tachometer fa-fw">
+                        <div class="icon-bg bg-pink"></div>
+                    </i><span class="menu-title">Laman Utama</span></a>
+            </li>
+
             <li><a href="{!! url('task/create') !!}">
 
                     <i class="fa fa-info-circle fa-fw">
@@ -205,7 +220,90 @@
             </li>
 
         @elseif (Auth::user()->user_group == 5)
+            {{--Student--}}
+            <li><a href="{{ url('laman-utama') }}">
+                    <i class="fa fa-tachometer fa-fw">
+                        <div class="icon-bg bg-pink"></div>
+                    </i><span class="menu-title">Laman Utama</span></a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Kemaskini Profil</span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title"> Tugasan Baharu</span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title"> Pemarkahan Tugasan </span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title"> Keputusan Peperiksaan </span>
+                </a>
+            </li>
         @else
+            {{--Penjaga--}}
+            <li><a href="{{ url('laman-utama') }}">
+                    <i class="fa fa-tachometer fa-fw">
+                        <div class="icon-bg bg-pink"></div>
+                    </i><span class="menu-title">Laman Utama</span></a>
+            </li>
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Kemaskini Profil </span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Semakan Tugasan Pelajar </span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Keputusan Peperiksaan  </span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Laporan Disiplin Pelajar </span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Laporan Kedatangan Pelajar </span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('xxx') !!}">
+                    <i class="fa fa-info-circle fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title"> Pemberitahuan Sekolah </span>
+                </a>
+            </li>
+
+
         @endif
 
     </ul>

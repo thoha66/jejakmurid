@@ -848,7 +848,7 @@ background: #3e77ab; /* Old browsers */
 }
 .navbar-static-side ul li a:hover,
 .navbar-static-side ul li a:focus {
-background: #303030; /* Old browsers */
+background: #3E77AB; /* Old browsers */
   transition: 0.2s all ease-in-out;
   outline: none;
   color:#FFF;
