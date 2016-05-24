@@ -50,7 +50,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('StudentAttendance',[ 'as' => 'StudentAttendance', 'uses' => 'CaretakerStudentAttendanceController@pelajar']);
 
     Route::resource('CaretakerStudentNews', 'CaretakerStudentNewsController');
-//    Route::resource('CaretakerStudentTaskMark', 'CaretakerStudentTaskMarkController');
+
+    Route::resource('CaretakerStudentExam', 'CaretakerStudentExamController');
 
 
 
