@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-  Tugasan : Pilih Pelajar
+  Disiplin : Pilih Pelajar
 @endsection
 
 @section('begin_title_left')
-  Tugasan : Pilih Pelajar
+  Disiplin : Pilih Pelajar
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Tugasan : Pilih Pelajar</li>
+  <li><i class="fa fa-book"></i>&nbsp;Disiplin : Pilih Pelajar</li>
 @endsection
 
 @section('content')
@@ -20,9 +20,9 @@
 
             <div class="panel panel-blue" style="background:#fff;">
               <div class="panel-heading">
-                Tugasan : Pilih Pelajar</div>
+                Disiplin : Pilih Pelajar</div>
               <div class="panel-body pan">
-                <form class="form-horizontal" method="POST" action="{!! url('StudentTaskAll') !!}">
+                <form class="form-horizontal" method="POST" action="{!! url('StudentDiscipline') !!}">
                   <div class="form-body pal">
                     {!! csrf_field() !!}
 

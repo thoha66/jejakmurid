@@ -9,8 +9,8 @@ use App\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Auth;
-use Illuminate\Support\Facades\DB;
+use Auth;
+use DB;
 
 class CaretakerStudentTaskController extends Controller
 {

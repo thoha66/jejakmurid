@@ -101,7 +101,7 @@
                 <button type="submit" value="Submit" class="btn btn btn-green btn-lg"><i class="glyphicon glyphicon-ok"></i>   Noted</button>
 
               </div>
-            </form>
+            {{--</form>--}}
           </div>
         </div>
       </div>
