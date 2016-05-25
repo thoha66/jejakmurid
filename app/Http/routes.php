@@ -54,6 +54,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('CaretakerStudentExam', 'CaretakerStudentExamController');
     Route::post('CaretakerStudentExamDetails',[ 'as' => 'CaretakerStudentExamDetails', 'uses' => 'CaretakerStudentExamController@DetailsExam']);
 
+    Route::resource('StudentTaskView', 'StudentTaskViewController');
+
 
 
 
