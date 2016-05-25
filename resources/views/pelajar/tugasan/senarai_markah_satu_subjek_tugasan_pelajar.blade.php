@@ -1,20 +1,20 @@
 @extends('layouts.master')
 
 @section('title')
-  Senarai Tugasan Subjek
+  Senarai Markah Tugasan
 @endsection
 
 @section('begin_title_left')
-  Senarai Tugasan Subjek
+  Senarai Markah Tugasan
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Senarai Tugasan Subjek</li>
+  <li><i class="fa fa-book"></i>&nbsp;Senarai Markah Tugasan </li>
 @endsection
 
 @section('content')
   <div class="panel panel-blue" style="background:#FFF;">
-    <div class="panel-heading">Subjek : {{ $nama_subjek }}</div>
+    <div class="panel-heading">Senarai Markah Tugasan </div>
     <div class="panel-body">
       <table class="table table-hover table-bordered">
         <thead>
@@ -23,12 +23,13 @@
           <th class="text-center">Tajuk Tugasan</th>
           <th class="text-center">Tarikh Beri</th>
           <th class="text-center">Tarikh Hantar</th>
+          <th class="text-center">Markah</th>
           <th class="text-center">Tindakkan</th>
         </tr>
         </thead>
         <tbody>
         <?php $no=0; ?>
-        @forelse ($tasks as $task)
+        @forelse ($task_marks as $task_mark)
 
           <?php
           $no += 1;
@@ -39,19 +40,22 @@
               <?php echo $no; ?>
             </td>
             <td class="text-center">
-              {{ $task->tajuk_tugasan  }}
+              {{ $task_mark->tajuk_tugasan  }}
 
             </td>
             <td class="text-center">
-              {{ date("d-m-Y", strtotime($task->tarikh_beri))  }}
+              {{ date("d-m-Y", strtotime($task_mark->tarikh_beri))  }}
             </td>
             <td class="text-center">
-              {{ date("d-m-Y", strtotime($task->tarikh_hantar))  }}
+              {{ date("d-m-Y", strtotime($task_mark->tarikh_hantar))  }}
+            </td>
+            <td class="text-center">
+              {{ $task_mark->mark }}/100
             </td>
             <td class="text-center">
 
-              <form action="{!! url('StudentTaskView/'.$task->id) !!}" method="POST" >
-                <a href="{!! url('StudentTaskView/'.$task->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>
+              <form action="{!! url('StudentTaskView/'.$task_mark->task_id) !!}" method="POST" >
+                <a href="{!! url('StudentTaskView/'.$task_mark->task_id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>
                 {{--<a href="{!! url('CaretakerStudentTask/'.$task->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>--}}
                 {{--<button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>--}}
                 {{--<input type="hidden" name="_method" value="DELETE">--}}
@@ -72,7 +76,7 @@
 
       </table>
       <div class="text-center">
-        {!! $tasks->render() !!}
+        {!! $task_marks->render() !!}
       </div>
 
 

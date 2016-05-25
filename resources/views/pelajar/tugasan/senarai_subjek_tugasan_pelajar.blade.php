@@ -53,6 +53,17 @@
                 <button  class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Tugasan</button>
               </form>
 
+              <form action="{!! url('SubjekTaskMarks') !!}" method="POST" >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {{--hidden input--}}
+                <input type="hidden" name="classroom_subject_id" value="{{ $ClassroomSubject->id }}">
+                <input type="hidden" name="subject_id" value="{{ $ClassroomSubject->subject->subject_id }}">
+
+                <button  class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Pemarkahan Tugasan</button>
+              </form>
+
+
+
             </td>
           </tr>
 

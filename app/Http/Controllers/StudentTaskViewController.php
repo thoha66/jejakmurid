@@ -10,6 +10,7 @@ use App\Http\Requests;
 use Auth;
 use App\Task;
 use DB;
+use App\TaskMark;
 class StudentTaskViewController extends Controller
 {
     /**
@@ -36,6 +37,32 @@ class StudentTaskViewController extends Controller
         //dd($ClassroomSubjects);
 
         return view('pelajar.tugasan.senarai_subjek_tugasan_pelajar',compact('ClassroomSubjects'));
+    }
+
+    public function SubjekTaskMarks(Request $request){
+
+        $user_id = Auth::user()->id;
+        $student = Student::with('user')->where('user_id',$user_id)->first();
+        $student_id = $student->id;
+
+        $subject_id = $request->input('subject_id');
+        $classroom_subject_id = $request->input('classroom_subject_id');
+
+        $task_marks = DB::table('task_marks')
+            ->join('tasks', 'tasks.id', '=', 'task_marks.task_id')
+            //->join('teachers', 'teachers.id', '=', 'tasks.teacher_id')
+            ->join('classroom_subjects', 'classroom_subjects.id', '=', 'tasks.classroom_subject_id')
+            //->join('classrooms', 'classrooms.id', '=', 'classroom_subjects.classroom_id')
+            //->join('subjects', 'subjects.id', '=', 'classroom_subjects.subject_id')
+            ->where('classroom_subjects.id','=', $classroom_subject_id)
+            //->where('classroom_subjects.subject_id','=', $subject_id)
+            ->where('task_marks.student_id','=', $student_id)
+            ->select('task_marks.task_id','task_marks.mark', 'tasks.tajuk_tugasan', 'tasks.tarikh_beri', 'tasks.tarikh_hantar')
+            ->orderBy('tarikh_beri','desc')->paginate(5);
+
+//        dd($task_marks);
+        
+        return view('pelajar.tugasan.senarai_markah_satu_subjek_tugasan_pelajar', compact('task_marks'));
     }
 
     /**
