@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Auth;
 use App\Caretaker;
 use App\Student;
+use DB;
 
 class CaretakerStudentExamController extends Controller
 {
@@ -47,7 +49,28 @@ class CaretakerStudentExamController extends Controller
     {
         $student_id = $request->input('student_id');
         $sesi_peperiksaan = $request->input('sesi_peperiksaan');
-        return 'hai';
+
+        $exams = Exam::all();
+
+        return view('ibubapa.peperiksaan.senarai_peperiksaan_pelajar',compact('exams','student_id','sesi_peperiksaan'));
+    }
+
+    public function DetailsExam(Request $request){
+
+        $id                 = $request->input('id');
+        $student_id         = $request->input('student_id');
+        $sesi_peperiksaan   = $request->input('sesi_peperiksaan');
+
+        $ClassSubjectExams = DB::table('exam_marks')
+            ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+            ->join('exams', 'exams.id', '=', 'class_subject_exams.exam_id')
+            ->where('exam_marks.student_id','=', $student_id)
+            ->where('class_subject_exams.sesi_peperiksaan','=', $sesi_peperiksaan)
+            ->where('exams.id','=', $id)
+            ->select('exam_marks.*','exams.*')
+            ->get();
+        dd($ClassSubjectExams);
+
     }
 
     /**

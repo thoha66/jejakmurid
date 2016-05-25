@@ -1,20 +1,20 @@
 @extends('layouts.master')
 
 @section('title')
-    Senarai Tugasan
+    Senarai Peperiksaan
 @endsection
 
 @section('begin_title_left')
-    Senarai Markah Tugasan
+    Senarai Peperiksaan
 @endsection
 
 @section('begin_title_right')
-    <li><i class="fa fa-book"></i>&nbsp;Senarai Markah Tugasan</li>
+    <li><i class="fa fa-book"></i>&nbsp;Senarai Peperiksaan</li>
 @endsection
 
 @section('content')
     <div class="panel panel-blue" style="background:#FFF;">
-        <div class="panel-heading">Senarai Markah Tugasan</div>
+        <div class="panel-heading">Senarai Peperiksaan</div>
         <div class="panel-body">
             <table class="table table-hover table-bordered">
                 <thead>
@@ -75,7 +75,7 @@
                 @empty
                     <tr>
                         <td colspan="6">
-                            <p class="alert alert-warning">Tiada pengumuman yang dijumpai ...</p>
+                            <p class="alert alert-warning">Tiada data yang dijumpai ...</p>
                         </td>
                     </tr>
                 @endforelse

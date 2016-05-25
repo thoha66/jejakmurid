@@ -20,15 +20,13 @@
         <thead>
         <tr >
           <th class="text-center">#</th>
-          <th class="text-center">Jenis Peperiksaan</th>
-          {{--<th class="text-center">Tarikh Beri</th>--}}
-          {{--<th class="text-center">Tarikh Hantar</th>--}}
+          <th>Jenis Peperiksaan</th>
           <th class="text-center">Tindakkan</th>
         </tr>
         </thead>
         <tbody>
         <?php $no=0; ?>
-        @forelse ($tasks as $task)
+        @forelse ($exams as $exam)
 
           <?php
           $no += 1;
@@ -38,24 +36,19 @@
             <td class="text-center">
               <?php echo $no; ?>
             </td>
-            <td class="text-center">
-              {{ $task->tajuk_tugasan  }}
-
+            <td>
+              {{ $exam->nama_peperiksaan  }}
             </td>
-            {{--<td class="text-center">--}}
-              {{--{{ date("d-m-Y", strtotime($task->tarikh_beri))  }}--}}
-            {{--</td>--}}
-            {{--<td class="text-center">--}}
-              {{--{{ date("d-m-Y", strtotime($task->tarikh_hantar))  }}--}}
-            {{--</td>--}}
-            {{--<td class="text-center">--}}
+            <td class="text-center">
 
-              <form action="{!! url('CaretakerStudentTask/'.$task->id) !!}" method="POST" >
-                <a href="{!! url('CaretakerStudentTask/'.$task->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>
-                {{--<a href="{!! url('CaretakerStudentTask/'.$task->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>--}}
-                {{--<button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>--}}
-                {{--<input type="hidden" name="_method" value="DELETE">--}}
-                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+              <form action="{!! url('CaretakerStudentExamDetails') !!}" method="POST" >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {{--hidden input--}}
+                <input type="hidden" name="id" value="{{ $exam->id }}">
+                <input type="hidden" name="student_id" value="{{ $student_id }}">
+                <input type="hidden" name="sesi_peperiksaan" value="{{ $sesi_peperiksaan }}">
+
+                <button  class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</button>
               </form>
 
             </td>
@@ -71,9 +64,9 @@
         </tbody>
 
       </table>
-      <div class="text-center">
-        {!! $tasks->render() !!}
-      </div>
+      {{--<div class="text-center">--}}
+        {{--{!! $tasks->render() !!}--}}
+      {{--</div>--}}
 
 
 
