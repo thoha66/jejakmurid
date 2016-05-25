@@ -5,16 +5,16 @@
 @endsection
 
 @section('begin_title_left')
-  Senarai Kedatangan   {{ $nama_pelajar }}
+  Senarai Kedatangan   Pelajar
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Senarai Kedatangan   {{ $nama_pelajar }}</li>
+  <li><i class="fa fa-book"></i>&nbsp;Senarai Kedatangan   Pelajar</li>
 @endsection
 
 @section('content')
   <div class="panel panel-blue" style="background:#FFF;">
-    <div class="panel-heading">Senarai Kedatangan   {{ $nama_pelajar }}</div>
+    <div class="panel-heading">Pelajar :   {{ $nama_pelajar }}</div>
     <div class="panel-body">
       <table class="table table-hover table-bordered">
         <thead>

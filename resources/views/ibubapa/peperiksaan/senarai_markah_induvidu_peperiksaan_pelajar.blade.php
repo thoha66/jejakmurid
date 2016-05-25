@@ -14,7 +14,7 @@
 
 @section('content')
   <div class="panel panel-blue" style="background:#FFF;">
-    <div class="panel-heading">Keputusan Peperiksaan {{ $nama_peperiksaan }}</div>
+    <div class="panel-heading">{{ $nama_peperiksaan }}</div>
     <div class="panel-body">
       <table class="table table-hover table-bordered">
         <thead>
