@@ -237,18 +237,11 @@
             <li><a href="{!! url('StudentTaskView/create') !!}">
                     <i class="fa fa-info-circle fa-fw">
                         <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title"> Tugasan Baharu</span>
+                    </i><span class="menu-title"> Tugasan Baharu/Pemarkahan</span>
                 </a>
             </li>
 
-            <li><a href="{!! url('xxx') !!}">
-                    <i class="fa fa-info-circle fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title"> Pemarkahan Tugasan </span>
-                </a>
-            </li>
-
-            <li><a href="{!! url('xxx') !!}">
+            <li><a href="{!! url('StudentExamResult/create') !!}">
                     <i class="fa fa-info-circle fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title"> Keputusan Peperiksaan </span>
