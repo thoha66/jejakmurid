@@ -46,6 +46,7 @@
                 {{--hidden input--}}
                 <input type="hidden" name="id" value="{{ $exam->id }}">
                 <input type="hidden" name="student_id" value="{{ $student_id }}">
+                <input type="text" name="nama_peperiksaan" value="{{ $exam->nama_peperiksaan }}">
                 <input type="hidden" name="sesi_peperiksaan" value="{{ $sesi_peperiksaan }}">
 
                 <button  class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</button>

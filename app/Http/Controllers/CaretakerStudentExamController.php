@@ -59,17 +59,24 @@ class CaretakerStudentExamController extends Controller
 
         $id                 = $request->input('id');
         $student_id         = $request->input('student_id');
+        $nama_peperiksaan   = $request->input('nama_peperiksaan');
         $sesi_peperiksaan   = $request->input('sesi_peperiksaan');
+
+        $student = Student::where('id',$student_id)->with('classroom')->first();
+//        dd($student);
 
         $ClassSubjectExams = DB::table('exam_marks')
             ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
             ->join('exams', 'exams.id', '=', 'class_subject_exams.exam_id')
+            ->join('subjects', 'subjects.id', '=', 'exam_marks.subject_id')
             ->where('exam_marks.student_id','=', $student_id)
             ->where('class_subject_exams.sesi_peperiksaan','=', $sesi_peperiksaan)
             ->where('exams.id','=', $id)
-            ->select('exam_marks.*','exams.*')
+            ->select('exam_marks.*','exams.*','subjects.*')
             ->get();
-        dd($ClassSubjectExams);
+//        dd($ClassSubjectExams);
+
+        return view('ibubapa.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student'));
 
     }
 
