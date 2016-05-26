@@ -23,4 +23,12 @@
 {{--select2--}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 
+{{--new--}}
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- Add cdn to chart.js library files. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+{{--<script src="{{ url('assets/js/app.js') }}"></script>--}}
+
+
 

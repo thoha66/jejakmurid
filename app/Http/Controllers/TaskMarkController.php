@@ -140,8 +140,18 @@ class TaskMarkController extends Controller
             ->where('task_marks.task_id','=', $id)
 //            ->select('task_marks.*', 'tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*')
             ->get();
-//        dd($taskmarks);
-        return view('guru.tugasan.markah_tugasan.papar_markah_tugasan',compact('students','id'));
+
+        //Testing Query
+        $users = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+        $users2 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+        $users3 = DB::table('task_marks')->whereBetween('mark', array(1, 30))->count();
+        $users4 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+        $users5 = DB::table('task_marks')->whereBetween('mark', array(1, 30))->count();
+        $users6 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+        $users7 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+
+        //dd($users);
+        return view('guru.tugasan.markah_tugasan.papar_markah_tugasan',compact('students','id','users','users2','users3','users4','users5','users6','users7'));
 
     }
 

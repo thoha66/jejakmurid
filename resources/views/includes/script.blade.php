@@ -25,14 +25,16 @@
 <script src="{{ url('assets/script/jquery.flot.spline.js') }}"></script>
 <script src="{{ url('assets/script/zabuto_calendar.min.js') }}"></script>
 <script src="{{ url('assets/script/index.js') }}"></script>
-<!--LOADING SCRIPTS FOR CHARTS-->
-<script src="{{ url('assets/script/highcharts.js') }}"></script>
-<script src="{{ url('assets/script/data.js') }}"></script>
-<script src="{{ url('assets/script/drilldown.js') }}"></script>
-<script src="{{ url('assets/script/exporting.js') }}"></script>
-<script src="{{ url('assets/script/highcharts-more.js') }}"></script>
-<script src="{{ url('assets/script/charts-highchart-pie.js') }}"></script>
-<script src="{{ url('assets/script/charts-highchart-more.js') }}"></script>
+{{--<!--LOADING SCRIPTS FOR CHARTS-->--}}
+{{--<script src="{{ url('assets/script/highcharts.js') }}"></script>--}}
+{{--<script src="{{ url('assets/script/data.js') }}"></script>--}}
+{{--<script src="{{ url('assets/script/drilldown.js') }}"></script>--}}
+{{--<script src="{{ url('assets/script/exporting.js') }}"></script>--}}
+{{--<script src="{{ url('assets/script/highcharts-more.js') }}"></script>--}}
+{{--<script src="{{ url('assets/script/charts-highchart-pie.js') }}"></script>--}}
+{{--<script src="{{ url('assets/script/charts-highchart-more.js') }}"></script>--}}
+
+
 <!--CORE JAVASCRIPT-->
 <script src="{{ url('assets/script/main.js') }}"></script>
 <script>        (function (i, s, o, g, r, a, m) {
@@ -49,3 +51,5 @@
     ga('create', 'UA-145464-12', 'auto');
     ga('send', 'pageview');
 </script>
+
+

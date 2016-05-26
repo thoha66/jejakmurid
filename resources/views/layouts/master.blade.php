@@ -6,6 +6,7 @@
     <!-- <title>Dashboard | Dashboard</title> -->
     <title>@yield('title')</title>
     @include('includes.head')
+    @yield('head')
 </head>
 <body>
   <div>
