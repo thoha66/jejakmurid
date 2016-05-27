@@ -72,9 +72,65 @@ class CaretakerStudentExamController extends Controller
             ->where('exam_marks.student_id','=', $student_id)
             ->where('class_subject_exams.sesi_peperiksaan','=', $sesi_peperiksaan)
             ->where('exams.id','=', $id)
-            ->select('exam_marks.*','exams.*','subjects.*')
+            ->select('class_subject_exams.id','exam_marks.*','exams.*','subjects.*')
             ->get();
 //        dd($ClassSubjectExams);
+        $GroupBySubjects = DB::table('exam_marks')
+            ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+            ->join('exams', 'exams.id', '=', 'class_subject_exams.exam_id')
+            ->where('exam_marks.student_id','=', $student_id)
+            ->where('class_subject_exams.sesi_peperiksaan','=', $sesi_peperiksaan)
+            ->where('exams.id','=', $id)
+            ->groupBy('exam_marks.subject_id')
+            ->get();
+       // dd($GroupBySubjects);
+
+//        for ($i=0; $i < $integeroftoday; $i++) {
+//            $day[$i] = $i + 1;
+//        }
+//        berjaya start
+        foreach ($GroupBySubjects as $GroupBySubject){
+            $SumBySubjects[] = DB::table('exam_marks')
+                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+                ->where('exam_marks.class_subject_exam_id','=', $GroupBySubject->class_subject_exam_id)
+                ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
+                ->sum('markah_peperiksaan');
+        }
+        //dd($SumBySubjects);
+
+        foreach ($GroupBySubjects as $GroupBySubject){
+            $CountBySubjects[] = DB::table('exam_marks')
+                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+                ->where('exam_marks.class_subject_exam_id','=', $GroupBySubject->class_subject_exam_id)
+                ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
+                ->count('student_id');
+        }
+        dd($CountBySubjects);
+//        berjaya end
+
+//        foreach ($SumBySubjects as $value) {
+//            $sums[] = (int) $value;
+//        }
+//        dd($sums);
+//        $total = DB::table('exam_marks')
+//            ->sum('markah_peperiksaan');
+//        dd($total);
+
+        //dd($ClassSubjectExams);
+//        foreach ($ClassSubjectExams as $ClassSubjectExam ){
+//            $SumBySubjects = DB::table('exam_marks')
+//                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+//                ->where('exam_marks.class_subject_exam_id','=', $student_id)
+//                ->groupBy('exam_marks.subject_id')
+//                ->get();
+//        }
+
+//        dd($ClassSubjectExams);
+//        exam_marks.class_subject_exam_id
+//        foreach ( ){
+//
+//        }
+
 
         return view('ibubapa.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student'));
 
