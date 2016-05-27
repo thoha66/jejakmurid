@@ -55,7 +55,7 @@
             <td class="text-center">
 
               <form action="{!! url('task/'.$task->id) !!}" method="POST" >
-                <a href="{!! url('task/'.$task->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>
+                {{--<a href="{!! url('task/'.$task->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>--}}
                 <a href="{!! url('task/'.$task->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
                 <a href="{{ URL::route('addmark', $task->id) }}" class="btn btn btn-success btn-sm"><i class="glyphicon glyphicon-info-sign"></i> Beri Markah</a>
                 <button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>

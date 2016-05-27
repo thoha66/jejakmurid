@@ -30,5 +30,11 @@
 
 {{--<script src="{{ url('assets/js/app.js') }}"></script>--}}
 
+{{--Chart.js--}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.js" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.js" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js" rel="stylesheet" />
+
 
 

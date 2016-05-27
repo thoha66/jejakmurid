@@ -141,17 +141,29 @@ class TaskMarkController extends Controller
 //            ->select('task_marks.*', 'tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*')
             ->get();
 
-        //Testing Query
-        $users = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
-        $users2 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
-        $users3 = DB::table('task_marks')->whereBetween('mark', array(1, 30))->count();
-        $users4 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
-        $users5 = DB::table('task_marks')->whereBetween('mark', array(1, 30))->count();
-        $users6 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
-        $users7 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+        $at = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(90, 100))->count();
+        $a = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(80, 89))->count();
+        $ak = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(75, 79))->count();
+        $bt = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(70, 74))->count();
+        $b = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(65, 69))->count();
+        $ct = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(60, 64))->count();
+        $c = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(50, 59))->count();
+        $d = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(45, 49))->count();
+        $e = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(40, 44))->count();
+        $g = DB::table('task_marks')->where('task_id','=', $id)->whereBetween('mark', array(0, 39))->count();
 
-        //dd($users);
-        return view('guru.tugasan.markah_tugasan.papar_markah_tugasan',compact('students','id','users','users2','users3','users4','users5','users6','users7'));
+        $bil_pelajar_skor = [$at,$a,$ak,$bt,$b,$ct,$c,$d,$e,$g];
+//        //Testing Query
+//        $users = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+//        $users2 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+//        $users3 = DB::table('task_marks')->whereBetween('mark', array(1, 30))->count();
+//        $users4 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+//        $users5 = DB::table('task_marks')->whereBetween('mark', array(1, 30))->count();
+//        $users6 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+//        $users7 = DB::table('task_marks')->whereBetween('mark', array(60, 100))->count();
+
+//        dd($bil_pelajar_skor);
+        return view('guru.tugasan.markah_tugasan.papar_markah_tugasan',compact('students','id','at','a','ak','bt','b','ct','c','d','e','g'));
 
     }
 
