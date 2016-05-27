@@ -96,7 +96,7 @@ class CaretakerStudentExamController extends Controller
                 ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
                 ->sum('markah_peperiksaan');
         }
-        //dd($SumBySubjects);
+//        dd($SumBySubjects);
 
         foreach ($GroupBySubjects as $GroupBySubject){
             $CountBySubjects[] = DB::table('exam_marks')
@@ -105,7 +105,16 @@ class CaretakerStudentExamController extends Controller
                 ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
                 ->count('student_id');
         }
-        dd($CountBySubjects);
+       // dd($CountBySubjects);
+        foreach ($GroupBySubjects as $GroupBySubject){
+            $AvgBySubjects[] = DB::table('exam_marks')
+                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+                ->where('exam_marks.class_subject_exam_id','=', $GroupBySubject->class_subject_exam_id)
+                ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
+                ->avg('markah_peperiksaan');
+        }
+        dd($AvgBySubjects);
+
 //        berjaya end
 
 //        foreach ($SumBySubjects as $value) {
