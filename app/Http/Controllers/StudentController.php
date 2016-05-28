@@ -11,6 +11,8 @@ use Auth;
 use App\Admin;
 use App\User;
 use App\Caretaker;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -21,7 +23,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::with('admin')->orderBy('created_at','desc')->paginate(2);
+        $students = Student::with('admin')->orderBy('created_at','desc')->paginate(5);
 
         return view('pentadbir.pelajar.senarai_pelajar',['students' => $students]);
     }
@@ -47,9 +49,27 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateStudentRequest $request)
     {
-        if($request->isMethod('post')) {
+        $no_surat_beranak_pelajar = $request->input('no_surat_beranak_pelajar');
+        $student_no_surat_beranak_pelajar = Student::with('user')->where('no_surat_beranak_pelajar',$no_surat_beranak_pelajar)->first();
+
+        $no_kp_pelajar = $request->input('no_kp_pelajar');
+        $student_no_kp_pelajar = Student::with('user')->where('no_kp_pelajar',$no_kp_pelajar)->first();
+
+        if ($student_no_surat_beranak_pelajar != null){
+
+            Session::flash('flash_message_danger','No surat beranak pelajar yang sedang didaftar telah ada dalam sistem.');
+
+            return Redirect::back();
+        }
+        elseif ($student_no_kp_pelajar != null){
+
+            Session::flash('flash_message_danger','NoKP pelajar yang sedang didaftar telah ada dalam sistem.');
+
+            return Redirect::back();
+        }
+        else{
             $user = new User;
             $emailstudent = $request->input('no_kp_pelajar');
 
@@ -77,6 +97,8 @@ class StudentController extends Controller
                 $student->no_kp_penjaga_pelajar = $request->input('no_kp_penjaga_pelajar');
 
                 $student->save();
+
+                Session::flash('flash_message','Pelajar berjaya didaftarkan.');
 
             }
             else{
@@ -109,6 +131,8 @@ class StudentController extends Controller
                 $student->no_kp_penjaga_pelajar = $request->input('no_kp_penjaga_pelajar');
 
                 $student->save();
+
+                Session::flash('flash_message','Pelajar dan Penjaga berjaya didaftarkan.');
             }
 
 
@@ -151,7 +175,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CreateStudentRequest $request, $id)
     {
         $student = Student::find($id);
         $student_user_id = $student->user_id;
@@ -200,7 +224,7 @@ class StudentController extends Controller
         $user->user_group_description = 'PELAJAR';
         $user->password = bcrypt($request->input('no_kp_pelajar'));
         $user->save();
-
+        Session::flash('flash_message','Maklumat pelajar berjaya dikemaskini.');
         return redirect('student');
     }
 
@@ -216,6 +240,7 @@ class StudentController extends Controller
 
         Student::destroy($id);
         User::destroy($student->user_id);
+        Session::flash('flash_message','Maklumat pelajar berjaya dibuang.');
         return redirect('student');
     }
 }

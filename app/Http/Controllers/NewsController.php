@@ -11,7 +11,7 @@ use App\News;
 use App\Admin;
 use DB;
 use Auth;
-//use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Session;
 
 
 class NewsController extends Controller
@@ -74,6 +74,7 @@ class NewsController extends Controller
             //$news->status_baca_berita = 'BELUM BACA';
 
             $news->save();
+            Session::flash('flash_message','Pengumuman yang  didaftar berjaya disimpan.');
 
         }
         return redirect('news');
@@ -115,7 +116,7 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CreateNewsRequest $request, $id)
     {
         $news = News::find($id);
 
@@ -130,6 +131,8 @@ class NewsController extends Controller
 
         $news->save();
 
+        Session::flash('flash_message','Maklumat pengumuman berjaya dikemaskini..');
+
         return redirect('news');
     }
 
@@ -142,6 +145,7 @@ class NewsController extends Controller
     public function destroy($id)
     {
         News::destroy($id);
+        Session::flash('flash_message','Maklumat pengumuman berjaya dibuang.');
         return redirect('news');
     }
 }

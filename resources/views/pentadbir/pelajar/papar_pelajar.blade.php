@@ -160,7 +160,7 @@
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                       <a href="{!! url('student/'.$student->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-lg"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
-                      <button type="submit" value="Submit" class="btn btn btn-danger btn-lg"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>
+                      {{--<button type="submit" value="Submit" class="btn btn btn-danger btn-lg"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>--}}
 
                     </div>
                   </div>

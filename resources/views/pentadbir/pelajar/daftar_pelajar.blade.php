@@ -14,6 +14,9 @@
 
 @section('content')
       <div class="col-lg-12">
+        @include('includes/error')
+        @include('includes/success')
+        @include('includes/not_success')
         <div class="row">
 
           <div class="col-lg-2"></div>
@@ -33,8 +36,8 @@
                         No Surat Beranak</label>
                       <div class="col-md-9">
                         <div class="input-icon right">
-                          <i class="fa fa-user "></i>
-                          <input id="no_surat_beranak_pelajar" type="text" placeholder="" class="form-control" name="no_surat_beranak_pelajar"></div>
+                          <i class="fa fa-list-alt"></i>
+                          <input id="no_surat_beranak_pelajar" type="text" placeholder="" class="form-control" name="no_surat_beranak_pelajar" maxlength="7" value="{{old('no_surat_beranak_pelajar')}}"></div>
                       </div>
                     </div>
 
@@ -44,7 +47,7 @@
                       <div class="col-md-9">
                         <div class="input-icon right">
                           <i class="fa fa-user "></i>
-                          <input id="no_kp_pelajar" type="text" placeholder="" class="form-control" name="no_kp_pelajar"></div>
+                          <input id="no_kp_pelajar" type="text" placeholder="" class="form-control" name="no_kp_pelajar" maxlength="12" value="{{old('no_kp_pelajar')}}"></div>
                       </div>
                     </div>
 
@@ -94,8 +97,8 @@
                         Kad Pengenalan Penjaga</label>
                       <div class="col-md-9">
                         <div class="input-icon right">
-                          <i class="fa fa-user "></i>
-                          <input id="no_kp_penjaga_pelajar" type="text" placeholder="" class="form-control" name="no_kp_penjaga_pelajar"></div>
+                          <i class="fa  fa-male "></i>
+                          <input id="no_kp_penjaga_pelajar" type="text" placeholder="" class="form-control" name="no_kp_penjaga_pelajar" maxlength="12" value="{{old('no_kp_penjaga_pelajar')}}"></div>
                       </div>
                     </div>
 

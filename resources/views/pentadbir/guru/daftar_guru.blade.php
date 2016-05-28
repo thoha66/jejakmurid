@@ -15,6 +15,7 @@
 @section('content')
       <div class="col-lg-12">
         @include('includes/error')
+        @include('includes/success')
         @include('includes/not_success')
         <div class="row">
 
@@ -34,7 +35,7 @@
                       <div class="col-md-9">
                         <div class="input-icon right">
                           <i class="fa fa-user "></i>
-                          <input id="inputKp" type="text" placeholder="" class="form-control" name="no_kp_guru"></div>
+                          <input id="inputKp" type="text" placeholder="" class="form-control" name="no_kp_guru" maxlength="12" value="{{old('no_kp_guru')}}"></div>
                       </div>
                     </div>
 
@@ -43,8 +44,8 @@
                         Email</label>
                       <div class="col-md-9">
                         <div class="input-icon right">
-                          <i class="fa fa-user "></i>
-                          <input id="email_guru" type="text" placeholder="" class="form-control" name="email_guru"></div>
+                          <i class="fa fa-envelope-o "></i>
+                          <input id="email_guru" type="email" placeholder="" class="form-control" name="email_guru" value="{{ old('email_guru') }}"></div>
                       </div>
                     </div>
 

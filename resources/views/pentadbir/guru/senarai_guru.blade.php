@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+          @include('includes/success')
       <div class="panel panel-blue" style="background:#FFF;">
         <div class="panel-heading">Senarai Guru</div>
         <div class="panel-body">
@@ -46,13 +47,9 @@
               </td>
               <td class="text-center">
 
-                          <form action="{!! url('teacher/'.$teacher->id) !!}" method="POST" >
                               <a href="{!! url('teacher/'.$teacher->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>
                               <a href="{!! url('teacher/'.$teacher->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
-                              <button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>
-                              <input type="hidden" name="_method" value="DELETE">
-                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          </form>
+                              <a href="{!! url('teacher/'.$teacher->id) !!}" class="btn btn-danger"  data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?"><i class="fa fa-trash-o"></i> Buang</a>
 
               </td>
             </tr>
