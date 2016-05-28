@@ -26,7 +26,7 @@ class CreateNewsRequest extends Request
         return [
             'tajuk' => 'required',
             'tarikh_mula' => 'required|date|after:yesterday',
-            'tarikh_akhir' => 'required|date|after:tarikh_mula',
+            'tarikh_akhir' => 'required|date|after:yesterday',
             'masa_mula' => 'required',
             'masa_akhir' => 'required',
             'tempat' => 'required',

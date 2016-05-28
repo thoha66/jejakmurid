@@ -13,24 +13,22 @@
 @endsection
 
 @section('content')
-
   <div class="col-lg-12">
+
+    @include('includes/error')
+    @include('includes/success')
 
         <div class="row">
 
             <div class="col-lg-2"></div>
           <div class="col-lg-9">
-            </br></br>
-            @include('includes/error')
-            @include('includes/success')
-            </br>
+
             <div class="panel panel-blue" style="background:#FFF;">
               <div class="panel-heading">
                 Pengumuman</div>
               <div class="panel-body pan">
                 <form class="form-horizontal" method="POST" action="{!! url('news') !!}">
                   <div class="form-body pal">
-
                       {!! csrf_field() !!}
                     <div class="form-group">
                       <label for="inputTajuk" class="col-md-3 control-label">

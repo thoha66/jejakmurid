@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
+//use Request;
 use App\Http\Requests\CreateNewCustomer;
 use App\Http\Requests;
 use App\News;
 use App\Admin;
 use DB;
 use Auth;
+//use Illuminate\Support\Facades\Session;
+
 
 class NewsController extends Controller
 {
@@ -23,7 +25,7 @@ class NewsController extends Controller
     {
 
 //        $newses = News::with('admin')->orderBy('created_at','desc')->get();
-        $newses = News::with('admin')->orderBy('created_at','desc')->paginate(2);
+        $newses = News::with('admin')->orderBy('created_at','desc')->paginate(5);
 //        $newses = News::all();
 //        $newses = DB::table('news')
 //            ->orderBy('created_at', 'desc')

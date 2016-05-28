@@ -44,6 +44,7 @@
                       </div>
                       <!--END TITLE & BREADCRUMB PAGE-->
                       <!--BEGIN CONTENT-->
+
                       <div class="page-content">
                           <div id="tab-general">
                             @yield('content')

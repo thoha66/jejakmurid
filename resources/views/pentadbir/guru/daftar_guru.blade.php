@@ -14,6 +14,8 @@
 
 @section('content')
       <div class="col-lg-12">
+        @include('includes/error')
+        @include('includes/not_success')
         <div class="row">
 
           <div class="col-lg-2"></div>

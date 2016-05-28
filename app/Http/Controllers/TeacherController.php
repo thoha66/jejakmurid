@@ -11,6 +11,7 @@ use App\Classroom;
 use DB;
 use Auth;
 use App\Admin;
+use Illuminate\Support\Facades\Session;
 
 
 class TeacherController extends Controller
@@ -50,8 +51,18 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('post'))
-        {
+        $no_kp_guru = $request->input('no_kp_guru');
+        $teacher = Teacher::with('user')->where('no_kp_guru',$no_kp_guru)->first();
+
+        if($teacher != null){
+
+            Session::flash('flash_message_danger','Guru yang sedang didaftar telah ada dalam sistem.');
+
+            return redirect(action('TeacherController@create'));
+            //return view('pentadbir.guru.daftar_guru');
+
+        }
+        else{
             $user = new User;
 
             $user->name = $request->input('email_guru');
@@ -83,8 +94,9 @@ class TeacherController extends Controller
 //            $teacher->jantina = $request->input('jantina');
             $teacher->save();
 
+            return redirect('teacher');
         }
-        return redirect('teacher');
+
     }
 
     /**
@@ -171,7 +183,10 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
+        $teacher = Teacher::find($id);
+
         Teacher::destroy($id);
+        User::destroy($teacher->user_id);
         return redirect('teacher');
     }
 }
