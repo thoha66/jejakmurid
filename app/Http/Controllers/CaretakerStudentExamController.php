@@ -92,22 +92,22 @@ class CaretakerStudentExamController extends Controller
 
 //        dd($SubjectNames);
 //        berjaya start
-        foreach ($GroupBySubjects as $GroupBySubject){
-            $SumBySubjects[] = DB::table('exam_marks')
-                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
-                ->where('exam_marks.class_subject_exam_id','=', $GroupBySubject->class_subject_exam_id)
-                ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
-                ->sum('markah_peperiksaan');
-        }
+//        foreach ($GroupBySubjects as $GroupBySubject){
+//            $SumBySubjects[] = DB::table('exam_marks')
+//                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+//                ->where('exam_marks.class_subject_exam_id','=', $GroupBySubject->class_subject_exam_id)
+//                ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
+//                ->sum('markah_peperiksaan');
+//        }
 //        dd($SumBySubjects);
 
-        foreach ($GroupBySubjects as $GroupBySubject){
-            $CountBySubjects[] = DB::table('exam_marks')
-                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
-                ->where('exam_marks.class_subject_exam_id','=', $GroupBySubject->class_subject_exam_id)
-                ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
-                ->count('student_id');
-        }
+//        foreach ($GroupBySubjects as $GroupBySubject){
+//            $CountBySubjects[] = DB::table('exam_marks')
+//                ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
+//                ->where('exam_marks.class_subject_exam_id','=', $GroupBySubject->class_subject_exam_id)
+//                ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
+//                ->count('student_id');
+//        }
        // dd($CountBySubjects);
         foreach ($GroupBySubjects as $GroupBySubject){
             $AvgBySubjects[] = DB::table('exam_marks')
@@ -124,9 +124,6 @@ class CaretakerStudentExamController extends Controller
 //            $sums[] = (int) $value;
 //        }
 //        dd($sums);
-//        $total = DB::table('exam_marks')
-//            ->sum('markah_peperiksaan');
-//        dd($total);
 
         //dd($ClassSubjectExams);
 //        foreach ($ClassSubjectExams as $ClassSubjectExam ){
@@ -138,13 +135,10 @@ class CaretakerStudentExamController extends Controller
 //        }
 
 //        dd($ClassSubjectExams);
-//        exam_marks.class_subject_exam_id
-//        foreach ( ){
-//
-//        }
 
 
-        return view('ibubapa.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student','SubjectNames','SumBySubjects','AvgBySubjects'));
+
+        return view('ibubapa.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student','SubjectNames','AvgBySubjects'));
 
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use App\Http\Requests\CreateNewCustomer;
 use App\Http\Requests;
 use App\News;
 use App\Admin;
@@ -50,8 +52,9 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Requests\CreateNewsRequest $request)
     {
+        //News::create(Request::all());
         if($request->isMethod('post'))
         {
             $news = new News;

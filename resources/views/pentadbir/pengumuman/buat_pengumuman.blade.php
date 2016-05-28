@@ -13,11 +13,17 @@
 @endsection
 
 @section('content')
+
   <div class="col-lg-12">
+
         <div class="row">
 
             <div class="col-lg-2"></div>
           <div class="col-lg-9">
+            </br></br>
+            @include('includes/error')
+            @include('includes/success')
+            </br>
             <div class="panel panel-blue" style="background:#FFF;">
               <div class="panel-heading">
                 Pengumuman</div>
