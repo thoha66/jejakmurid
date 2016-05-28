@@ -86,7 +86,7 @@
 
                                         <select class="form-control" id="sesi" name="sesi">
                                             <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
+                                            {{--<option value="2017">2017</option>--}}
                                         </select>
 
                                     </div>

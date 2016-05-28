@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-  Butiran Kelas
+  Sunting Kelas
 @endsection
 
 @section('begin_title_left')
-  Butiran Kelas
+  Sunting Kelas
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Butiran Kelas</li>
+  <li><i class="fa fa-book"></i>&nbsp;Sunting Kelas</li>
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
 
         <div class="panel panel-blue" style="background:#fff;">
           <div class="panel-heading">
-            Butiran Kelas</div>
+            Sunting Kelas</div>
           <div class="panel-body pan">
             <form class="form-horizontal" action="{!! url('classroomsubject/'.$ClassroomSubject->id) !!}" method="POST" >
               <div class="form-body pal">
@@ -89,7 +89,7 @@
 
                     <select class="form-control" id="sesi" name="sesi">
                       <option value="2016">2016</option>
-                      <option value="2017">2017</option>
+                      {{--<option value="2017">2017</option>--}}
                     </select>
 
                   </div>

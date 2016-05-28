@@ -83,11 +83,11 @@
 
               </div>
               <div class="form-actions text-right pal">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {{--<input type="hidden" name="_method" value="DELETE">--}}
+                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
                 <a href="{!! url('classroomsubject/'.$ClassroomSubject->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-lg"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
-                <button type="submit" value="Submit" class="btn btn btn-danger btn-lg"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>
+                {{--<button type="submit" value="Submit" class="btn btn btn-danger btn-lg"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>--}}
 
               </div>
             </form>
