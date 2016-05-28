@@ -38,7 +38,7 @@
                       <div class="col-md-9">
                         <div class="input-icon right">
                           <i class="fa fa-credit-card "></i>
-                          <input id="inputKp" type="text" placeholder="" class="form-control" name="no_kp_guru" value="{{ $teacher->no_kp_guru }}" >
+                          <input id="inputKp" type="text" placeholder="" class="form-control" name="no_kp_guru" value="{{ $teacher->no_kp_guru }}" disabled>
                         </div>
                       </div>
                     </div>

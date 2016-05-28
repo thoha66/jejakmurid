@@ -14,6 +14,9 @@
 
 @section('content')
   <div class="col-lg-12">
+    @include('includes/error')
+    @include('includes/success')
+    @include('includes/not_success')
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-9">
@@ -43,8 +46,8 @@
                     Kod Subjek</label>
                   <div class="col-md-9">
                     <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="kod_subjek" type="text" placeholder="" class="form-control" name="kod_subjek" value="{{ $subject->kod_subjek }} "></div>
+                      <i class="fa fa-barcode "></i>
+                      <input id="kod_subjek" type="text" placeholder="" class="form-control" name="kod_subjek" value="{{ $subject->kod_subjek }}" maxlength="5" disabled></div>
                   </div>
                 </div>
 
@@ -53,8 +56,8 @@
                     Nama Subjek</label>
                   <div class="col-md-9">
                     <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="nama_subjek" type="text" placeholder="" class="form-control" name="nama_subjek" value="{{ $subject->nama_subjek }} "></div>
+                      <i class="fa fa-book "></i>
+                      <input id="nama_subjek" type="text" placeholder="" class="form-control" name="nama_subjek" value="{{ $subject->nama_subjek }}"></div>
                   </div>
                 </div>
 

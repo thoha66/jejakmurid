@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Subject;
 use Auth;
 use App\Admin;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class SubjectController extends Controller
 {
@@ -18,7 +20,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::with('admin')->orderBy('created_at','desc')->paginate(2);
+        $subjects = Subject::with('admin')->orderBy('created_at','desc')->paginate(5);
 
         return view('pentadbir.subjek.senarai_subjek',['subjects' => $subjects]);
     }
@@ -43,9 +45,17 @@ class SubjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateSubjectRequest $request)
     {
-        if($request->isMethod('post'))
+        $kod_subjek = $request->input('kod_subjek');
+        $subject_kod_subjek = Subject::where('kod_subjek',$kod_subjek)->first();
+
+        if ($subject_kod_subjek != null){
+
+            Session::flash('flash_message_danger','Subjek yang sedang didaftar telah ada dalam sistem.');
+            return Redirect::back();
+        }
+        else
         {
             $subject = new Subject;
 
@@ -54,6 +64,8 @@ class SubjectController extends Controller
             $subject->nama_subjek = $request->input('nama_subjek');
 
             $subject->save();
+
+            Session::flash('flash_message','Subjek berjaya didaftarkan.');
 
         }
         return redirect('subject');
@@ -94,17 +106,28 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CreateSubjectRequest $request, $id)
     {
-        $subject = Subject::find($id);
+//        $kod_subjek = $request->input('kod_subjek');
+//        $subject_kod_subjek = Subject::where('kod_subjek',$kod_subjek)->first();
+//
+//        if ($subject_kod_subjek != null){
+//
+//            Session::flash('flash_message_danger','Kod subjek yang sedang didaftar telah ada dalam sistem.');
+//            return Redirect::back();
+//        }
+//        else{
 
-        $subject->admin_id = $request->input('admin_id');
-        $subject->kod_subjek = $request->input('kod_subjek');
-        $subject->nama_subjek = $request->input('nama_subjek');
+            $subject = Subject::find($id);
+            $subject->admin_id = $request->input('admin_id');
+            $subject->kod_subjek = $request->input('kod_subjek');
+            $subject->nama_subjek = $request->input('nama_subjek');
+            $subject->save();
+            Session::flash('flash_message','Maklumat subjek berjaya dikemaskini..');
 
-        $subject->save();
+            return redirect('subject');
+//        }
 
-        return redirect('subject');
     }
 
     /**
@@ -116,6 +139,7 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         Subject::destroy($id);
+        Session::flash('flash_message','Maklumat subjek berjaya dibuang.');
         return redirect('subject');
     }
 }
