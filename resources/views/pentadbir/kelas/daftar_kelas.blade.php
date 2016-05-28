@@ -14,6 +14,9 @@
 
 @section('content')
     <div class="col-lg-12">
+        @include('includes/error')
+        @include('includes/success')
+        @include('includes/not_success')
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-9">
@@ -41,8 +44,8 @@
                                         Kod Kelas</label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
-                                            <input id="kod_Kelas" type="text" placeholder="" class="form-control" name="kod_kelas"></div>
+                                            <i class="fa fa-barcode"></i>
+                                            <input id="kod_Kelas" type="text" placeholder="" class="form-control" name="kod_kelas" maxlength="5" value="{{old('kod_kelas')}}"></div>
                                     </div>
                                 </div>
 
@@ -51,7 +54,7 @@
                                         Nama Kelas</label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-institution "></i>
                                             <input id="nama_Kelas" type="text" placeholder="" class="form-control" name="nama_kelas"></div>
                                     </div>
                                 </div>

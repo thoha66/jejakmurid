@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Classroom;
 use Auth;
 use App\Admin;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ClassroomController extends Controller
 {
@@ -18,7 +20,7 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $classrooms = Classroom::with('admin')->orderBy('created_at','desc')->paginate(2);
+        $classrooms = Classroom::with('admin')->orderBy('created_at','desc')->paginate(5);
 
         return view('pentadbir.kelas.senarai_kelas',['classrooms' => $classrooms]);
     }
@@ -43,9 +45,25 @@ class ClassroomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateClassroomRequest $request)
     {
-        if($request->isMethod('post'))
+        $kod_kelas = $request->input('kod_kelas');
+        $classroom_kod_kelas = Classroom::where('kod_kelas',$kod_kelas)->first();
+
+        $nama_kelas = $request->input('nama_kelas');
+        $classroom_nama_kelas = Classroom::where('nama_kelas',$nama_kelas)->first();
+
+        if ($classroom_kod_kelas != null){
+
+            Session::flash('flash_message_danger','Kod kelas yang sedang didaftar telah ada dalam sistem.');
+            return Redirect::back();
+        }
+        elseif($classroom_nama_kelas != null){
+
+            Session::flash('flash_message_danger','Nama kelas yang sedang didaftar telah ada dalam sistem.');
+            return Redirect::back();
+        }
+        else
         {
             $classroom = new Classroom;
 
@@ -54,6 +72,8 @@ class ClassroomController extends Controller
             $classroom->nama_kelas = $request->input('nama_kelas');
 
             $classroom->save();
+            Session::flash('flash_message','Kelas berjaya didaftarkan.');
+
         }
         return redirect('classroom');
     }
@@ -95,15 +115,51 @@ class ClassroomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $classroom = classroom::find($id);
+        $nama_kelas = $request->input('nama_kelas');
+        $classroom_nama_kelas = Classroom::where('nama_kelas',$nama_kelas)->first();
 
-        $classroom->admin_id = $request->input('admin_id');
-        $classroom->kod_kelas = $request->input('kod_kelas');
-        $classroom->nama_kelas = $request->input('nama_kelas');
+       // dd($classroom_nama_kelas);
+        if($classroom_nama_kelas == null){
+            $id2 = null;
+        }
+        else{
+            $id2 = $classroom_nama_kelas->id;
+        }
 
-        $classroom->save();
+        if($id2 == $id){
 
-        return redirect('classroom');
+            $classroom = classroom::find($id);
+
+            $classroom->admin_id = $request->input('admin_id');
+//            $classroom->kod_kelas = $request->input('kod_kelas');
+            $classroom->nama_kelas = $request->input('nama_kelas');
+
+            $classroom->save();
+            Session::flash('flash_message','Maklumat kelas berjaya dikemaskini..');
+
+            return redirect('classroom');
+        }
+
+        elseif ($id2 == null){
+
+            $classroom = classroom::find($id);
+
+            $classroom->admin_id = $request->input('admin_id');
+//            $classroom->kod_kelas = $request->input('kod_kelas');
+            $classroom->nama_kelas = $request->input('nama_kelas');
+
+            $classroom->save();
+            Session::flash('flash_message','Maklumat kelas berjaya dikemaskini..');
+
+            return redirect('classroom');
+        }
+
+        else{
+            Session::flash('flash_message_danger','Nama kelas yang sedang didaftar telah ada dalam sistem.');
+            return Redirect::back();
+        }
+
+
     }
 
     /**

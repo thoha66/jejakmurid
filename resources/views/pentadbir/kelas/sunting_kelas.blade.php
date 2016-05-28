@@ -1,26 +1,30 @@
 @extends('layouts.master')
 
 @section('title')
-  Papar Kelas
+  Sunting Kelas
 @endsection
 
 @section('begin_title_left')
-  Papar Kelas
+  Sunting Kelas
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Papar Kelas</li>
+  <li><i class="fa fa-book"></i>&nbsp;Sunting Kelas</li>
 @endsection
 
 @section('content')
   <div class="col-lg-12">
+    @include('includes/error')
+    @include('includes/success')
+    @include('includes/not_success')
+
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-9">
 
         <div class="panel panel-blue" style="background:#fff;">
           <div class="panel-heading">
-            Papar Kelas</div>
+            Sunting Kelas</div>
           <div class="panel-body pan">
             <form class="form-horizontal" action="{!! url('classroom/'.$classroom->id) !!}" method="POST" >
               <div class="form-body pal">
@@ -33,7 +37,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="admin_id" type="text" placeholder="" class="form-control" value="{{ $classroom->admin->nama_admin }} " ></div>
+                      <input id="admin_id" type="text" placeholder="" class="form-control" value="{{ $classroom->admin->nama_admin }}" disabled></div>
                     <input type="hidden" name="admin_id" value="{{ $admin_id }}" >
                   </div>
                 </div>
@@ -43,8 +47,8 @@
                     Kod Kelas</label>
                   <div class="col-md-9">
                     <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="kod_Kelas" type="text" placeholder="" class="form-control" name="kod_kelas" value="{{ $classroom->kod_kelas }} " ></div>
+                      <i class="fa fa-barcode"></i>
+                      <input id="kod_Kelas" type="text" placeholder="" class="form-control" value="{{$classroom->kod_kelas}}" maxlength="5" disabled></div>
                   </div>
                 </div>
 
@@ -53,8 +57,8 @@
                     Nama Kelas</label>
                   <div class="col-md-9">
                     <div class="input-icon right">
-                      <i class="fa fa-user "></i>
-                      <input id="nama_Kelas" type="text" placeholder="" class="form-control" name="nama_kelas" value="{{ $classroom->nama_kelas }} " ></div>
+                      <i class="fa fa-institution"></i>
+                      <input id="nama_Kelas" type="text" placeholder="" class="form-control" name="nama_kelas" value="{{$classroom->nama_kelas}}" ></div>
                   </div>
                 </div>
 

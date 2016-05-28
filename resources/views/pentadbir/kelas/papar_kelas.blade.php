@@ -40,7 +40,7 @@
                     Kod Kelas</label>
                   <div class="col-md-9">
                     <div class="input-icon right">
-                      <i class="fa fa-user "></i>
+                      <i class="fa fa-barcode"></i>
                       <input id="kod_Kelas" type="text" placeholder="" class="form-control" name="kod_Kelas" value="{{ $classroom->kod_kelas }} " disabled></div>
                   </div>
                 </div>
@@ -50,18 +50,18 @@
                     Nama Kelas</label>
                   <div class="col-md-9">
                     <div class="input-icon right">
-                      <i class="fa fa-user "></i>
+                      <i class="fa fa-institution"></i>
                       <input id="nama_Kelas" type="text" placeholder="" class="form-control" name="nama_kelas" value="{{ $classroom->nama_kelas }} " disabled></div>
                   </div>
                 </div>
 
               </div>
               <div class="form-actions text-right pal">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {{--<input type="hidden" name="_method" value="DELETE">--}}
+                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
                 <a href="{!! url('classroom/'.$classroom->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-lg"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
-                <button type="submit" value="Submit" class="btn btn btn-danger btn-lg"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>
+                {{--<button type="submit" value="Submit" class="btn btn btn-danger btn-lg"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>--}}
 
               </div>
             </form>
