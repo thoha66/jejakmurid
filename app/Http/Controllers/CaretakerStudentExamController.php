@@ -78,16 +78,19 @@ class CaretakerStudentExamController extends Controller
         $GroupBySubjects = DB::table('exam_marks')
             ->join('class_subject_exams', 'class_subject_exams.id', '=', 'exam_marks.class_subject_exam_id')
             ->join('exams', 'exams.id', '=', 'class_subject_exams.exam_id')
+            ->join('subjects', 'subjects.id', '=', 'exam_marks.subject_id')
             ->where('exam_marks.student_id','=', $student_id)
             ->where('class_subject_exams.sesi_peperiksaan','=', $sesi_peperiksaan)
             ->where('exams.id','=', $id)
             ->groupBy('exam_marks.subject_id')
             ->get();
-       // dd($GroupBySubjects);
+        //dd($GroupBySubjects);
 
-//        for ($i=0; $i < $integeroftoday; $i++) {
-//            $day[$i] = $i + 1;
-//        }
+        foreach ($GroupBySubjects as $GroupBySubject){
+                $SubjectNames[] = $GroupBySubject->nama_subjek;
+        }
+
+//        dd($SubjectNames);
 //        berjaya start
         foreach ($GroupBySubjects as $GroupBySubject){
             $SumBySubjects[] = DB::table('exam_marks')
@@ -113,7 +116,7 @@ class CaretakerStudentExamController extends Controller
                 ->where('exam_marks.subject_id','=', $GroupBySubject->subject_id)
                 ->avg('markah_peperiksaan');
         }
-        dd($AvgBySubjects);
+        //dd($AvgBySubjects);
 
 //        berjaya end
 
@@ -141,7 +144,7 @@ class CaretakerStudentExamController extends Controller
 //        }
 
 
-        return view('ibubapa.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student'));
+        return view('ibubapa.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student','SubjectNames','SumBySubjects','AvgBySubjects'));
 
     }
 

@@ -1,3 +1,23 @@
+.foo {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.blue {
+  background: #13b4ff;
+}
+
+.purple {
+  background: #4C0099;
+}
+
+.wine {
+  background: #99004C;
+}
+/*custom edit stop*/
 .icon-spin {
   display: inline-block;
   -moz-animation: spin 2s infinite linear;
