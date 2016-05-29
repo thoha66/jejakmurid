@@ -13,6 +13,8 @@ use App\Student;
 use DB;
 use Auth;
 use App\Teacher;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 
 class TaskMarkController extends Controller
@@ -50,7 +52,7 @@ class TaskMarkController extends Controller
         $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
         $teacher_id = $teacher->id;
 
-        $tasks = Task::where('teacher_id',$teacher_id)->where('status','sudah')->with('teacher')->orderBy('created_at','desc')->paginate(2);
+        $tasks = Task::where('teacher_id',$teacher_id)->where('status','sudah')->with('teacher')->orderBy('created_at','desc')->paginate(5);
 
         return view('guru.tugasan.markah_tugasan.senarai_markah_tugasan',['tasks' => $tasks]);
     }
@@ -94,20 +96,20 @@ class TaskMarkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateTaskMarkRequest $request)
     {
         if($request->isMethod('post')) {
 
             //dd($request->all());
-          foreach( $request->student_id as $index => $val ) {
-            $input = new TaskMark;
-            $input->teacher_id = $request->input('teacher_id');
-            $input->task_id = $request->input('task_id');
-            $input->student_id = $val;
-            $input->mark = $request->mark[$index];
+            foreach( $request->student_id as $index => $val ) {
+                $input = new TaskMark;
+                $input->teacher_id = $request->input('teacher_id');
+                $input->task_id = $request->input('task_id');
+                $input->student_id = $val;
+                $input->mark = $request->mark[$index];
 
-            $input->save();
-          }
+                $input->save();
+            }
         }
 
         $id = $request->input('task_id');
@@ -116,6 +118,8 @@ class TaskMarkController extends Controller
         $task->status        = 'sudah';
 
         $task->save();
+
+        Session::flash('flash_message','Pemarkahan tugasan berjaya dimasukkan.');
 
         return redirect('taskmark');
     }
@@ -187,7 +191,8 @@ class TaskMarkController extends Controller
             ->join('classrooms', 'classrooms.id', '=', 'classroom_subjects.classroom_id')
             ->join('subjects', 'subjects.id', '=', 'classroom_subjects.subject_id')
             ->where('task_marks.task_id','=', $id)
-            ->select('task_marks.*', 'tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*','students.*')
+            ->select('task_marks.id','task_marks.student_id','task_marks.mark', 'tasks.tajuk_tugasan','classrooms.nama_kelas','students.no_kp_pelajar','students.nama_pelajar')
+//            ->select('task_marks.id', 'tasks.*', 'classroom_subjects.*','students.id','students.no_kp_pelajar','students.nama_pelajar')
             ->get();
 
         return view('guru.tugasan.markah_tugasan.sunting_markah_tugasan',compact('students','id','teacher_id'));
@@ -213,6 +218,8 @@ class TaskMarkController extends Controller
             $input->mark = $request->mark[$index];
 
             $input->save();
+
+            Session::flash('flash_message','Pemarkahan tugasan berjaya dikemaskini.');
         }
         return redirect('taskmark');
     }
@@ -233,7 +240,7 @@ class TaskMarkController extends Controller
         }
 
         Task::destroy($id);
-
+        Session::flash('flash_message','Pemarkahan tugasan berjaya dibuang.');
         return redirect('taskmark');
     }
 }

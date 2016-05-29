@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CreateTeacherRequest extends Request
+class CreateTaskMarkRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class CreateTeacherRequest extends Request
     public function rules()
     {
         return [
-            'classroom_subject_id' => 'required|min:12|numeric',
-            'email_guru' => 'required|email'
-//            'jenis_guru' => 'required'
-//            'guru_kelas_id' => 'required'
+            'mark'  => 'required|numeric'
         ];
     }
 }

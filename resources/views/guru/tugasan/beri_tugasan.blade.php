@@ -14,6 +14,9 @@
 
 @section('content')
     <div class="col-lg-12">
+        @include('includes/error')
+        @include('includes/success')
+        @include('includes/not_success')
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-9">
@@ -57,7 +60,7 @@
                                     <div class="col-md-9">
                                         <div class="input-icon right">
                                             <i class="fa fa-user "></i>
-                                            <input id="tajuk_tugasan" type="text" placeholder="" class="form-control" name="tajuk_tugasan" ></div>
+                                            <input id="tajuk_tugasan" type="text" placeholder="" class="form-control" name="tajuk_tugasan" value="{{old('tajuk_tugasan')}}"></div>
                                     </div>
                                 </div>
 
@@ -67,7 +70,7 @@
                                     <div class="col-md-9">
                                         <div class="input-icon right">
                                             <i class="fa fa-user "></i>
-                                            <textarea id="penerangan_tugasan" type="text" placeholder="" class="form-control" name="penerangan_tugasan" ></textarea>
+                                            <textarea id="penerangan_tugasan" type="text" placeholder="" class="form-control" name="penerangan_tugasan" >{{old('penerangan_tugasan')}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +81,7 @@
                                     <div class="col-md-9">
                                         <div class="input-icon right">
                                             <i class="fa fa-user "></i>
-                                            <input id="tarikh_beri" type="date" placeholder="" class="form-control" name="tarikh_beri" ></div>
+                                            <input id="tarikh_beri" type="date" placeholder="" class="form-control" name="tarikh_beri" value="{{old('tarikh_beri')}}"></div>
                                     </div>
                                 </div>
 
@@ -88,7 +91,7 @@
                                     <div class="col-md-9">
                                         <div class="input-icon right">
                                             <i class="fa fa-user "></i>
-                                            <input id="tarikh_hantar" type="date" placeholder="" class="form-control" name="tarikh_hantar" ></div>
+                                            <input id="tarikh_hantar" type="date" placeholder="" class="form-control" name="tarikh_hantar" value="{{old('tarikh_hantar')}}"></div>
                                     </div>
                                 </div>
 

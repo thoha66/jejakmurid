@@ -11,7 +11,8 @@ use App\ClassroomSubject;
 use App\Classroom;
 use DB;
 use Auth;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 class TaskController extends Controller
 {
     /**
@@ -38,7 +39,7 @@ class TaskController extends Controller
             ->where('tasks.status','=', 'belum')
             ->select('tasks.*','teachers.nama_guru','classrooms.nama_kelas','subjects.nama_subjek')
             ->orderBy('tasks.updated_at','desc')
-            ->paginate(2);
+            ->paginate(5);
 //        dd($tasks);
 
         return view('guru.tugasan.senarai_tugasan',compact('tasks','teacher'));
@@ -66,7 +67,7 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateTaskRequest $request)
     {
         if($request->isMethod('post'))
         {
@@ -82,6 +83,8 @@ class TaskController extends Controller
             $task->status = 'belum';
 
             $task->save();
+
+            Session::flash('flash_message','Maklumat tugasan berjaya disimpan.');
 
         }
         return redirect('task');
@@ -115,7 +118,12 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->get();
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
+        
+        $classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->where('teacher_id',$teacher_id)->get();
+        //$classroomsubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->get();
         $task = Task::find($id);
         return view('guru.tugasan.sunting_tugasan',compact('classroomsubjects','task'));
     }
@@ -127,7 +135,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CreateTaskRequest $request, $id)
     {
         $task = Task::find($id);
 
@@ -139,7 +147,7 @@ class TaskController extends Controller
         $task->tarikh_hantar        = $request->input('tarikh_hantar');
 
         $task->save();
-
+        Session::flash('flash_message','Tugasan berjaya dikemaskini.');
         return redirect('task');
     }
 

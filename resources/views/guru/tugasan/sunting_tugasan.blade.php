@@ -14,6 +14,9 @@
 
 @section('content')
   <div class="col-lg-12">
+    @include('includes/error')
+    @include('includes/success')
+    @include('includes/not_success')
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-9">
@@ -38,17 +41,6 @@
                   </div>
                 </div>
 
-                {{--<div class="form-group">--}}
-                  {{--<label for="classroom_subject_id" class="col-md-3 control-label">--}}
-                    {{--Kelas Subjek</label>--}}
-                  {{--<div class="col-md-9">--}}
-                    {{--<div class="input-icon right">--}}
-                      {{--<i class="fa fa-user "></i>--}}
-                      {{--<input id="classroom_subject_id" type="text" placeholder="" class="form-control" name="classroom_subject_id" value="{{ $task->classroom_subject_id }}" >--}}
-                    {{--</div>--}}
-                  {{--</div>--}}
-                {{--</div>--}}
-
                 <div class="form-group">
                   <label for="classroom_subject_id" class="col-md-3 control-label">
                     Nama Kelas Subjek</label>
@@ -69,7 +61,7 @@
                   <div class="col-md-9">
                     <div class="input-icon right">
                       <i class="fa fa-user "></i>
-                      <input id="tajuk_tugasan" type="text" placeholder="" class="form-control" name="tajuk_tugasan" value="{{ $task->tajuk_tugasan }}"></div>
+                      <input id="tajuk_tugasan" type="text" placeholder="" class="form-control" name="tajuk_tugasan" value="{{ $task->tajuk_tugasan }}" ></div>
                   </div>
                 </div>
 

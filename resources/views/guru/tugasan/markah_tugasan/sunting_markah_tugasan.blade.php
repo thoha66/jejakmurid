@@ -13,6 +13,9 @@
 @stop
 
 @section('content')
+    @include('includes/error')
+    @include('includes/success')
+    @include('includes/not_success')
 
     <div class="panel panel-blue" style="background:#FFF;">
         <div class="panel-heading">Markah Tugasan</div>
