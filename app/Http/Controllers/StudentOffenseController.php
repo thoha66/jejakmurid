@@ -10,6 +10,8 @@ use Auth;
 use App\Teacher;
 use App\Student;
 use App\StudentOffense;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class StudentOffenseController extends Controller
 {
@@ -20,7 +22,7 @@ class StudentOffenseController extends Controller
      */
     public function index()
     {
-        $StudentOffenses = StudentOffense::with('offense')->with('student')->with('teacher')->orderBy('created_at','desc')->paginate(2);
+        $StudentOffenses = StudentOffense::with('offense')->with('student')->with('teacher')->orderBy('created_at','desc')->paginate(5);
 
         return view('guru.disiplin.senarai_kesalahan_pelajar',compact('StudentOffenses'));
     }
@@ -45,7 +47,7 @@ class StudentOffenseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateOffenceRequest $request)
     {
         if($request->isMethod('post'))
         {
@@ -60,6 +62,8 @@ class StudentOffenseController extends Controller
             $StudentOffense->tempat_kesalahan = $request->input('tempat_kesalahan');
 
             $StudentOffense->save();
+
+            Session::flash('flash_message','Kesalahan pelajar berjaya didaftarkan.');
 
         }
         return redirect('studentoffense');
@@ -99,7 +103,7 @@ class StudentOffenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CreateOffenceRequest $request, $id)
     {
         $StudentOffense = StudentOffense::find($id);
 
@@ -111,6 +115,8 @@ class StudentOffenseController extends Controller
         $StudentOffense->tempat_kesalahan = $request->input('tempat_kesalahan');
 
         $StudentOffense->save();
+
+        Session::flash('flash_message','Maklumat disiplin pelajar berjaya dikemaskini.');
 
         return redirect('studentoffense');
     }
@@ -124,6 +130,7 @@ class StudentOffenseController extends Controller
     public function destroy($id)
     {
         StudentOffense::destroy($id);
+        Session::flash('flash_message','Maklumat disiplin pelajar berjaya dibuang.');
         return redirect('studentoffense');
     }
 }

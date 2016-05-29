@@ -17,6 +17,7 @@ class VerifyCsrfToken extends BaseVerifier
         'task/*',
         'taskmark/*',
         'classsubjectexam/*',
-        'attendance/*'
+        'attendance/*',
+        'studentoffense/*'
     ];
 }
