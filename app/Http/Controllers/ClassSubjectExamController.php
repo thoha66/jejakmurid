@@ -13,7 +13,8 @@ use Auth;
 use App\Teacher;
 use App\Exam;
 use App\ClassroomSubject;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ClassSubjectExamController extends Controller
 {
@@ -73,7 +74,10 @@ class ClassSubjectExamController extends Controller
             ->first();
 
         if( $ClassSubjectExam != NULL){
-            return 'Duplicate';
+
+            Session::flash('flash_message_danger','Markah peperiksaan yang ingin dimasukkan telah ada dalam sistem.');
+
+            return Redirect::back();
         }
         else{
 
@@ -115,6 +119,8 @@ class ClassSubjectExamController extends Controller
             $input->markah_peperiksaan = $request->markah_peperiksaan[$index];
 
             $input->save();
+
+            Session::flash('flash_message','Markah peperiksaan berjaya dimasukkan.');
         }
 
         return redirect('classsubjectexam');
@@ -177,6 +183,9 @@ class ClassSubjectExamController extends Controller
             $input->markah_peperiksaan = $request->markah_peperiksaan[$index];
             $input->save();
         }
+
+        Session::flash('flash_message','Markah peperiksaan berjaya dikemaskini.');
+
         return redirect('classsubjectexam');
     }
 
@@ -189,7 +198,7 @@ class ClassSubjectExamController extends Controller
     public function destroy($id)
     {
         ClassSubjectExam::destroy($id);
-
+        Session::flash('flash_message','Maklumat markah peperiksaan berjaya dibuang.');
         return redirect('classsubjectexam');
     }
 }
