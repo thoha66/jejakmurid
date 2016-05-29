@@ -12,6 +12,8 @@ use App\Attendance;
 use App\StudentAttendance;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -33,19 +35,42 @@ class AttendanceController extends Controller
         return view('guru.kedatangan.pilih_tarikh_kedatangan',compact('teacher'));
     }
 
-    public function addattendance(Request $request){
+    public function addattendance(Requests\CreateAttendanceRequest $request){
+
         $user_id = Auth::user()->id;
         $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
         $teacher_id = $teacher->id;
 
-        if($request->isMethod('post')) {
-            $kelas_id = $request->input('guru_kelas_id');
-            $tarikh = $request->input('tarikh');
-            $students = Student::where('classroom_id', $kelas_id)->orderBy('created_at', 'desc')->get();
-        }
-        $kelasid = $request->input('guru_kelas_id');
+        $guru_kelas_id = $request->input('guru_kelas_id');
+        $tarikh = $request->input('tarikh');
 
-        return view('guru.kedatangan.beri_kedatangan',compact('students','tarikh','teacher_id','kelasid'));
+        $Attendance = Attendance::where('teacher_id',$teacher_id)
+            ->where('classroom_id',$guru_kelas_id)
+            ->where('tarikh',$tarikh)
+            ->first();
+        //dd($Attendance);
+
+        if ($Attendance != null){
+
+            Session::flash('flash_message_danger','Kedatangan telah diisi.');
+
+            return Redirect::back();
+
+        }
+        else {
+            $user_id = Auth::user()->id;
+            $teacher = Teacher::with('user')->where('user_id', $user_id)->first();
+            $teacher_id = $teacher->id;
+
+            if ($request->isMethod('post')) {
+                $kelas_id = $request->input('guru_kelas_id');
+                $tarikh = $request->input('tarikh');
+                $students = Student::where('classroom_id', $kelas_id)->orderBy('created_at', 'desc')->get();
+            }
+            $kelasid = $request->input('guru_kelas_id');
+
+            return view('guru.kedatangan.beri_kedatangan', compact('students', 'tarikh', 'teacher_id', 'kelasid'));
+        }
     }
 
     public function index2(){
@@ -86,7 +111,24 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('post')) {
+//        $teacher_id = $request->input('teacher_id');
+//        $classroom_id = $request->input('classroom_id');
+//        $tarikh = $request->input('tarikh');
+//
+//        $Attendance = Attendance::where('teacher_id',$teacher_id)
+//            ->where('classroom_id',$classroom_id)
+//            ->where('tarikh',$tarikh)
+//            ->count();
+//        //dd($Attendance);
+//
+//        if ($Attendance != null){
+//
+//            Session::flash('flash_message_danger','Kedatangan telah diisi.');
+//
+//            return Redirect::back();
+//
+//        }
+//        else{
 
 //            dd($request->all());
 
@@ -105,9 +147,11 @@ class AttendanceController extends Controller
                 $StudentAttendance->kedatangan = $request->kedatangan[$index];
                 $StudentAttendance->save();
             }
-        }
+            Session::flash('flash_message','Kedatangan berjaya dimasukkan.');
+            return redirect('senarai-kedatangan');
+//        }
 
-        return redirect('senarai-kedatangan');
+
     }
 
     /**

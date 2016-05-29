@@ -74,7 +74,7 @@
                 @empty
                     <tr>
                         <td colspan="6">
-                            <p class="alert alert-warning">Tiada pengumuman yang dijumpai ...</p>
+                            <p class="alert alert-warning">Tiada data yang dijumpai ...</p>
                         </td>
                     </tr>
                 @endforelse
