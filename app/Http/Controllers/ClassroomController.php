@@ -74,8 +74,9 @@ class ClassroomController extends Controller
             $classroom->save();
             Session::flash('flash_message','Kelas berjaya didaftarkan.');
 
+            return redirect('classroom');
+
         }
-        return redirect('classroom');
     }
 
     /**
@@ -171,6 +172,7 @@ class ClassroomController extends Controller
     public function destroy($id)
     {
         Classroom::destroy($id);
+        Session::flash('flash_message','Maklumat kelas berjaya dibuang.');
         return redirect('classroom');
     }
 }

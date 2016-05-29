@@ -13,6 +13,8 @@ use App\Teacher;
 use DB;
 use Auth;
 use App\Admin;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ClassroomSubjectController extends Controller
 {
@@ -23,12 +25,7 @@ class ClassroomSubjectController extends Controller
      */
     public function index()
     {
-        //$ClassroomSubjects = ClassroomSubject::all()->orderBy('created_at','desc')->paginate(2);
-//        $ClassroomSubjects = DB::table('classroom_subjects')->orderBy('created_at','desc')->paginate(2);
-        //$ClassroomSubjects = ClassroomSubject::all();
-        $ClassroomSubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->orderBy('created_at','desc')->paginate(2);
-//        $ClassroomSubjects = ClassroomSubject::subject3()->classroom4()->orderBy('created_at')->get();
-        //$classRoom = Classroom::with('subjects')->paginate(2);
+        $ClassroomSubjects = ClassroomSubject::with('classroom')->with('subject')->with('teacher')->orderBy('created_at','desc')->paginate(5);
         return view('pentadbir.kelassubjek.senarai_kelas_subjek',['ClassroomSubjects' => $ClassroomSubjects]);
     }
 
@@ -58,7 +55,18 @@ class ClassroomSubjectController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('post'))
+        $subject_id     = $request->input('subject_id');
+        $classroom_id   = $request->input('classroom_id');
+        $teacher_id     = $request->input('teacher_id');
+        $sesi           = $request->input('sesi');
+
+        $ClassroomSubject = ClassroomSubject::where('subject_id',$subject_id)
+            ->where('classroom_id',$classroom_id)
+            ->where('teacher_id',$teacher_id)
+            ->where('sesi',$sesi)
+            ->first();
+
+        if($ClassroomSubject == null)
         {
             $ClassroomSubject = new ClassroomSubject;
 
@@ -67,13 +75,18 @@ class ClassroomSubjectController extends Controller
             $ClassroomSubject->classroom_id = $request->input('classroom_id');
             $ClassroomSubject->teacher_id = $request->input('teacher_id');
             $ClassroomSubject->sesi = $request->input('sesi');
-
             $ClassroomSubject->save();
+            Session::flash('flash_message','Kelas Subjek berjaya didaftarkan.');
 
-            //$ClassroomSubject->classrooms()->attach($ClassroomSubject);
-
+            return redirect('classroomsubject');
         }
-        return redirect('classroomsubject');
+        else{
+            Session::flash('flash_message_danger','Kelas/Subjek/Guru/Sesi yang sedang didaftar telah ada dalam sistem.');
+            return Redirect::back();
+        }
+
+
+
     }
 
     /**
@@ -122,17 +135,60 @@ class ClassroomSubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ClassroomSubject = ClassroomSubject::find($id);
+        $subject_id     = $request->input('subject_id');
+        $classroom_id   = $request->input('classroom_id');
+        $teacher_id     = $request->input('teacher_id');
+        $sesi           = $request->input('sesi');
 
-        $ClassroomSubject->admin_id = $request->input('admin_id');
-        $ClassroomSubject->subject_id = $request->input('subject_id');
-        $ClassroomSubject->classroom_id = $request->input('classroom_id');
-        $ClassroomSubject->teacher_id = $request->input('teacher_id');
-        $ClassroomSubject->sesi = $request->input('sesi');
+        $ClassroomSubject = ClassroomSubject::where('subject_id',$subject_id)
+            ->where('classroom_id',$classroom_id)
+            ->where('teacher_id',$teacher_id)
+            ->where('sesi',$sesi)
+            ->first();
 
-        $ClassroomSubject->save();
+        //dd($ClassroomSubject->id);
 
-        return redirect('classroomsubject');
+        if($ClassroomSubject->id == null){
+            $id2 = null;
+        }
+        else{
+            $id2 = $ClassroomSubject->id;
+        }
+
+        if($id2 == $id){
+            $ClassroomSubject = ClassroomSubject::find($id);
+
+            $ClassroomSubject->admin_id = $request->input('admin_id');
+            $ClassroomSubject->subject_id = $request->input('subject_id');
+            $ClassroomSubject->classroom_id = $request->input('classroom_id');
+            $ClassroomSubject->teacher_id = $request->input('teacher_id');
+            $ClassroomSubject->sesi = $request->input('sesi');
+
+            $ClassroomSubject->save();
+            Session::flash('flash_message','Maklumat kelas subjek berjaya dikemaskini..');
+
+            return redirect('classroomsubject');
+        }
+        elseif ($id2 == null){
+
+            $ClassroomSubject = ClassroomSubject::find($id);
+
+            $ClassroomSubject->admin_id = $request->input('admin_id');
+            $ClassroomSubject->subject_id = $request->input('subject_id');
+            $ClassroomSubject->classroom_id = $request->input('classroom_id');
+            $ClassroomSubject->teacher_id = $request->input('teacher_id');
+            $ClassroomSubject->sesi = $request->input('sesi');
+
+            $ClassroomSubject->save();
+            Session::flash('flash_message','Maklumat kelas subjek berjaya dikemaskini..');
+
+            return redirect('classroomsubject');
+        }
+
+        else{
+            Session::flash('flash_message_danger','Kelas/Subjek/Guru/Sesi yang sedang didaftar telah ada dalam sistem.');
+            return Redirect::back();
+        }
     }
 
     /**
@@ -144,6 +200,7 @@ class ClassroomSubjectController extends Controller
     public function destroy($id)
     {
         ClassroomSubject::destroy($id);
+        Session::flash('flash_message','Maklumat kelas subjek berjaya dibuang.');
         return redirect('classroomsubject');
     }
 }
