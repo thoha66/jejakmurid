@@ -67,7 +67,7 @@
 
         @empty
           <tr>
-            <td colspan="5">
+            <td colspan="6">
               <p class="alert alert-warning">Tiada data yang dijumpai ...</p>
             </td>
           </tr>
