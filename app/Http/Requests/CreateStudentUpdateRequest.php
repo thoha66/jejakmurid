@@ -28,7 +28,8 @@ class CreateStudentUpdateRequest extends Request
             'nama_penjaga' => 'required|alpha',
             'alamat_penjaga' => 'required',
             'poskod_penjaga' => 'required|min:4|numeric',
-            'no_tel_penjaga' => 'required|min:10|numeric'
+            'no_tel_penjaga' => 'required|min:10|numeric',
+            'email_penjaga' => 'required'
         ];
     }
 }

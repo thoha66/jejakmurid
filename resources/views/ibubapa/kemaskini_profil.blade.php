@@ -59,7 +59,7 @@
                                             Alamat Penjaga</label>
                                         <div class="col-md-9">
                                             <div class="input-icon right">
-                                                <i class="fa fa-volume-control-phone"></i>
+                                                <i class="fa fa-list-alt"></i>
                                                 <input id="alamat_penjaga" type="text" placeholder="" class="form-control" name="alamat_penjaga" value="{{ $caretaker->alamat_penjaga }}">
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@
                                             Poskod</label>
                                         <div class="col-md-9">
                                             <div class="input-icon right">
-                                                <i class="fa fa-mobile"></i>
+                                                <i class="fa fa-hashtag"></i>
                                                 <input id="poskod_penjaga" type="text" placeholder="" class="form-control" name="poskod_penjaga" value="{{ $caretaker->poskod_penjaga }}" maxlength="5">
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
                                             Email Penjaga </label>
                                         <div class="col-md-9">
                                             <div class="input-icon right">
-                                                <i class="fa fa-mobile"></i>
+                                                <i class="fa fa-twitter"></i>
                                                 <input id="email_penjaga" type="email" placeholder="" class="form-control" name="email_penjaga" value="{{ $caretaker->user->email }}">
                                             </div>
                                         </div>

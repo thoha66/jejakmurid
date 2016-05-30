@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class CaretakerController extends Controller
 {
@@ -97,6 +99,9 @@ class CaretakerController extends Controller
 //        $user->user_group_description   = $request->input('jenis_guru');
         $user->password                 = bcrypt($request->input('password'));
         $user->save();
+
+        Session::flash('flash_message','Maklumat penjaga berjaya dikemaskini.');
+        return Redirect::back();
     }
 
     public function password()
@@ -129,6 +134,8 @@ class CaretakerController extends Controller
 
         $user->password                 = bcrypt($request->input('password'));
         $user->save();
+        Session::flash('flash_message','Maklumat katalaluan berjaya dikemaskini.');
+        return Redirect::back();
     }
 
     /**
