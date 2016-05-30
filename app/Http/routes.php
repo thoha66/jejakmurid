@@ -4,7 +4,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('profile', 'UserController@profile');
     Route::post('profile', 'UserController@update_avatar');
-    
+
     //Routes for Menu
     Route::get('/', function () {
         return view('pentadbir.laman_utama_pentadbir');
@@ -74,7 +74,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('StudentProfilePassword', 'StudentProfileController@password');
     Route::put('StudentProfilePasswordUpdate', 'StudentProfileController@updatepassword');
 
-
+    Route::resource('TeacherProfile', 'TeacherProfileController');
+    Route::get('TeacherProfileEdit', 'TeacherProfileController@edit');
+    Route::get('TeacherProfilePassword', 'TeacherProfileController@password');
+    Route::put('TeacherProfilePasswordUpdate', 'TeacherProfileController@updatepassword');
 
 
 
