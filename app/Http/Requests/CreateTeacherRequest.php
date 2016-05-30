@@ -24,7 +24,7 @@ class CreateTeacherRequest extends Request
     public function rules()
     {
         return [
-            'classroom_subject_id' => 'required|min:12|numeric',
+            //'classroom_subject_id' => 'required|min:12|numeric',
             'email_guru' => 'required|email'
 //            'jenis_guru' => 'required'
 //            'guru_kelas_id' => 'required'
