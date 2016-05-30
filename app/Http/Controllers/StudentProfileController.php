@@ -102,6 +102,40 @@ class StudentProfileController extends Controller
         return Redirect::back();
     }
 
+    public function password()
+    {
+        $user_id = Auth::user()->id;
+        $student_user_id = Student::with('user')->where('user_id',$user_id)->first();
+        $student_id = $student_user_id->id;
+
+        $student = Student::find($student_id);
+        return view('pelajar.kemaskini_katalaluan',compact('student'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatepassword(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $student_user_id = Student::with('user')->where('user_id',$user_id)->first();
+        $student_id = $student_user_id->id;
+
+        $student = Student::find($student_id);
+        $student_user_id = $student->user_id;
+
+        $user = User::find($student_user_id);
+
+        $user->password                 = bcrypt($request->input('password'));
+        $user->save();
+        Session::flash('flash_message','Maklumat katalaluan berjaya dikemaskini.');
+        return Redirect::back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

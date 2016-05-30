@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    Kalalaluan Penjaga
+    Kalalaluan Pelajar
 @endsection
 
 @section('begin_title_left')
-    Kalalaluan Penjaga
+    Kalalaluan Pelajar
 @endsection
 
 @section('begin_title_right')
-    <li><i class="fa fa-user "></i>&nbsp;Kalalaluan Penjaga&nbsp;&nbsp;
+    <li><i class="fa fa-user "></i>&nbsp;Kalalaluan Pelajar&nbsp;&nbsp;
         @endsection
 
         @section('content')
@@ -22,10 +22,10 @@
                 <div class="col-lg-9">
                     <div class="panel panel-blue" style="background:#fff;">
                         <div class="panel-heading">
-                            Kalalaluan Penjaga
+                            Kalalaluan Pelajar
                         </div>
                         <div class="panel-body pan">
-                            <form class="form-horizontal" action="{!! url('CaretakerPasswordUpdate') !!}" method="POST" >
+                            <form class="form-horizontal" action="{!! url('StudentProfilePasswordUpdate') !!}" method="POST" >
                                 <div class="form-body pal">
 
                                     <input type="hidden" name="_method" value="PUT">
