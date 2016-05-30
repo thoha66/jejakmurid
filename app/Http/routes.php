@@ -2,6 +2,9 @@
 
 Route::group(['middleware' => ['web']], function () {
 
+    Route::get('profile', 'UserController@profile');
+    Route::post('profile', 'UserController@update_avatar');
+    
     //Routes for Menu
     Route::get('/', function () {
         return view('pentadbir.laman_utama_pentadbir');
