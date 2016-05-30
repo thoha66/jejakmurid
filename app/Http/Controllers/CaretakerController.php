@@ -97,7 +97,7 @@ class CaretakerController extends Controller
         $user->email                    = $request->input('email_penjaga');
 //        $user->user_group               = $request->input('jenis_guru');
 //        $user->user_group_description   = $request->input('jenis_guru');
-        $user->password                 = bcrypt($request->input('password'));
+//        $user->password                 = bcrypt($request->input('password'));
         $user->save();
 
         Session::flash('flash_message','Maklumat penjaga berjaya dikemaskini.');

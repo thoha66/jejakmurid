@@ -24,12 +24,13 @@ class CreateStudentUpdateRequest extends Request
     public function rules()
     {
         return [
-            'no_kp_penjaga' => 'required|min:7',
-            'nama_penjaga' => 'required|alpha',
-            'alamat_penjaga' => 'required',
-            'poskod_penjaga' => 'required|min:4|numeric',
-            'no_tel_penjaga' => 'required|min:10|numeric',
-            'email_penjaga' => 'required'
+            'nama_pelajar'          => 'required',
+            'tarikh_lahir_pelajar'  => 'required|date',
+            'alamat_pelajar'        => 'required',
+            'poskod_pelajar'        => 'required|min:5|numeric',
+            'email_pelajar'         => 'required|email',
+            'umur_pelajar'          => 'required|numeric',
+            'jantina_pelajar'       => 'required'
         ];
     }
 }

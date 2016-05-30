@@ -66,6 +66,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::put('CaretakerPasswordUpdate', 'CaretakerController@updatepassword'); //Controller Edit
 //    Route::get('CaretakerPasswordUpdate/{id}',[ 'as' => 'delete-news', 'uses' => 'NewsController@destroy']);
 
+    Route::resource('StudentProfile', 'StudentProfileController');
+    Route::get('StudentProfileEdit', 'StudentProfileController@edit');
+    Route::get('StudentProfilePassword', 'StudentProfileController@password');
+    Route::put('StudentProfilePasswordUpdate', 'StudentProfileController@updatepassword');
+
 
 
 

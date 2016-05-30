@@ -18,6 +18,13 @@
                 </a>
             </li>
 
+            <li><a href="{!! url('#') !!}">
+                    <i class="fa fa-hashtag fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Tukar Katalaluan</span>
+                </a>
+            </li>
+
             <li><a href="{!! url('news/create') !!}"><i class="fa fa-bullhorn fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Buat Pengumuman</span></a>
@@ -106,6 +113,13 @@
                 </a>
             </li>
 
+            <li><a href="{!! url('#') !!}">
+                    <i class="fa fa-hashtag fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Tukar Katalaluan</span>
+                </a>
+            </li>
+
             <li><a href="{!! url('task/create') !!}">
                     <i class="fa fa-tasks fa-fw">
                         <div class="icon-bg bg-yellow"></div>
@@ -164,6 +178,13 @@
                     <i class="fa fa-male fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title">Kemaskini Profil </span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('#') !!}">
+                    <i class="fa fa-hashtag fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Tukar Katalaluan</span>
                 </a>
             </li>
 
@@ -244,6 +265,13 @@
                 </a>
             </li>
 
+            <li><a href="{!! url('#') !!}">
+                    <i class="fa fa-hashtag fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Tukar Katalaluan</span>
+                </a>
+            </li>
+
             <li><a href="{!! url('task/create') !!}">
 
                     <i class="fa fa-tasks fa-fw">
@@ -315,10 +343,17 @@
                     </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('#') !!}">
+            <li><a href="{!! url('StudentProfileEdit') !!}">
                     <i class="fa fa-male fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title">Kemaskini Profil</span>
+                </a>
+            </li>
+
+            <li><a href="{!! url('StudentProfilePassword') !!}">
+                    <i class="fa fa-hashtag fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Tukar Katalaluan</span>
                 </a>
             </li>
 
