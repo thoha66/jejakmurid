@@ -60,6 +60,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('StudentExamResult', 'StudentExamResultController');
     Route::post('StudentExamResultDetails',[ 'as' => 'StudentExamResultDetails', 'uses' => 'StudentExamResultController@DetailsExam']);
 
+    Route::resource('caretaker', 'CaretakerController');
+    Route::get('CaretakerProfil', 'CaretakerController@edit'); //Controller Edit
+    Route::get('CaretakerPassword', 'CaretakerController@password'); //Controller Edit
+    Route::put('CaretakerPasswordUpdate', 'CaretakerController@updatepassword'); //Controller Edit
+//    Route::get('CaretakerPasswordUpdate/{id}',[ 'as' => 'delete-news', 'uses' => 'NewsController@destroy']);
+
+
+
 
 
 
