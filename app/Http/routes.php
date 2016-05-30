@@ -79,6 +79,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('TeacherProfilePassword', 'TeacherProfileController@password');
     Route::put('TeacherProfilePasswordUpdate', 'TeacherProfileController@updatepassword');
 
+    Route::resource('AdminProfile', 'AdminProfileController');
+    Route::get('AdminProfileEdit', 'AdminProfileController@edit');
+    //Route::put('AdminProfileUpdate', 'AdminProfileController@update');
+    Route::get('AdminProfilePassword', 'AdminProfileController@password');
+    Route::put('AdminProfilePasswordUpdate', 'AdminProfileController@updatepassword');
 
 
 

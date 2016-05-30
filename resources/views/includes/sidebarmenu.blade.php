@@ -11,14 +11,14 @@
             </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('#') !!}">
+            <li><a href="{!! url('AdminProfileEdit') !!}">
                     <i class="fa fa-male fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title">Kemaskini Profil </span>
                 </a>
             </li>
 
-            <li><a href="{!! url('#') !!}">
+            <li><a href="{!! url('AdminProfilePassword') !!}">
                     <i class="fa fa-hashtag fa-fw">
                         <div class="icon-bg bg-yellow"></div>
                     </i><span class="menu-title">Tukar Katalaluan</span>
