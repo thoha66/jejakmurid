@@ -98,7 +98,7 @@
         <div class="row mbl">
             <div class="row">
                 <div class="col-md-12 center text-center wow pulse animated" data-wow-iteration="3" data-wow-duration="0.15s" style="visibility: visible; animation-duration: 0.15s; animation-iteration-count: 3; animation-name: pulse;">
-                    <img src="{{ url('assets/intro/pentadbir.png') }}" class="img-fluid img-responsive" alt="Responsive image">
+                    <img src="{{ url('assets/intro/guru.png') }}" class="img-fluid img-responsive" alt="Responsive image">
                 </div>
             </div>
             </br></br>

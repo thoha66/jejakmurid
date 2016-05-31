@@ -24,7 +24,7 @@ class CreateTaskMarkRequest extends Request
     public function rules()
     {
         return [
-            'mark'  => 'required|numeric'
+            'mark'  => 'required'
         ];
     }
 }

@@ -6,7 +6,7 @@
 
          <div class="clearfix"></div>
         @if (Auth::user()->user_group == 1)
-            <li><a href="{{ url('laman-utama') }}"><i class="fa fa-tachometer fa-fw">
+            <li><a href="{{ url('laman-utama-pentadbir') }}"><i class="fa fa-tachometer fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Laman Utama</span></a>
             </li>
@@ -100,7 +100,7 @@
             </li>
         @elseif (Auth::user()->user_group == 2)
             {{--Teacher Biasa--}}
-            <li><a href="{{ url('laman-utama') }}">
+            <li><a href="{{ url('laman-utama-guru') }}">
                     <i class="fa fa-tachometer fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Laman Utama</span></a>
@@ -168,7 +168,7 @@
 
         @elseif (Auth::user()->user_group == 3)
             {{--Teacher Classroom--}}
-            <li><a href="{{ url('laman-utama') }}">
+            <li><a href="{{ url('laman-utama-guru') }}">
                     <i class="fa fa-tachometer fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Laman Utama</span></a>
@@ -252,7 +252,7 @@
             </li>
         @elseif (Auth::user()->user_group == 4)
             {{--Teacher disiplin--}}
-            <li><a href="{{ url('laman-utama') }}">
+            <li><a href="{{ url('laman-utama-guru') }}">
                     <i class="fa fa-tachometer fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Laman Utama</span></a>
@@ -337,7 +337,7 @@
 
         @elseif (Auth::user()->user_group == 5)
             {{--Student--}}
-            <li><a href="{{ url('laman-utama') }}">
+            <li><a href="{{ url('laman-utama-pelajar') }}">
                     <i class="fa fa-tachometer fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Laman Utama</span></a>
@@ -379,7 +379,7 @@
             </li>
         @else
             {{--Penjaga--}}
-            <li><a href="{{ url('laman-utama') }}">
+            <li><a href="{{ url('laman-utama-ibubapa') }}">
                     <i class="fa fa-tachometer fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Laman Utama</span></a>

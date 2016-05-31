@@ -6,17 +6,26 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('profile', 'UserController@update_avatar');
 
     //Routes for Menu
-    Route::get('/', function () {
+    Route::get('laman-utama-pentadbir', function () {
         return view('pentadbir.laman_utama_pentadbir');
     });
+    Route::get('laman-utama-guru', function () {
+        return view('guru.laman_utama_guru');
+    });
+    Route::get('laman-utama-pelajar', function () {
+        return view('pelajar.laman_utama_pelajar');
+    });
+    Route::get('laman-utama-ibubapa', function () {
+        return view('ibubapa.laman_utama_ibubapa');
+    });
 
-    Route::get('/laman-utama', function () {
-        return view('pentadbir.laman_utama_pentadbir');
-    })->name('laman-utama');
+//    Route::get('/laman-utama', function () {
+//        return view('pentadbir.laman_utama_pentadbir');
+//    })->name('laman-utama-pentadbir');
 
-    Route::get('/daftar-kelas-subjek', function () {
-        return view('pentadbir.daftar_kelas_subjek');
-    })->name('daftar-kelas-subjek');
+//    Route::get('/daftar-kelas-subjek', function () {
+//        return view('pentadbir.daftar_kelas_subjek');
+//    })->name('daftar-kelas-subjek');
 
     //Routes for Admins
     Route::resource('admin', 'AdminController');
