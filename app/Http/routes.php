@@ -14,9 +14,10 @@ Route::group(['middleware' => ['web']], function () {
 //    });
     Route::get('laman-utama-guru', 'TeacherController@laman_utama');
 
-    Route::get('laman-utama-pelajar', function () {
-        return view('pelajar.laman_utama_pelajar');
-    });
+//    Route::get('laman-utama-pelajar', function () {
+//        return view('pelajar.laman_utama_pelajar');
+//    });
+    Route::get('laman-utama-pelajar', 'StudentController@laman_utama');
     Route::get('laman-utama-ibubapa', function () {
         return view('ibubapa.laman_utama_ibubapa');
     });

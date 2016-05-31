@@ -30,7 +30,8 @@ class HomeController extends Controller
             return redirect(action('AdminController@index'));
         }
         elseif (Auth::user()->user_group ==5){
-            return view('pelajar.laman_utama_pelajar');
+            //return view('pelajar.laman_utama_pelajar');
+            return redirect(action('StudentController@laman_utama'));
         }
         elseif (Auth::user()->user_group ==6){
             return view('ibubapa.laman_utama_ibubapa');

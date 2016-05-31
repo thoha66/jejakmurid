@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ClassroomSubject;
+use App\News;
+use App\StudentAttendance;
+use App\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,6 +25,28 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function laman_utama(){
+
+        $user_id = Auth::user()->id;
+        $student = Student::with('user')->where('user_id',$user_id)->first();
+        $student_classroom_id = $student->classroom_id;
+        $student_id = $student->id;
+
+        $Subjects = ClassroomSubject::where('classroom_id',$student_classroom_id)->count();
+        $ClassroomSubjects = ClassroomSubject::where('classroom_id',$student_classroom_id)->get();
+
+        $total=0;
+        foreach ( $ClassroomSubjects as $ClassroomSubject){
+            $bil_tasks = Task::where('classroom_subject_id',$ClassroomSubject->id)->count();
+            $total = $total + $bil_tasks;
+        }
+
+        $count_attendance = StudentAttendance::where('student_id',$student_id)->count();
+
+        $bil_news = News::all()->count();
+
+        return view('pelajar.laman_utama_pelajar',compact('Subjects','total','count_attendance','bil_news'));
+    }
     public function index()
     {
         $students = Student::with('admin')->orderBy('created_at','desc')->paginate(5);
