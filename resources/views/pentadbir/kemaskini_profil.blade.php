@@ -38,17 +38,17 @@
 
                                 <div class="form-group">
                                     <label for="no_kp_admin" class="col-md-3 control-label">
-                                        no_kp_admin</label>
+                                        No Kp </label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-credit-card"></i>
                                             <input id="no_kp_admin" type="text" placeholder="" class="form-control" name="no_kp_admin" value="{{ $admin->no_kp_admin }}" maxlength="12"></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nama_admin" class="col-md-3 control-label">
-                                        nama_admin</label>
+                                        Nama</label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
                                             <i class="fa fa-user "></i>
@@ -58,10 +58,10 @@
 
                                 <div class="form-group">
                                     <label for="no_tel_admin" class="col-md-3 control-label">
-                                        no_tel_admin</label>
+                                        No Tel </label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-phone "></i>
                                                 <input id="no_tel_admin" type="text" placeholder="" class="form-control" name="no_tel_admin" value="{{ $admin->no_tel_admin }}" maxlength="10" >
                                         </div>
                                     </div>
@@ -69,60 +69,60 @@
 
                                 <div class="form-group">
                                     <label for="no_hp_admin" class="col-md-3 control-label">
-                                        no_hp_admin</label>
+                                        No HP </label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-mobile-phone"></i>
                                             <input id="no_hp_admin" type="text" placeholder="" class="form-control" name="no_hp_admin" value="{{ $admin->no_hp_admin }}" maxlength="10"></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tarikh_lahir_admin" class="col-md-3 control-label">
-                                        tarikh_lahir_admin</label>
+                                        Tarikh Lahir</label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-calendar"></i>
                                             <input id="tarikh_lahir_admin" type="date" placeholder="" class="form-control" name="tarikh_lahir_admin" value="{{ $admin->tarikh_lahir_admin }}" ></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="alamat_admin" class="col-md-3 control-label">
-                                        alamat_admin</label>
+                                        Alamat </label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-home"></i>
                                             <input id="alamat_admin" type="text" placeholder="" class="form-control" name="alamat_admin" value="{{ $admin->alamat_admin }}" ></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="poskod_admin" class="col-md-3 control-label">
-                                        poskod_admin</label>
+                                        Poskod</label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-hashtag"></i>
                                             <input id="poskod_admin" type="text" placeholder="" class="form-control" name="poskod_admin" value="{{ $admin->poskod_admin }}" maxlength="5"></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email_admin" class="col-md-3 control-label">
-                                        email_admin</label>
+                                        Email</label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-location-arrow"></i>
                                             <input id="email_admin" type="email" placeholder="" class="form-control" name="email_admin" value="{{ $admin->user->email }}" ></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="jantina_admin" class="col-md-3 control-label">
-                                        jantina_admin</label>
+                                        Jantina</label>
                                     <div class="col-md-9">
                                         <div class="input-icon right">
-                                            <i class="fa fa-user "></i>
+                                            <i class="fa fa-venus-mars"></i>
                                             <input id="jantina_admin" type="text" placeholder="" class="form-control" name="jantina_admin" value="{{ $admin->jantina_admin }}" ></div>
                                     </div>
                                 </div>
