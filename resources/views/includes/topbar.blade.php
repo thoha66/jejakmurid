@@ -32,9 +32,30 @@
             </li>
             <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle text-capitalize"><img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">{{ Auth::user()->name }}</span>&nbsp;<span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-user pull-right">
-                    <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
-                    <li><a href="#"><i class="fa fa-envelope"></i>My Inbox<span class="badge badge-danger">3</span></a></li>
-                    <li><a href="#"><i class="fa fa-tasks"></i>My Tasks<span class="badge badge-success">7</span></a></li>
+                    <li><a
+                                @if(Auth::user()->user_group == 1)
+                                    href="{{ url('AdminProfileEdit') }}"
+                                @elseif (Auth::user()->user_group == 5)
+                                    href="{{ url('StudentProfileEdit') }}"
+                                @elseif (Auth::user()->user_group == 6)
+                                    href="{{ url('CaretakerProfil') }}"
+                                @else
+                                    href="{{ url('TeacherProfileEdit') }}"
+                                @endif
+                        ><i class="fa fa-user"></i>Kemaskini Profil</a></li>
+                    <li><a
+                                @if(Auth::user()->user_group == 1)
+                                href="{{ url('AdminProfilePassword') }}"
+                                @elseif (Auth::user()->user_group == 5)
+                                href="{{ url('StudentProfilePassword') }}"
+                                @elseif (Auth::user()->user_group == 6)
+                                href="{{ url('CaretakerPassword') }}"
+                                @else
+                                href="{{ url('TeacherProfilePassword') }}"
+                                @endif
+
+                        ><i class="fa fa-hashtag"></i>Tukar Katalaluan<span class="badge badge-danger">3</span></a></li>
+                    <li><a href="{{ url('/profile') }}"><i class="fa  fa-picture-o"></i>Tukar Gambar Profil<span class="badge badge-success">7</span></a></li>
                     <li class="divider"></li>
                     <li><a href="{!! url('logout') !!}"><i class="fa fa-key"></i>Log Out</a></li>
                 </ul>

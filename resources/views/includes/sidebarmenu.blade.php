@@ -11,19 +11,19 @@
             </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('AdminProfileEdit') !!}">
-                    <i class="fa fa-male fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Kemaskini Profil </span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('AdminProfileEdit') !!}">--}}
+                    {{--<i class="fa fa-male fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Kemaskini Profil </span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
-            <li><a href="{!! url('AdminProfilePassword') !!}">
-                    <i class="fa fa-hashtag fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Tukar Katalaluan</span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('AdminProfilePassword') !!}">--}}
+                    {{--<i class="fa fa-hashtag fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Tukar Katalaluan</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
             <li><a href="{!! url('news/create') !!}"><i class="fa fa-bullhorn fa-fw">
                 <div class="icon-bg bg-pink"></div>
@@ -106,19 +106,19 @@
                     </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('TeacherProfileEdit') !!}">
-                    <i class="fa fa-male fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Kemaskini Profil </span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('TeacherProfileEdit') !!}">--}}
+                    {{--<i class="fa fa-male fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Kemaskini Profil </span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
-            <li><a href="{!! url('TeacherProfilePassword') !!}">
-                    <i class="fa fa-hashtag fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Tukar Katalaluan</span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('TeacherProfilePassword') !!}">--}}
+                    {{--<i class="fa fa-hashtag fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Tukar Katalaluan</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
             <li><a href="{!! url('task/create') !!}">
                     <i class="fa fa-tasks fa-fw">
@@ -174,19 +174,19 @@
                     </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('TeacherProfileEdit') !!}">
-                    <i class="fa fa-male fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Kemaskini Profil </span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('TeacherProfileEdit') !!}">--}}
+                    {{--<i class="fa fa-male fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Kemaskini Profil </span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
-            <li><a href="{!! url('TeacherProfilePassword') !!}">
-                    <i class="fa fa-hashtag fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Tukar Katalaluan</span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('TeacherProfilePassword') !!}">--}}
+                    {{--<i class="fa fa-hashtag fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Tukar Katalaluan</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
             <li><a href="{!! url('task/create') !!}">
 
@@ -258,19 +258,19 @@
                     </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('TeacherProfileEdit') !!}">
-                    <i class="fa fa-male fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Kemaskini Profil </span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('TeacherProfileEdit') !!}">--}}
+                    {{--<i class="fa fa-male fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Kemaskini Profil </span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
-            <li><a href="{!! url('TeacherProfilePassword') !!}">
-                    <i class="fa fa-hashtag fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Tukar Katalaluan</span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('TeacherProfilePassword') !!}">--}}
+                    {{--<i class="fa fa-hashtag fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Tukar Katalaluan</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
             <li><a href="{!! url('task/create') !!}">
 
@@ -343,19 +343,19 @@
                     </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('StudentProfileEdit') !!}">
-                    <i class="fa fa-male fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Kemaskini Profil</span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('StudentProfileEdit') !!}">--}}
+                    {{--<i class="fa fa-male fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Kemaskini Profil</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
-            <li><a href="{!! url('StudentProfilePassword') !!}">
-                    <i class="fa fa-hashtag fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Tukar Katalaluan</span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('StudentProfilePassword') !!}">--}}
+                    {{--<i class="fa fa-hashtag fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Tukar Katalaluan</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
             <li><a href="{!! url('StudentTaskView/create') !!}">
                     <i class="fa fa-tasks fa-fw">
@@ -385,19 +385,19 @@
                     </i><span class="menu-title">Laman Utama</span></a>
             </li>
 
-            <li><a href="{!! url('CaretakerProfil') !!}">
-                    <i class="fa fa-male fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Kemaskini Profil </span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('CaretakerProfil') !!}">--}}
+                    {{--<i class="fa fa-male fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Kemaskini Profil </span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
-            <li><a href="{!! url('CaretakerPassword') !!}">
-                    <i class="fa fa-hashtag fa-fw">
-                        <div class="icon-bg bg-yellow"></div>
-                    </i><span class="menu-title">Tukar Katalaluan</span>
-                </a>
-            </li>
+            {{--<li><a href="{!! url('CaretakerPassword') !!}">--}}
+                    {{--<i class="fa fa-hashtag fa-fw">--}}
+                        {{--<div class="icon-bg bg-yellow"></div>--}}
+                    {{--</i><span class="menu-title">Tukar Katalaluan</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
             <li><a href="{!! url('CaretakerStudentTask/create') !!}">
                     <i class="fa fa-tasks fa-fw">
