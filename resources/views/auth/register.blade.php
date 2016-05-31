@@ -3,9 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+        {{--<div class="col-md-8 col-md-offset-2">--}}
+        <div class="col-md-8 col-md-offset-2 span3 wow bounceInRight  animated" style="visibility: visible; animation-name: bounceInRight;">
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="{{ url('assets/intro/daftar_pentadbir.png') }}" class="img-fluid img-responsive " alt="Responsive image">
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
