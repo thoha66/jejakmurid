@@ -34,7 +34,8 @@ class HomeController extends Controller
             return redirect(action('StudentController@laman_utama'));
         }
         elseif (Auth::user()->user_group ==6){
-            return view('ibubapa.laman_utama_ibubapa');
+            //return view('ibubapa.laman_utama_ibubapa');
+            return redirect(action('CaretakerController@index'));
         }
         else{
             //return view('guru.laman_utama_guru');

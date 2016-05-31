@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Caretaker;
+use App\News;
+use App\Student;
+use App\Teacher;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,7 +23,17 @@ class CaretakerController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::user()->id;
+        $caretaker = Caretaker::with('user')->where('user_id',$user_id)->first();
+        $caretaker_id = $caretaker->id;
+
+        $students = Student::where('caretaker_id',$caretaker_id)->count();
+        $students_all = Student::all()->count();
+        $teachers_all = Teacher::all()->count();
+        $news_all = News::all()->count();
+
+
+        return view('ibubapa.laman_utama_ibubapa',compact('students','students_all','teachers_all','news_all'));
     }
 
     /**

@@ -29,9 +29,9 @@
                         </p>
                         <h4 class="value">
                             <span data-counter="" data-start="10" data-end="50" data-step="1" data-duration="0">
-                            </span><span> 239 Org</span></h4>
+                            </span><span> {{ $students }} Org</span></h4>
                         <p class="description">
-                            Bilangan Guru</p>
+                            Bilangan Anak</p>
                         <div class="progress progress-sm mbn">
                             <div role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
                                 style="width: 80%;" class="progress-bar progress-bar-success">
@@ -47,9 +47,9 @@
                             <i class="icon fa fa-graduation-cap"></i>
                         </p>
                         <h4 class="value">
-                            <span>215 Org</span></h4>
+                            <span>{{ $students_all }} Org</span></h4>
                         <p class="description">
-                            Bilangan Pelajar</p>
+                            Bil Pelajar SK</p>
                         <div class="progress progress-sm mbn">
                             <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
                                 style="width: 60%;" class="progress-bar progress-bar-info">
@@ -65,9 +65,9 @@
                             <i class="icon fa fa-group"></i>
                         </p>
                         <h4 class="value">
-                            <span>215 Org</span></h4>
+                            <span>{{ $teachers_all }} Org</span></h4>
                         <p class="description">
-                            Bilangan Penjaga</p>
+                            Bilangan Guru</p>
                         <div class="progress progress-sm mbn">
                             <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
                                 style="width: 50%;" class="progress-bar progress-bar-danger">
@@ -83,7 +83,7 @@
                             <i class="icon fa fa-bullhorn"></i>
                         </p>
                         <h4 class="value">
-                            <span>128 Berita</span></h4>
+                            <span>{{ $news_all }} Berita</span></h4>
                         <p class="description">
                             Bilangan Berita</p>
                         <div class="progress progress-sm mbn">

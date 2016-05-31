@@ -18,9 +18,11 @@ Route::group(['middleware' => ['web']], function () {
 //        return view('pelajar.laman_utama_pelajar');
 //    });
     Route::get('laman-utama-pelajar', 'StudentController@laman_utama');
-    Route::get('laman-utama-ibubapa', function () {
-        return view('ibubapa.laman_utama_ibubapa');
-    });
+
+//    Route::get('laman-utama-ibubapa', function () {
+//        return view('ibubapa.laman_utama_ibubapa');
+//    });
+    Route::get('laman-utama-ibubapa', 'CaretakerController@index');
 
 //    Route::get('/laman-utama', function () {
 //        return view('pentadbir.laman_utama_pentadbir');
