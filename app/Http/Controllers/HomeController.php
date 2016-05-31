@@ -36,7 +36,8 @@ class HomeController extends Controller
             return view('ibubapa.laman_utama_ibubapa');
         }
         else{
-            return view('guru.laman_utama_guru');
+            //return view('guru.laman_utama_guru');
+            return redirect(action('TeacherController@laman_utama'));
         }
 
     }

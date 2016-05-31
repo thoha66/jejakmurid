@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ClassroomSubject;
+use App\News;
+use App\Student;
+use App\Task;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -22,6 +26,31 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function laman_utama(){
+
+
+
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::with('user')->where('user_id',$user_id)->first();
+        $teacher_id = $teacher->id;
+
+        $bil_classroom = ClassroomSubject::where('teacher_id',$teacher_id)->count();
+        $classrooms = ClassroomSubject::where('teacher_id',$teacher_id)->get();
+//        dd($classrooms);
+
+        $total=0;
+        foreach ( $classrooms as $classroom){
+            $bil_student = Student::where('classroom_id',$classroom->classroom_id)->count();
+            $total = $total + $bil_student;
+        }
+
+        $news       = News::all()->count();
+
+        $tasks = Task::where('teacher_id',$teacher_id)->count();
+
+        return view('guru.laman_utama_guru',compact('news','bil_classroom','tasks','total'));
+
+    }
     public function index()
     {
         $teachers = Teacher::with('admin')->orderBy('created_at','desc')->paginate(5);
