@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Caretaker;
+use App\News;
+use App\Student;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Admin;
+use App\Teacher;
 
 class AdminController extends Controller
 {
@@ -16,7 +20,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $teachers   = Teacher::all()->count();
+        $students   = Student::all()->count();
+        $caretakers = Caretaker::all()->count();
+        $news       = News::all()->count();
+
+        return view('pentadbir.laman_utama_pentadbir',compact('teachers','students','caretakers','news'));
     }
 
     /**

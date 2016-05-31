@@ -26,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->user_group ==1) {
-            return view('pentadbir.laman_utama_pentadbir');
+            //return view('pentadbir.laman_utama_pentadbir');
+            return redirect(action('AdminController@index'));
         }
         elseif (Auth::user()->user_group ==5){
             return view('pelajar.laman_utama_pelajar');

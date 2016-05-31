@@ -29,7 +29,7 @@
                         </p>
                         <h4 class="value">
                             <span data-counter="" data-start="10" data-end="50" data-step="1" data-duration="0">
-                            </span><span> 239 Org</span></h4>
+                            </span><span> {{ $teachers }} Org</span></h4>
                         <p class="description">
                             Bilangan Guru</p>
                         <div class="progress progress-sm mbn">
@@ -47,7 +47,7 @@
                             <i class="icon fa fa-graduation-cap"></i>
                         </p>
                         <h4 class="value">
-                            <span>215 Org</span></h4>
+                            <span>{{ $students }} Org</span></h4>
                         <p class="description">
                             Bilangan Pelajar</p>
                         <div class="progress progress-sm mbn">
@@ -65,7 +65,7 @@
                             <i class="icon fa fa-group"></i>
                         </p>
                         <h4 class="value">
-                            <span>215 Org</span></h4>
+                            <span>{{ $caretakers }} Org</span></h4>
                         <p class="description">
                             Bilangan Penjaga</p>
                         <div class="progress progress-sm mbn">
@@ -83,7 +83,7 @@
                             <i class="icon fa fa-bullhorn"></i>
                         </p>
                         <h4 class="value">
-                            <span>128 Berita</span></h4>
+                            <span>{{ $news }} Berita</span></h4>
                         <p class="description">
                             Bilangan Berita</p>
                         <div class="progress progress-sm mbn">
