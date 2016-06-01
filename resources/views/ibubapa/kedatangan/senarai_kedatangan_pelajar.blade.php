@@ -92,7 +92,7 @@
       var chart = {
         labels: ['JUM HADIR {{ $nama_pelajar }}', 'JUM TIDAK DATANG', 'JUM SEKOLAH/2016'],
         datasets: [{
-          data: [ {{ json_encode($total_hadir) }}, {{ json_encode($total_x_hadir) }}, {{ json_encode(30) }} ],
+          data: [ {{ json_encode($total_hadir) }}, {{ json_encode($total_x_hadir) }}, {{ json_encode(200) }} ],
           fillColor : "#2ECCFA",
           strokeColor : "#0080FF",
           pointColor : "#0080FF"
