@@ -54,8 +54,11 @@
             </td>
             <td class="text-center">
 
-              <form action="{!! url('CaretakerStudentTask/'.$task->task_id) !!}" method="POST" >
-                <a href="{!! url('CaretakerStudentTask/'.$task->task_id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</a>
+              <form action="{!! url('TaskMarkGraf') !!}" method="POST" >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="task_id" value="{{ $task->task_id }}">
+                <input type="hidden" name="taskmark_mark" value="{{ $task->mark }}">
+                <button class="btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Lengkap</button>
                 {{--<a href="{!! url('CaretakerStudentTask/'.$task->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>--}}
                 {{--<button type="submit" onclick="clicked(event)" value="Submit" class="btn btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove-sign"></i>   Buang</button>--}}
                 {{--<input type="hidden" name="_method" value="DELETE">--}}

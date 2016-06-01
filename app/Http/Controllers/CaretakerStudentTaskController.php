@@ -70,6 +70,38 @@ class CaretakerStudentTaskController extends Controller
         return view('ibubapa.tugasan.markah.senarai_markah_tugasan_pelajar',compact('tasks','nama_subjek'));
     }
 
+    public function taskGraf(Request $request){
+//        dd($request);
+
+        $task_id = $request->input('task_id');
+        $mark = $request->input('taskmark_mark');
+
+        $task = DB::table('tasks')
+            ->join('teachers', 'teachers.id', '=', 'tasks.teacher_id')
+            ->join('classroom_subjects', 'classroom_subjects.id', '=', 'tasks.classroom_subject_id')
+            ->join('classrooms', 'classrooms.id', '=', 'classroom_subjects.classroom_id')
+            ->join('subjects', 'subjects.id', '=', 'classroom_subjects.subject_id')
+            ->where('tasks.id','=', $task_id)
+            ->select('tasks.*', 'classroom_subjects.*','teachers.*','classrooms.*','subjects.*')
+            ->first();
+
+        $at = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(90, 100))->count();
+        $a = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(80, 89))->count();
+        $ak = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(75, 79))->count();
+        $bt = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(70, 74))->count();
+        $b = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(65, 69))->count();
+        $ct = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(60, 64))->count();
+        $c = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(50, 59))->count();
+        $d = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(45, 49))->count();
+        $e = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(40, 44))->count();
+        $g = DB::table('task_marks')->where('task_id','=', $task_id)->whereBetween('mark', array(0, 39))->count();
+
+        $GradeName = ['A+','A','A-','B+','B','C+','C','D','E','G'];
+        $GradeMarks = [$at,$a,$ak,$bt,$b,$ct,$c,$d,$e,$g];
+//        dd($GradeMarks);
+        return view('ibubapa.tugasan.markah.papar_tugasan_pelajar', compact('task','mark','at','a','ak','bt','b','ct','c','d','e','g'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

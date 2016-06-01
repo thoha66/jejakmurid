@@ -59,6 +59,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('SubjectTaskAll',[ 'as' => 'SubjectTaskAll', 'uses' => 'CaretakerStudentTaskController@index2']);
     Route::get('StudentTaskMark',[ 'as' => 'StudentTaskMark', 'uses' => 'CaretakerStudentTaskController@pilihstudent']);
     Route::post('StudentTaskMarkAll',[ 'as' => 'StudentTaskMarkAll', 'uses' => 'CaretakerStudentTaskController@allstudentmark']);
+    Route::post('TaskMarkGraf',[ 'as' => 'TaskMarkGraf', 'uses' => 'CaretakerStudentTaskController@taskGraf']);
 
     Route::resource('CaretakerStudentDiscipline', 'CaretakerStudentDisciplineController');
     Route::post('StudentDiscipline',[ 'as' => 'StudentDiscipline', 'uses' => 'CaretakerStudentDisciplineController@pelajar']);
