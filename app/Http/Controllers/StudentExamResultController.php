@@ -72,7 +72,7 @@ class StudentExamResultController extends Controller
             ->get();
 //        dd($ClassSubjectExams);
 
-        return view('ibubapa.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student'));
+        return view('pelajar.peperiksaan.senarai_markah_induvidu_peperiksaan_pelajar',compact('nama_peperiksaan','sesi_peperiksaan','ClassSubjectExams','student'));
 
     }
 

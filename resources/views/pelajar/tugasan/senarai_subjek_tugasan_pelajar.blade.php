@@ -21,7 +21,8 @@
         <tr >
           <th class="text-center">#</th>
           <th>Jenis Subjek</th>
-          <th class="text-center">Tindakkan</th>
+          <th class="text-center">Senarai</th>
+          <th class="text-center">Hasil</th>
         </tr>
         </thead>
         <tbody>
@@ -50,16 +51,17 @@
                 {{--<input type="hidden" name="nama_peperiksaan" value="{{ $exam->nama_peperiksaan }}">--}}
                 {{--<input type="hidden" name="sesi_peperiksaan" value="{{ $sesi_peperiksaan }}">--}}
 
-                <button  class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Tugasan</button>
+                <button  class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Senarai Tugasan</button>
               </form>
-
+            </td>
+            <td class="text-center">
               <form action="{!! url('SubjekTaskMarks') !!}" method="POST" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 {{--hidden input--}}
                 <input type="hidden" name="classroom_subject_id" value="{{ $ClassroomSubject->id }}">
                 <input type="hidden" name="subject_id" value="{{ $ClassroomSubject->subject->subject_id }}">
 
-                <button  class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Maklumat Pemarkahan Tugasan</button>
+                <button  class="btn btn-success btn-sm"><i class="glyphicon glyphicon-info-sign "></i>  Pemarkahan Pemarkahan Tugasan</button>
               </form>
 
 
