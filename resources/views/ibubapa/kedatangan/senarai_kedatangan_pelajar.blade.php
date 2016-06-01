@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+  <div class="row">
   <div class="panel panel-blue" style="background:#FFF;">
     <div class="panel-heading">Pelajar :   {{ $nama_pelajar }}</div>
     <div class="panel-body">
@@ -67,4 +68,38 @@
 
     </div>
   </div>
+  </div>
+  <div class="row"> h: {{ $total_hadir }} xh: {{ $total_x_hadir }}</div>
+
+  {{--//dd--}}
+  {{--new row--}}
+  <div class="row">
+
+    <div class=" text-center">
+      <canvas id="totalpaymentchart" width="800px" height="400px" ></canvas>
+    </div>
+    <div class="text-center">
+      <p><b>Rajah Menunjukkan : X-Axis [Gread Skor Pelajar], Y-Axis [Bil Pelajar]</b></p>
+      {{--<p><b>Anak Anda Markah : {{ $mark }}/100</b></p>--}}
+    </div>
+
+  </div>
+  {{--new row--}}
+  <script>
+    //        new chart
+    (function() {
+      var ctx = document.getElementById('totalpaymentchart').getContext('2d');
+      var chart = {
+        labels: ['JUM HADIR {{ $nama_pelajar }}', 'JUM TIDAK DATANG', 'JUM SEKOLAH/2016'],
+        datasets: [{
+          data: [ {{ json_encode($total_hadir) }}, {{ json_encode($total_x_hadir) }}, {{ json_encode(30) }} ],
+          fillColor : "#2ECCFA",
+          strokeColor : "#0080FF",
+          pointColor : "#0080FF"
+        }]
+      };
+      new Chart(ctx).Bar(chart, { bezierCurve: false, pointDotRadius : 3 });
+    })();
+
+  </script>
 @stop

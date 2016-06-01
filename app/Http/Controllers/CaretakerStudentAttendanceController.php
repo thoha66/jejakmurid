@@ -10,6 +10,7 @@ use Auth;
 use App\Caretaker;
 use App\Student;
 use App\StudentOffense;
+use DB;
 
 class CaretakerStudentAttendanceController extends Controller
 {
@@ -26,7 +27,29 @@ class CaretakerStudentAttendanceController extends Controller
 
         //$StudentOffenses = StudentOffense::where('student_id',$student_id)->with('student')->orderBy('tarikh_kesalahan','desc')->paginate(5);
         $StudentAttendances = StudentAttendance::where('student_id',$student_id)->with('attendance')->orderBy('created_at','desc')->paginate(5);
-        return view('ibubapa.kedatangan.senarai_kedatangan_pelajar',compact('nama_pelajar','StudentAttendances'));
+
+//        dd($student_id);
+
+        $hadir = 'hadir';
+        $tidak_hadir = 'tidak hadir';
+
+        $total_hadir = DB::table('student_attendances')
+//            ->join('attendances', 'attendances.id', '=', 'student_attendances.attendance_id')
+            ->where('student_attendances.student_id','=', $student_id)
+            ->where('student_attendances.kedatangan','=', $hadir)
+            ->select('student_attendances.kedatangan')
+            ->count();
+        $total_x_hadir = DB::table('student_attendances')
+            ->where('student_attendances.student_id','=', $student_id)
+            ->where('student_attendances.kedatangan','=', $tidak_hadir)
+            ->select('student_attendances.kedatangan')
+            ->count();
+
+        $total_hadir    = (int)$total_hadir;
+        $total_x_hadir  = (int)$total_x_hadir;
+//        dd($total_x_hadir);
+
+        return view('ibubapa.kedatangan.senarai_kedatangan_pelajar',compact('nama_pelajar','StudentAttendances','total_hadir','total_x_hadir'));
     }
 
     public function index()
