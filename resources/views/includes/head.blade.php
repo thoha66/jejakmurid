@@ -18,6 +18,7 @@
 <link type="text/css" rel="stylesheet" href="{{ url('assets/styles/zabuto_calendar.min.css') }}">
 <link type="text/css" rel="stylesheet" href="{{ url('assets/styles/pace.css') }}">
 <link type="text/css" rel="stylesheet" href="{{ url('assets/styles/jquery.news-ticker.css') }}">
+<link type="text/css" rel="stylesheet" href="{{ url('assets/css/app.css') }}">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 {{--select2--}}
