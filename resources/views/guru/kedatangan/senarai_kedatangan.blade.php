@@ -62,7 +62,7 @@
                         <td class="text-center">
 
                             {{--<form action="{!! url('attendance/'.$attendance->id) !!}" method="POST" >--}}
-                            <a href="{!! url('attendance/'.$attendance->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Laporan Kehadiran</a>
+                            {{--<a href="{!! url('attendance/'.$attendance->id) !!}" class="btn btn btn-info btn-sm"><i class="glyphicon glyphicon-info-sign"></i>  Laporan Kehadiran</a>--}}
                             <a href="{!! url('attendance/'.$attendance->id.'/edit') !!}" type="button" class="btn btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i>  Kemaskini</a>
                             <a href="{!! url('attendance/'.$attendance->id) !!}" class="btn btn-danger"  data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?"><i class="fa fa-trash-o"></i> Buang</a>
 
