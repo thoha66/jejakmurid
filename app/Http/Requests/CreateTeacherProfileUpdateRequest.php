@@ -24,7 +24,7 @@ class CreateTeacherProfileUpdateRequest extends Request
     public function rules()
     {
         return [
-            'nama_guru'         => 'required|alpha',
+            'nama_guru'         => 'required',
             'no_tel_guru'       => 'required|min:10|numeric',
             'no_hp_guru'        => 'required|min:10|numeric',
             'tarikh_lahir_guru' => 'required|date',

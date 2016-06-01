@@ -25,7 +25,7 @@ class TeacherProfileController extends Controller
         $teacher_user_id = Teacher::with('user')->where('user_id',$user_id)->first();
         $teacher_id = $teacher_user_id->id;
 
-        $teacher = Teacher::with('classroom4')->with('user')->find($teacher_id)->first();
+        $teacher = Teacher::with('classroom4')->with('user')->find($teacher_id);
         return view('guru.kemaskini_profil',compact('teacher'));
     }
 

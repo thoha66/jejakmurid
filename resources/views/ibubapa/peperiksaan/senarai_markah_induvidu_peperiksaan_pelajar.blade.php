@@ -93,7 +93,7 @@
         </div>
 
         <div class="text-center">
-          <p><b><font class="purple"> . . . </font> Gread Skor Pelajar <br><font class="wine"> . . . </font> Purata Markah Setiap Subjek Dalam Kelas</b></p>
+          <p><b><font class="purple"> . . . </font>  Purata Markah Setiap Subjek Dalam Kelas <br><font class="wine"> . . . </font> Gread Skor Pelajar </b></p>
         </div>
       {{--End canves--}}
 

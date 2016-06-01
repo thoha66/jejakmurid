@@ -67,7 +67,7 @@ class StudentProfileController extends Controller
         $student_user_id = Student::with('user')->where('user_id',$user_id)->first();
         $student_id = $student_user_id->id;
 
-        $student = Student::with('classroom')->with('user')->find($student_id)->first();
+        $student = Student::with('classroom')->with('user')->find($student_id);
         return view('pelajar.kemaskini_profil',compact('student'));
     }
 

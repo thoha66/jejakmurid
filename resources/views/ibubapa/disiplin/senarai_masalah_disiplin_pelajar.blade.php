@@ -84,7 +84,7 @@
       <canvas id="totalpaymentchart" width="800px" height="400px" ></canvas>
     </div>
     <div class="text-center">
-      <p><b>Rajah Menunjukkan : X-Axis [Gread Skor Pelajar], Y-Axis [Bil Pelajar]</b></p>
+      <p><b>Rajah Menunjukkan : X-Axis [Amaran Penalti Mengikut Tahap], Y-Axis [Bil Penalti]</b></p>
       {{--<p><b>Anak Anda Markah : {{ $mark }}/100</b></p>--}}
     </div>
 
