@@ -30,7 +30,7 @@
             <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
 
             </li>
-            <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle text-capitalize"><img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">{{ Auth::user()->name }}</span>&nbsp;<span class="caret"></span></a>
+            <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle text-capitalize"><img src="/assets/uploads/avatars/{{ Auth::user()->avatar }}" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">{{ Auth::user()->name }}</span>&nbsp;<span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-user pull-right">
                     <li><a
                                 @if(Auth::user()->user_group == 1)
