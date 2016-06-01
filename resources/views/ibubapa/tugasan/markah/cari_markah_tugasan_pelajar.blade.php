@@ -24,6 +24,7 @@
 
                   <form class="form-horizontal" method="POST" action="{!! url('StudentTaskMarkAll') !!}">
                     {!! csrf_field() !!}
+                    <input type="hidden" name="student_id" value="{{ $student->id }}">
 
                     <div class="thumbnail">
                       <img class="center-block" src="/uploads/avatars/{{ $student->user->avatar }}" alt="" style="width: 150px; height: 150px; border-radius: 50%;">

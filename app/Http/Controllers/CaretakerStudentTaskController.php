@@ -23,6 +23,7 @@ class CaretakerStudentTaskController extends Controller
     public function index(Request $request)
     {
         $student_id = $request->input('student_id');
+//        dd($student_id);
         $student = Student::where('id',$student_id)->first();
         $student_classroom_id = $student->classroom_id;
         $ClassroomSubjects = ClassroomSubject::where('classroom_id',$student_classroom_id)->with('subject')->get();
@@ -55,6 +56,7 @@ class CaretakerStudentTaskController extends Controller
     public function allstudentmark(Request $request){
 
         $student_id = $request->input('student_id');
+//        dd($student_id);
         $tasks = DB::table('task_marks')
             ->join('tasks', 'tasks.id', '=', 'task_marks.task_id')
             ->join('teachers', 'teachers.id', '=', 'tasks.teacher_id')
@@ -80,7 +82,7 @@ class CaretakerStudentTaskController extends Controller
         $Caretaker = Caretaker::with('user')->where('user_id',$user_id)->first();
         $Caretaker_id = $Caretaker->id;
 
-        $students = Student::where('caretaker_id',$Caretaker_id)->get();
+        $students = Student::where('caretaker_id',$Caretaker_id)->with('user')->get();
 
         return view('ibubapa.tugasan.cari_tugasan_pelajar',compact('students'));
     }
