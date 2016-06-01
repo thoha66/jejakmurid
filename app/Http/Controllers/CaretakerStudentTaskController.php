@@ -48,7 +48,7 @@ class CaretakerStudentTaskController extends Controller
         $Caretaker = Caretaker::with('user')->where('user_id',$user_id)->first();
         $Caretaker_id = $Caretaker->id;
 
-        $students = Student::where('caretaker_id',$Caretaker_id)->get();
+        $students = Student::where('caretaker_id',$Caretaker_id)->with('user')->get();
 
         return view('ibubapa.tugasan.markah.cari_markah_tugasan_pelajar',compact('students'));
     }
