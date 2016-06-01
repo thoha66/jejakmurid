@@ -9,7 +9,7 @@
 @endsection
 
 @section('begin_title_right')
-  <li><i class="fa fa-book"></i>&nbsp;Senarai Tugasan Subjek  {{ $nama_subjek }}</li>
+  <li><i class="fa fa-book "></i>&nbsp; <span class=" text-capitalize"> Senarai Tugasan Subjek {{ $nama_subjek }} </span></li>
 @endsection
 
 @section('content')
