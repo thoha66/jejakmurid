@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Caretaker;
 use App\Student;
 use Auth;
+use DB;
 
 class CaretakerStudentDisciplineController extends Controller
 {
@@ -25,7 +26,16 @@ class CaretakerStudentDisciplineController extends Controller
 
         $StudentOffenses = StudentOffense::where('student_id',$student_id)->with('student')->orderBy('tarikh_kesalahan','desc')->paginate(5);
 
-        return view('ibubapa.disiplin.senarai_masalah_disiplin_pelajar',compact('StudentOffenses','nama_pelajar'));
+        $total_penalty = DB::table('student_offenses')
+            ->join('offenses', 'offenses.id', '=', 'student_offenses.offense_id')
+            ->where('student_offenses.student_id','=', $student_id)
+            ->select('offenses.bilangan_mata_kesalahan')
+            ->sum('bilangan_mata_kesalahan');
+
+        $total_penalty = (int)$total_penalty;
+//        dd($total_penalty);
+
+        return view('ibubapa.disiplin.senarai_masalah_disiplin_pelajar',compact('StudentOffenses','nama_pelajar','total_penalty'));
     }
 
     public function index()

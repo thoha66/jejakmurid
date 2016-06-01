@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+  <div class="row">
   <div class="panel panel-blue" style="background:#FFF;">
     <div class="panel-heading">Pelajar :  {{ $nama_pelajar }}</div>
     <div class="panel-body">
@@ -75,4 +76,35 @@
 
     </div>
   </div>
+  </div>
+  {{--new row--}}
+  <div class="row">
+
+    <div class=" text-center">
+      <canvas id="totalpaymentchart" width="800px" height="400px" ></canvas>
+    </div>
+    <div class="text-center">
+      <p><b>Rajah Menunjukkan : X-Axis [Gread Skor Pelajar], Y-Axis [Bil Pelajar]</b></p>
+      {{--<p><b>Anak Anda Markah : {{ $mark }}/100</b></p>--}}
+    </div>
+
+  </div>
+  {{--new row--}}
+  <script>
+    //        new chart
+    (function() {
+      var ctx = document.getElementById('totalpaymentchart').getContext('2d');
+      var chart = {
+        labels: ['JUM PENALTI {{ $nama_pelajar }}', 'AMARAN PERTAMA', 'AMARAN KE 2', 'AMARAN KE 3', 'BUANG SEKOLAH'],
+        datasets: [{
+          data: [ {{ json_encode($total_penalty) }}, {{ json_encode(15) }}, {{ json_encode(30) }}, {{ json_encode(40) }},{{ json_encode(50) }} ],
+          fillColor : "#2ECCFA",
+          strokeColor : "#0080FF",
+          pointColor : "#0080FF"
+        }]
+      };
+      new Chart(ctx).Bar(chart, { bezierCurve: false, pointDotRadius : 3 });
+    })();
+
+  </script>
 @stop

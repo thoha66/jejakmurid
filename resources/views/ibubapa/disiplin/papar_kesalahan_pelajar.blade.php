@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+  <div class="row">
   <div class="col-lg-12">
     <div class="row">
       <div class="col-lg-2"></div>
@@ -103,6 +104,7 @@
       </div>
       <div class="col-lg-1"></div>
     </div>
+  </div>
   </div>
 @stop
 

@@ -27,7 +27,7 @@
                     <input type="hidden" name="student_id" value="{{ $student->id }}">
 
                     <div class="thumbnail">
-                      <img class="center-block" src="/uploads/avatars/{{ $student->user->avatar }}" alt="" style="width: 150px; height: 150px; border-radius: 50%;">
+                      <img class="center-block" src="/assets/uploads/avatars/{{ $student->user->avatar }}" alt="" style="width: 150px; height: 150px; border-radius: 50%;">
                       <div class="caption text-center">
                         <strong>{{ $student->nama_pelajar  }}</strong>
                         </h4>

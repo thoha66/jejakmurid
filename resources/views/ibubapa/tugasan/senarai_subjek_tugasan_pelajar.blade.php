@@ -29,7 +29,7 @@
                     <input type="hidden" name="classroom_subject_id" value="{{ $ClassroomSubject->id }}">
 
                     <div class="thumbnail">
-                      <img class="center-block" src="/uploads/avatars/notebook.png" alt="" style="width: 150px; height: 150px; border-radius: 50%;">
+                      <img class="center-block" src="/assets/uploads/avatars/notebook.png" alt="" style="width: 150px; height: 150px; border-radius: 50%;">
                       <div class="caption text-center">
                         <strong>{{ $ClassroomSubject->subject->nama_subjek  }}</strong>
                         </h4>
